@@ -1,23 +1,22 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
+import { BaseSearchBoxFormContainer } from '../../components/searchbox/searchbox.styles';
+import { BaseUserNavigationContainer } from '../../components/userNavigation/user-navigation.styles';
 export const NavigationContainer = styled.div`
   display: flex;
-  box-sizing: border-box;
-  padding: 30px;
-  justify-content: space-between;
+  padding: 0.8em 2em;
+  justify-content: space-around;
   align-items: center;
+  gap: 5em;
 `
-
-export const SearchBoxContainer = styled.div`
-  border: 1px solid red;
-  border-radius: 10px;
+export const LogoContainer = styled(Link)`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  box-sizing: border-box;
+  width: 10rem;
+`
+export const SearchBoxFormContainer = styled(BaseSearchBoxFormContainer)`
   padding: 5px 10px 5px 15px;
-  width: 50em
+  flex-grow: 5;
 `
 export const SearchBox = styled.input`
   border: none;
@@ -29,25 +28,20 @@ export const SearchBox = styled.input`
 `
 export const SearchButton = styled(Link)`
   border: none;
-  background-color: #FAFAFA;
+  background-color: var(--background-color);
   display: flex;
   align-items: center;
 `
-
 export const MyPurchasesContainer = styled.div`
 
 `
-
 export const CartDropdownContainer = styled(Link)`
 
 `
-
-export const UserNavigationContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 5em;
-  align-items: center;
+export const UserNavigationContainer = styled(BaseUserNavigationContainer)`
+  gap: 3em;
 `
-export const BasketLink = styled(Link)`
-
+export const BasketContainer = styled(Link)`
+  display: flex;
+  align-items: center;
 `

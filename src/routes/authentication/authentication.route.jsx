@@ -1,8 +1,14 @@
+import SignIn from "../../components/sign-in/sign-in.component";
+import SignUp from "../../components/sign-up/sign-up.component";
+import { AuthenticationContainer, ContentContainer } from "./authentication.styles";
 const Authentication = () => {
   return (
-    <div>
-      <h1>Authentication page</h1>
-    </div>
+    <AuthenticationContainer>
+      <ContentContainer>
+        <SignIn/>
+        <SignUp/>
+      </ContentContainer>
+    </AuthenticationContainer>
   )
 }
 

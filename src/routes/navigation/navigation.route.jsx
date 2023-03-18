@@ -1,9 +1,10 @@
 import { Link, Outlet } from "react-router-dom";
+import Media from "react-media";
 import { ReactComponent as Logo } from '../../assets/logo.svg'
 import { ReactComponent as SearchLogo } from '../../assets/search-lg.svg'
 import { ReactComponent as Basket } from '../../assets/basket.svg'
 import { 
-  NavigationContainer, SearchBoxContainer, SearchBox, MyPurchasesContainer, CartDropdownContainer, SearchButton, UserNavigationContainer, BasketLink
+  NavigationContainer, LogoContainer, SearchBoxFormContainer, SearchBox, MyPurchasesContainer, CartDropdownContainer, SearchButton, UserNavigationContainer, BasketContainer
 } from "./navigation.styles";
 
 const searchButtonHandler = () => {
@@ -14,23 +15,21 @@ const Navigation = () => {
   return (
     <>
       <NavigationContainer>
-        <Link to='/'>
+        <LogoContainer to='/'>
           <Logo/>
-        </Link>
-        <form>
-          <SearchBoxContainer>
-            <SearchBox type='search' placeholder="Search a craving"></SearchBox>
-            <SearchButton type='button' onClick={searchButtonHandler}>
-              <SearchLogo/>
-            </SearchButton>
-          </SearchBoxContainer>
-        </form>
+        </LogoContainer>
+        <SearchBoxFormContainer>
+          <SearchBox type='search' placeholder="Search a craving"></SearchBox>
+          <SearchButton type='button' onClick={searchButtonHandler}>
+            <SearchLogo/>
+          </SearchButton>
+        </SearchBoxFormContainer>
         <UserNavigationContainer>
           <Link to='/myPurchases'>MY PURCHASES</Link>
-          <div>SIGN OUT</div>
-          <BasketLink>
+          <Link to='/auth'>SIGN IN</Link>
+          <BasketContainer>
             <Basket/>
-          </BasketLink>
+          </BasketContainer>
         </UserNavigationContainer>
       </NavigationContainer>
       <Outlet/>
