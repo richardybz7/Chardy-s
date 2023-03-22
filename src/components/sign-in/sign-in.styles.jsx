@@ -10,19 +10,19 @@ export const SignInContainer = styled.div`
   --margin-bottom: 0.5em;
 `
 export const HeaderContainer = styled.div`
-  margin-bottom: 1.7rem;
+  margin-bottom: 1.5rem;
 `
 export const FirstHeader = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
 `
 export const SecondHeader = styled.div`
-  font-size: 1.1rem;
+  font-size: 0.9rem;
 `
 export const UserFormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1.5em;
-  width: 25rem;
+  width: 20rem;
 `
 export const UserInputContainer = styled.div`
   display: flex;
@@ -44,7 +44,7 @@ export const CredentialInput = styled.input`
   width: 100%;
   font-size: 1rem;
   box-sizing: border-box;
-  padding: 0.8em;
+  padding: 0.6em;
   &:hover{
     border: 1px solid rgba(255, 91, 91, 1);
   }
@@ -69,7 +69,7 @@ export const SignInButton = styled(BaseButton)`
   border-radius: var(--border-radius);
   color: #523131;
   flex-grow: 1;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   &:hover{
     background-color: #FFCBCB;
     color: #FFFFFF;
@@ -80,7 +80,7 @@ export const SignInWithGoogleButton = styled(BaseButton)`
   border-radius: var(--border-radius);
   color: #FFFFFF;
   flex-grow: 2;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   &:hover{
     background-color: #5490EC;
     color: #FAFAFA;
@@ -90,17 +90,22 @@ export const SignInWithGoogleButton = styled(BaseButton)`
 export const SignInContent = styled.div`
   ${FirstHeader}{
     @media all and (max-width: 660px){
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
   }
   ${SecondHeader}{
     @media all and (max-width: 660px){
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
   }
   ${UserInputContainer}{
     @media all and (max-width: 660px){
       font-size: 0.8rem;
+    }
+  }
+  ${UserFormContainer}{
+    @media all and (max-width: 375px){
+      width: 18rem;
     }
   }
 `

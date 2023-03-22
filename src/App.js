@@ -7,8 +7,21 @@ import MyPurchases from "./routes/myPurchases/myPurchases.route";
 import NotFound from "./routes/notFound/notFound.route";
 import Products from "./routes/products/products.route";
 import { GlobalStyle } from "./global.styles";
+import { useEffect } from "react";
+import { createUserDocumentFromAuth, onAuthStateChangedListener } from "./utils/firebase/firebase.utils";
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./store/user/user.action";
 
 const App = () => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const unsubscribe = onAuthStateChangedListener((user) => {
+      if(user){
+        createUserDocumentFromAuth(user)
+      }
+      dispatch(setCurrentUser(user))
+    })
+  },[])
   return (
     <>
     <GlobalStyle/>

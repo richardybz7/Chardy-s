@@ -13,6 +13,7 @@ export const ContentContainer = styled.div`
   justify-content: space-around;
   padding: 5rem;
   gap: 5em;
+  margin-bottom: 2rem;
 
   @media all and (max-width: 1060px){
     flex-direction: column;

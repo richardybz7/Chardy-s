@@ -5,9 +5,10 @@ export const BaseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  padding: 0.8em;
   border-radius: 0.4em;
   border: none;
+  font-size: 0.8rem;
 `
 BaseButton.defaultProps = {
   type: "button"
