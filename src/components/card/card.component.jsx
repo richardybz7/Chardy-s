@@ -1,9 +1,9 @@
 import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer } from "./card.styles";
 
-const Card = ({otherProps}) => {
+const Card = ({product}) => {
   return (
     <CardContainer>
-      <Label>{otherProps.name}</Label>
+      <Label>{product.name}</Label>
       <ButtonContainer>
         <AddToBoxButton/>
         <BuyADozenButton/>

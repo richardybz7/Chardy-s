@@ -13,7 +13,12 @@ import {
   getFirestore,
   doc,
   getDoc,
-  setDoc
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+  orderBy
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -77,3 +82,26 @@ export const createUserAuthWithEmailAndPassword = async (email,password) => {
 export const signOutUser = async () => await signOut(auth)
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged( auth, callback )
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionRef = collection(db, collectionKey)
+  const batch = writeBatch(db)
+  objectsToAdd.forEach((object) => {
+    const docRef = doc(collectionRef, object.title)
+    batch.set(docRef, object)
+  })
+  await batch.commit()
+}
+
+export const getCategoriesAndDocuments = async() => {
+  const collectionRef = collection(db, 'products')
+  const q = query(collectionRef)
+
+  const querySnapshot = await getDocs(q)
+  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    acc[title] = items
+    return acc
+  }, {})
+  return categoryMap
+}

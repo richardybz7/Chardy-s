@@ -1,0 +1,1 @@
+export const selectProductsMap = (state) => state.products.productsMap

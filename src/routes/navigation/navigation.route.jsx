@@ -1,32 +1,30 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Search from '../../components/searchbox/searchbox.component'
 import { 
-  NavigationContainer, LogoContainer, SearchBoxFormContainer, SearchBox, MyPurchasesContainer, CartDropdownContainer, SearchButton, UserNavigationContainer, BasketContainer, MyPurchasesLabel, SignInSignOutLabel, ParentNavigationContainer
+  NavigationContainer, 
+  UserNavigationContainer, 
+  BasketContainer, 
+  MyPurchasesLabel, 
+  SignInSignOutLabel, 
+  ParentNavigationContainer
 } from "./navigation.styles";
 import { useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
 import LowerNavigationContainer from "../../components/lower-navigation-div/lower-navigation-container.component";
 import Burger from "../../components/burger/burger.component";
 import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.component";
-import { ReactComponent as BasketSVG } from '../../assets/chardybasket.svg'
+import { Basket } from "./navigation.styles";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-const PHONE_WIDTH = {
-  width: '500'
-}
 
-const searchButtonHandler = () => {
-  console.log('asdfasasdf')
-}
-
-const LogoStyle = {
-  padding: '0.2em 2em' 
+const DEVICE_WIDTH = {
+  phoneWidth: '500',
+  tabletWidth: '768'
 }
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser)
-  console.log('CURRENT USER: ', currentUser)
   const location = useLocation();
   const [cursorState, setCursorState] = useState('pointer');
   const [windowSize, setWindowSize] = useState(window.innerWidth);
@@ -53,7 +51,7 @@ const Navigation = () => {
       <ParentNavigationContainer>
         <NavigationContainer>
           {
-            windowSize <= PHONE_WIDTH.width ? 
+            windowSize <= DEVICE_WIDTH.phoneWidth ? 
             <Burger/>
             :
             <></>
@@ -65,14 +63,14 @@ const Navigation = () => {
             :
             <>
               {
-                windowSize >= '820' ? 
+                windowSize >= DEVICE_WIDTH.tabletWidth ? 
                   <Search/>
                   :
                   <></>
               }
               <UserNavigationContainer>
               {
-                windowSize <= PHONE_WIDTH.width ? 
+                windowSize <= DEVICE_WIDTH.phoneWidth ? 
                 <></>
                 :
                 <>
@@ -89,12 +87,13 @@ const Navigation = () => {
                     :
                     <SignInSignOutLabel to='/auth'>SIGN IN
                     </SignInSignOutLabel>
+
                   }
                 </>
                 
               }
               <BasketContainer>
-                <BasketSVG/>
+                <Basket/>
                 <BasketDropdown/>
               </BasketContainer>
             </UserNavigationContainer>
@@ -102,7 +101,7 @@ const Navigation = () => {
           }
         </NavigationContainer>
         {
-          windowSize < '820' && location.pathname === '/' ? 
+          windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/' ? 
           <LowerNavigationContainer />
           :
           <></>

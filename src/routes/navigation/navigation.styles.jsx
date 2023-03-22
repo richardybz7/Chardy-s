@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { ReactComponent as BasketSVG } from '../../assets/chardybasket.svg'
 
 export const MyPurchasesLabel = styled(Link)`
   white-space: nowrap;
@@ -25,6 +26,8 @@ export const BasketContainer = styled(Link)`
   width: 50px;
   display: flex;
   align-items: center;
+`
+export const Basket = styled(BasketSVG)`
 `
 export const UserNavigationContainer = styled.div`
   display: flex;
