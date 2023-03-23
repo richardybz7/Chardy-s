@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { BaseButton } from '../../components/button/button.styles'
 export const CardContainer = styled.div`
-  width: 12em;
-  height: 15em;
+  width: calc(1.2*12em);
+  height: calc(1.2*15em);
   background-color: white;
   border-radius: 0.3em;
-  box-shadow: 0 0 5px 0 #B8B8B8;
+  box-shadow: 0 0 3px 0 #B8B8B8;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  transition: 0.5s ease-in-out;
+  z-index: 1;
+  :hover{
+    transform: scale(1.03)
+  }
 `
 
 export const AddToBoxButton = styled(BaseButton)`

@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
+    user-select:none;
     background-color: var(--background-color);
     font-family: var(--font-family);
   }

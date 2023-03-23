@@ -1,6 +1,7 @@
 const PRODUCTS_DATA = [
   {
     title: 'New',
+    arrangement: 'A',
     items: [
       {
         id: 1,
@@ -30,6 +31,7 @@ const PRODUCTS_DATA = [
   },
   {
     title: 'Best Sellers',
+    arrangement: 'B',
     items : [
       {
         id: 5,
@@ -59,6 +61,7 @@ const PRODUCTS_DATA = [
   },
   {
     title: 'Classics',
+    arrangement: 'C',
     items : [
       {
         id: 9,
@@ -118,6 +121,7 @@ const PRODUCTS_DATA = [
   },
   {
     title: 'Drinks',
+    arrangement: 'D',
     items : [
       {
         id: 17,

@@ -7,6 +7,7 @@ export const MyPurchasesLabel = styled(Link)`
   text-decoration: none;
   color: #FF6161;
   transition: 0.3s ease-in-out;
+  transform-origin: bottom;
   :hover{
     transform: scale(1.05);
     color: #E961FF
@@ -17,6 +18,7 @@ export const SignInSignOutLabel = styled(Link)`
   text-decoration: none;
   color: #FF6161;
   transition: 0.3s ease-in-out;
+  transform-origin: bottom;
   :hover{
     transform: scale(1.05);
     color: #E961FF
@@ -55,4 +57,5 @@ export const ParentNavigationContainer = styled.div`
   background-color: var(--background-color);
   position: sticky;
   top: 0;
+  z-index: 10;
 `

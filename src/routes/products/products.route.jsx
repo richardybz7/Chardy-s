@@ -1,14 +1,15 @@
 import { ProductsParentContainer } from './products.style'
 import Categories from '../../components/categories/categories.component'
-import { addCollectionAndDocuments, getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils'
+import { getCategoriesAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setProductsMap } from '../../store/products/products.action'
 import { selectProductsMap } from '../../store/products/products.selector'
+import PRODUCTS_DATA from '../../data'
 const Products = () => {
   const dispatch = useDispatch()
   const productsMap = useSelector(selectProductsMap)
-  const titleArrangement = ['New', 'Best Sellers', 'Classics', 'Drinks']
+  const productArr = []
   useEffect(() => {
     const getProductsMap = async () => {
       const productsMap = await getCategoriesAndDocuments()
@@ -21,12 +22,13 @@ const Products = () => {
       <ProductsParentContainer>
         <div>
           {
-            Object.keys(productsMap).map((title, index) => {
-              const productData = productsMap[title]
+            Object.keys(productsMap).map((title, index, arr) => {
+              productArr.push(productsMap[title])
+              const products = productsMap[title]
               return (
-                <Categories key={index} title={title} products={productData}/>
+                <Categories key={index} title={title} products={products}/>
                 )
-              })
+            })
           }
         </div>
       </ProductsParentContainer>

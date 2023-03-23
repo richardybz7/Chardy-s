@@ -2,18 +2,25 @@ import { CategoryContainer, TitleHeader, CardsContainer } from "./categories.sty
 import Card from "../card/card.component";
 
 const Categories = ({ title, products}) => {
-  products.map((d) => {
-    console.log(d)
-  })
   return (
     <CategoryContainer>
       <TitleHeader>{title}</TitleHeader>
       <CardsContainer>
         {
-          products
-            .filter((_, idx) => idx < 5)
-            .map((product) => 
-            <Card key={product.id} product={product}/>)
+         title != 'Drinks' ? (
+            products
+              .filter((_, idx) => idx < 5)
+              .map((product) => 
+              <Card key={product.id} product={product}/>)
+          )
+          :
+          (
+            products
+              .filter((_, idx) => idx < 5)
+              .map((product) => product.type.map((type, index) => 
+                <Card key={product.id + index} product={type}/>))
+
+          )
         }
       </CardsContainer>
     </CategoryContainer>
