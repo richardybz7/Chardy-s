@@ -9,7 +9,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  transition: 0.5s ease-in-out;
+  transition: 0.2s ease-in-out;
   z-index: 1;
   :hover{
     transform: scale(1.03)

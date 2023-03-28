@@ -24,12 +24,13 @@ export const SignInSignOutLabel = styled(Link)`
     color: #E961FF
   }
 `
-export const BasketContainer = styled(Link)`
+export const BasketContainer = styled.div`
   width: 50px;
   display: flex;
   align-items: center;
 `
 export const Basket = styled(BasketSVG)`
+  cursor: pointer;
 `
 export const UserNavigationContainer = styled.div`
   display: flex;
@@ -38,6 +39,21 @@ export const UserNavigationContainer = styled.div`
   flex-shrink: 0;
   gap: 3em;
   font-size: 0.75rem;
+`
+export const TotalProductContainer = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 40px;
+  cursor: pointer;
+  bottom: 17px;
+  right: 36px;
+  @media screen and (max-width: 768px) {
+    bottom: 63px;
+  }
+`
+export const TotalProductCount = styled.div`
+  position: relative
 `
 
 export const MyPurchasesContainer = styled.div`

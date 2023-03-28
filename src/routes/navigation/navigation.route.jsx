@@ -1,5 +1,5 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Search from '../../components/searchbox/searchbox.component'
 import { 
   NavigationContainer, 
@@ -7,7 +7,9 @@ import {
   BasketContainer, 
   MyPurchasesLabel, 
   SignInSignOutLabel, 
-  ParentNavigationContainer
+  ParentNavigationContainer,
+  TotalProductCount,
+  TotalProductContainer
 } from "./navigation.styles";
 import { useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
@@ -17,6 +19,8 @@ import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.com
 import { Basket } from "./navigation.styles";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { setIsBasketOpen } from "../../store/basket/basket.action";
+import { selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -24,11 +28,15 @@ const DEVICE_WIDTH = {
 }
 
 const Navigation = () => {
+  const dispatch = useDispatch()
+  const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
+  const totalProductCount = useSelector(selectTotalProductCount)
   const location = useLocation();
   const [cursorState, setCursorState] = useState('pointer');
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
+  const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const resizeHandler = () => {
     setWindowSize(window.innerWidth)
   }
@@ -93,8 +101,11 @@ const Navigation = () => {
                 
               }
               <BasketContainer>
-                <Basket/>
-                <BasketDropdown/>
+                <Basket onClick={toggleBasket}/>
+                <TotalProductContainer onClick={toggleBasket}>
+                  <TotalProductCount>{totalProductCount}</TotalProductCount>
+                </TotalProductContainer>
+                {isBasketOpen && <BasketDropdown/>}
               </BasketContainer>
             </UserNavigationContainer>
             </>

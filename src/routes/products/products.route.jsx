@@ -9,7 +9,6 @@ import PRODUCTS_DATA from '../../data'
 const Products = () => {
   const dispatch = useDispatch()
   const productsMap = useSelector(selectProductsMap)
-  const productArr = []
   useEffect(() => {
     const getProductsMap = async () => {
       const productsMap = await getCategoriesAndDocuments()
@@ -22,11 +21,9 @@ const Products = () => {
       <ProductsParentContainer>
         <div>
           {
-            Object.keys(productsMap).map((title, index, arr) => {
-              productArr.push(productsMap[title])
-              const products = productsMap[title]
+            Object.keys(productsMap).map((title, index) => {
               return (
-                <Categories key={index} title={title} products={products}/>
+                <Categories key={index} title={title} products={productsMap[title]}/>
                 )
             })
           }

@@ -3,7 +3,7 @@ import Card from "../card/card.component";
 
 const Categories = ({ title, products}) => {
   return (
-    <CategoryContainer>
+    <CategoryContainer onClick={e => e.preventDefault()}>
       <TitleHeader>{title}</TitleHeader>
       <CardsContainer>
         {
