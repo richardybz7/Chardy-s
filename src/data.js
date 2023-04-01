@@ -125,24 +125,28 @@ const PRODUCTS_DATA = [
     items : [
       {
         id: 17,
-        name: "Chocolate",
-        type: [
-          'Hot choco',
-          'Iced choco'
-        ],
+        name: "Hot Chocolate",
         remainingLiters: 20,
         totalSaleLiters: 10
       },
       {
         id: 18,
-        name: "Coffee",
-        type: [
-          'Hot coffee',
-          'Iced coffee'
-        ],
+        name: "Iced Chocolate",
         remainingLiters: 20,
         totalSaleLiters: 10
-      }
+      },
+      {
+        id: 19,
+        name: "Hot Coffee",
+        remainingLiters: 20,
+        totalSaleLiters: 10
+      },
+      {
+        id: 20,
+        name: "Iced Coffee",
+        remainingLiters: 20,
+        totalSaleLiters: 10
+      },
     ]
   }
 ]

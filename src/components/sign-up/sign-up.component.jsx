@@ -4,7 +4,10 @@ import {
 import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signUpStart } from "../../store/user/user.action";
 const SignUp = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const displayNameRef = useRef('')
   const emailRef = useRef('')
@@ -17,21 +20,28 @@ const SignUp = () => {
       alert('Passwords do not match')
       return
     }
-    try{
-      const {user} = await createUserAuthWithEmailAndPassword(
-        emailRef.current.value, 
-        passwordRef.current.value
-        )
-      const displayName = displayNameRef.current.value
-      await createUserDocumentFromAuth(user, {displayName})
-      navigate('/')
-    }
-    catch(err){
-      switch(err.code){
-        case 'auth/email-already-in-use':
-          alert('Email already used')
-      }
-    }
+    dispatch(signUpStart(
+      emailRef.current.value, 
+      passwordRef.current.value,
+      displayNameRef.current.value
+    ))
+    navigate('/')
+
+    // try{
+    //   const {user} = await createUserAuthWithEmailAndPassword(
+    //     emailRef.current.value, 
+    //     passwordRef.current.value
+    //     )
+    //   const displayName = displayNameRef.current.value
+    //   await createUserDocumentFromAuth(user, {displayName})
+    //   navigate('/')
+    // }
+    // catch(err){
+    //   switch(err.code){
+    //     case 'auth/email-already-in-use':
+    //       alert('Email already used')
+    //   }
+    // }
   }
   return (
     <SignUpContainer>

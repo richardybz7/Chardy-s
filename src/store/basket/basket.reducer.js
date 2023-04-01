@@ -1,7 +1,7 @@
 import { BASKET_ACTION_TYPES } from "./basket.types";
 
 export const BASKET_INITIAL_STATE = {
-  basketItems: [],
+  basketItems: {},
   isBasketOpen: false,
   totalItems: 0,
 }
@@ -11,8 +11,14 @@ export const basketReducer = (
   action = {}
 ) => {
   const { type, payload } = action
+
   switch(type) {
-    case BASKET_ACTION_TYPES.SET_BASKET_ITEM:
+    case BASKET_ACTION_TYPES.SET_BASKET_TOTAL:
+      return {
+        ...state,
+        totalItems: payload
+      }
+    case BASKET_ACTION_TYPES.SET_BASKET:
       return {
         ...state,
         basketItems: payload

@@ -1,1 +1,1 @@
-export const selectProductsMap = (state) => state.products.productsMap
+export const selectProductsMap = (state) => state.products.products

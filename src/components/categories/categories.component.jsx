@@ -7,20 +7,10 @@ const Categories = ({ title, products}) => {
       <TitleHeader>{title}</TitleHeader>
       <CardsContainer>
         {
-         title != 'Drinks' ? (
-            products
-              .filter((_, idx) => idx < 5)
-              .map((product) => 
-              <Card key={product.id} product={product}/>)
-          )
-          :
-          (
-            products
-              .filter((_, idx) => idx < 5)
-              .map((product) => product.type.map((type, index) => 
-                <Card key={product.id + index} product={type}/>))
-
-          )
+          products
+            .filter((_, idx) => idx < 5)
+            .map((product) => 
+            <Card key={product.id} product={product}/>)
         }
       </CardsContainer>
     </CategoryContainer>

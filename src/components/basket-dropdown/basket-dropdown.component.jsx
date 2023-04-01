@@ -17,17 +17,17 @@ import {
 } from "./basket-dropdown.styles";
 
 const BasketDropdown = () => {
-  const selectItems = useSelector(selectBasketItems)
-  const hasCountItems = Object.keys(selectItems)
-    .filter((key) => selectItems[key].count > 0)
-    .map((key) => (
-      <BasketItem key={key} item={selectItems[key]} perPiece={true}/>
-    ))
-  const hasDozenItems = Object.keys(selectItems)
-    .filter((key) => selectItems[key].dozenCount > 0)
-    .map((key) => (
-      <BasketItem key={key} item={selectItems[key]} perPiece={false}/>
-    ))
+  const userBasket = useSelector(selectBasketItems)
+
+  const hasCountItems = userBasket && userBasket
+    .filter((item) => item.count > 0).map((item) =>
+      <BasketItem key={item.id} item={item} perPiece={true}/>
+    )
+  
+  const hasDozenItems = userBasket && userBasket
+    .filter((item) => item.dozenCount > 0).map((item) =>
+      <BasketItem key={item.id} item={item} perPiece={false}/>
+    )
   return (
     <BasketDropdownContainer>
       <BasketItemsContainer>
@@ -38,7 +38,7 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasCountItems.length ? 
+              hasCountItems && hasCountItems.length ? 
                 hasCountItems
               : 
               <EmptyBasketLabel>Click 'buy a piece'</EmptyBasketLabel>
@@ -53,7 +53,7 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasDozenItems.length ? 
+              hasDozenItems && hasDozenItems.length ? 
                 hasDozenItems
               : 
               <EmptyBasketLabel>Click 'buy a dozen'</EmptyBasketLabel>

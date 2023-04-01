@@ -4,6 +4,8 @@ import {
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils.js'
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: '',
@@ -11,38 +13,32 @@ const defaultFormFields = {
 }
 
 const SignIn = () => {
+  const dispatch = useDispatch()
   const emailRef = useRef();
   const passwordRef = useRef();
   const navigate = useNavigate()
   const logGoogleUser = async () => {
-    try{
-      const {user} = await signInWithGooglePopup()
-      const userDoc = createUserDocumentFromAuth(user)
+      dispatch(googleSignInStart())
       navigate('/')
-    }
-    catch(err){
-      console.log('Error creating the user', err.message)
-    }
   }
   const signInHandler = async (e) => {
     e.preventDefault()
-    try{
-      await signInAuthUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-        )
-        navigate('/')
-    }
-    catch(err){
-      switch( err.code ){
-        case 'auth/user-not-found':
-          alert('User not found')
-          break;
-        default:
-          console.log(err)
-      }
-      console.log('Error signing in with email and password', err.message)
-    }
+    dispatch(emailSignInStart(
+      emailRef.current.value, 
+      passwordRef.current.value
+    ))
+    navigate('/')
+    // try{
+    // }
+    // catch(err){
+    //   switch( err.code ){
+    //     case 'auth/user-not-found':
+    //       alert('User not found')
+    //       break;
+    //     default:
+    //       console.log(err)
+    //   }
+    // }
   }
   return (
     <SignInContainer>

@@ -1,7 +1,9 @@
 import { PRODUCTS_ACTION_TYPES } from "./products.types";
 
 export const PRODUCTS_INITIAL_STATE = {
-  productsMap: {}
+  products: {},
+  isLoading: false,
+  error: null
 }
 
 export const productsReducer = (
@@ -10,11 +12,10 @@ export const productsReducer = (
 ) => {
   const { type, payload } = action
   switch(type) {
-    case PRODUCTS_ACTION_TYPES.SET_PRODUCTS_MAP:
-      return { 
-        ...state, 
-        productsMap: payload 
-      }
+    case PRODUCTS_ACTION_TYPES.GET_PRODUCTS_START:
+      return { ...state, isLoading: true }
+    case PRODUCTS_ACTION_TYPES.GET_PRODUCTS_SUCCESS:
+      return { ...state, isLoading: false, products: payload }
     default:
       return state
   }

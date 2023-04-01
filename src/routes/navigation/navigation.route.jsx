@@ -11,16 +11,17 @@ import {
   TotalProductCount,
   TotalProductContainer
 } from "./navigation.styles";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
 import LowerNavigationContainer from "../../components/lower-navigation-div/lower-navigation-container.component";
 import Burger from "../../components/burger/burger.component";
 import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.component";
 import { Basket } from "./navigation.styles";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
+import { selectCurrentUser, selectIsLoading } from "../../store/user/user.selector";
 import { setIsBasketOpen } from "../../store/basket/basket.action";
-import { selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
+import { selectBasketItems, selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
+import Spinner from "../../components/spinner/spinner.component";
+import { signOutStart } from "../../store/user/user.action";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -31,12 +32,17 @@ const Navigation = () => {
   const dispatch = useDispatch()
   const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
+  const basketItems = useSelector(selectBasketItems)
   const totalProductCount = useSelector(selectTotalProductCount)
   const location = useLocation();
+  const isLoading = useSelector(selectIsLoading)
   const [cursorState, setCursorState] = useState('pointer');
   const [windowSize, setWindowSize] = useState(window.innerWidth);
 
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
+  const signOutHandler = () => {
+    dispatch(signOutStart())
+  }
   const resizeHandler = () => {
     setWindowSize(window.innerWidth)
   }
@@ -50,76 +56,84 @@ const Navigation = () => {
     location.pathname === '/' ? setCursorState('default') : setCursorState('pointer')
   },[location.pathname])
   
-  const signOutHandler = () => {
-    signOutUser();
-    alert('You just signed out')
-  }
-  return (
-    <>
-      <ParentNavigationContainer>
-        <NavigationContainer>
-          {
-            windowSize <= DEVICE_WIDTH.phoneWidth ? 
-            <Burger/>
-            :
-            <></>
-          }
-          <Logo to='/' location={location.pathname} cursor={cursorState}/>
-          {
-            location.pathname === '/auth' ? 
-            <></>
-            :
-            <>
-              {
-                windowSize >= DEVICE_WIDTH.tabletWidth ? 
-                  <Search/>
-                  :
-                  <></>
-              }
-              <UserNavigationContainer>
-              {
-                windowSize <= DEVICE_WIDTH.phoneWidth ? 
-                <></>
-                :
-                <>
-                  {
-                    currentUser ? 
-                    (
-                      <>
-                        <MyPurchasesLabel to='/myPurchases'>MY PURCHASES
-                        </MyPurchasesLabel>
-                        <SignInSignOutLabel to='/' onClick={signOutHandler}>SIGN OUT
-                        </SignInSignOutLabel>
-                      </>
-                    )
-                    :
-                    <SignInSignOutLabel to='/auth'>SIGN IN
-                    </SignInSignOutLabel>
+  
 
-                  }
-                </>
-                
-              }
-              <BasketContainer>
-                <Basket onClick={toggleBasket}/>
-                <TotalProductContainer onClick={toggleBasket}>
-                  <TotalProductCount>{totalProductCount}</TotalProductCount>
-                </TotalProductContainer>
-                {isBasketOpen && <BasketDropdown/>}
-              </BasketContainer>
-            </UserNavigationContainer>
-            </>
+  return (
+    <Fragment>
+    {
+      isLoading ? 
+      (
+        <Spinner/>
+      )
+      :(
+        <Fragment>
+        <ParentNavigationContainer>
+          <NavigationContainer>
+            {
+              windowSize <= DEVICE_WIDTH.phoneWidth ? 
+              <Burger/>
+              :
+              <Fragment/>
+            }
+            <Logo to='/' location={location.pathname} cursor={cursorState}/>
+            {
+              location.pathname === '/auth' ? 
+              <Fragment/>
+              :
+              <Fragment>
+                {
+                  windowSize >= DEVICE_WIDTH.tabletWidth ? 
+                    <Search/>
+                    :
+                    <Fragment/>
+                }
+                <UserNavigationContainer>
+                {
+                  windowSize <= DEVICE_WIDTH.phoneWidth ? 
+                  <Fragment/>
+                  :
+                  <Fragment>
+                    {
+                      currentUser ? 
+                      (
+                        <Fragment>
+                          <MyPurchasesLabel to='/myPurchases'>MY PURCHASES
+                          </MyPurchasesLabel>
+                          <SignInSignOutLabel to='/' onClick={signOutHandler}>SIGN OUT
+                          </SignInSignOutLabel>
+                        </Fragment>
+                      )
+                      :
+                      <SignInSignOutLabel to='/auth'>SIGN IN
+                      </SignInSignOutLabel>
+
+                    }
+                  </Fragment>
+                  
+                }
+                <BasketContainer>
+                  <Basket onClick={toggleBasket}/>
+                  <TotalProductContainer onClick={toggleBasket}>
+                    <TotalProductCount>{totalProductCount}</TotalProductCount>
+                  </TotalProductContainer>
+                  {isBasketOpen && <BasketDropdown/>}
+                </BasketContainer>
+              </UserNavigationContainer>
+              </Fragment>
+            }
+          </NavigationContainer>
+          {
+            windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/' ? 
+            <LowerNavigationContainer />
+            :
+            <Fragment/>
           }
-        </NavigationContainer>
-        {
-          windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/' ? 
-          <LowerNavigationContainer />
-          :
-          <></>
-        }
-      </ParentNavigationContainer>
-      <Outlet/>
-    </>
+        </ParentNavigationContainer>
+        <Outlet/>
+        </Fragment>
+      )
+    }
+    </Fragment>
   )
 }
 

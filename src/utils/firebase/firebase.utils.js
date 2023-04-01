@@ -18,7 +18,9 @@ import {
   writeBatch,
   query,
   getDocs,
-  orderBy
+  orderBy,
+  updateDoc,
+  serverTimestamp
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -67,6 +69,8 @@ export const createUserDocumentFromAuth = async (userAuth, otherInfo) => {
       console.log('Error in setting user document', err.message)
     }
   }
+  
+  return userSnapShot
 }
 
 export const signInAuthUserWithEmailAndPassword = async (email, password) => {
@@ -104,4 +108,39 @@ export const getCategoriesAndDocuments = async() => {
     return acc
   }, {})
   return categoryMap
+}
+
+export const updateBasketFieldOfUser = async (userAuth, basketItems) => {
+  const items = basketItems.filter((item) => item.count > 0 || item.dozenCount > 0)
+  const userRef = doc(db, 'users', userAuth.id)
+  await updateDoc(userRef, {
+    basketItems: items
+  })
+}
+
+export const getUserBasket = async (userAuth) => {
+  const userRef = doc(db, 'users', userAuth.uid)
+  const userSnapShot = await getDoc(userRef)
+  if(userSnapShot.exists()){
+    const basketItems = userSnapShot.data().basketItems
+    return basketItems
+  }
+  return userSnapShot
+}
+
+export const addPurchasesFieldToUser = async () => {
+
+}
+
+export const getCurrentUser = () => {
+  return new Promise((resolve,reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe()
+        resolve(userAuth)
+      },
+      reject
+    )
+  })
 }

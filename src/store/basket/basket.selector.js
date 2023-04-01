@@ -6,4 +6,7 @@ export const selectIsCartOpen = createSelector([selectBasketReducer], (basket) =
 
 export const selectBasketItems = createSelector([selectBasketReducer], (basket) => basket.basketItems)
 
-export const selectTotalProductCount = createSelector([selectBasketItems], (basketItems) => basketItems.reduce((total, basketItem) => total + basketItem.count, 0))
+export const selectTotalProductCount = createSelector(
+  [selectBasketReducer],
+  (basket) => basket.totalItems
+  )
