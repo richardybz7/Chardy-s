@@ -13,7 +13,8 @@ const Products = () => {
   },[])
   const productsMap = useSelector(selectProductsMap)
   // useEffect(() => {
-  //   //addCollectionAndDocuments('products', PRODUCTS_DATA)
+  //   addCollectionAndDocuments('products', PRODUCTS_DATA)
+  //   console.log('done')
   // },[])
   return (
     <div>

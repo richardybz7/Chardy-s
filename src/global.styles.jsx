@@ -4,6 +4,7 @@ export const GlobalStyle = createGlobalStyle`
   :root{
     --background-color: #FAFAFA;
     --font-family: 'Inter', sans-serif;
+    --checkOutWidth: 90%;
   }
   body{
     margin: 0;

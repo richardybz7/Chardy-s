@@ -6,25 +6,29 @@ const PRODUCTS_DATA = [
       {
         id: 1,
         name: "Powdered sugar",
-        remaining: 10,
-        totalSaleCount: 10
+        itemPrice: 30,
+        dozenPrice: 340,
+        totalSaleCount: 10,
       },
       {
         id: 2,
         name: "Cinnamon sugar",
-        remaining: 5,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       },
       {
         id: 3,
         name: "Apple fritter",
-        remaining: 10,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       },
       {
         id: 4,
         name: "Maple",
-        remaining: 4,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       }
     ]
@@ -36,25 +40,29 @@ const PRODUCTS_DATA = [
       {
         id: 5,
         name: "Glazed",
-        remaining: 10,
-        totalSaleCount: 10
+        itemPrice: 30,
+        dozenPrice: 340,
+         totalSaleCount: 10
       },
       {
         id: 6,
         name: "Chocolate",
-        remaining: 5,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       },
       {
         id: 7,
         name: "Jelly-filled",
-        remaining: 10,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       },
       {
         id: 8,
         name: "Blueberry",
-        remaining: 4,
+        itemPrice: 30,
+        dozenPrice: 340,
         totalSaleCount: 10
       }
     ]
@@ -66,55 +74,64 @@ const PRODUCTS_DATA = [
       {
         id: 9,
         name: "Vanilla sprinkle",
-        remaining: 10,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 10,
         name: "Chocolate sprinkle",
-        remaining: 5,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 11,
         name: "Strawberry filled",
-        remaining: 10,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 12,
         name: "Boston cream",
-        remaining: 4,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 13,
         name: "Nutty choco",
-        remaining: 6,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 14,
         name: "Bavarian filled",
-        remaining: 7,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 10
       },
       {
         id: 15,
         name: "Pineapple filled",
-        remaining: 15,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 5
       },
       {
         id: 16,
         name: "Tiramisu",
-        remaining: 8,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 4
       },
       {
         id: 16,
         name: "Alcapone",
-        remaining: 11,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleCount: 4
       }
     ]
@@ -126,25 +143,29 @@ const PRODUCTS_DATA = [
       {
         id: 17,
         name: "Hot Chocolate",
-        remainingLiters: 20,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleLiters: 10
       },
       {
         id: 18,
         name: "Iced Chocolate",
-        remainingLiters: 20,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleLiters: 10
       },
       {
         id: 19,
         name: "Hot Coffee",
-        remainingLiters: 20,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleLiters: 10
       },
       {
         id: 20,
         name: "Iced Coffee",
-        remainingLiters: 20,
+        itemPrice: 25,
+        dozenPrice: 280,
         totalSaleLiters: 10
       },
     ]

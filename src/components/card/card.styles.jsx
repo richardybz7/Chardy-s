@@ -35,3 +35,12 @@ export const ButtonContainer = styled.div`
   gap: 0.5em;
   padding: 0.5em;
 `
+export const PriceContainer = styled.div`
+  
+`
+export const Price = styled.label`
+  padding: 0 0.3em 0 0.5em;
+  font-size: 1.2rem;
+`
+export const PriceLabel = styled.label`
+`

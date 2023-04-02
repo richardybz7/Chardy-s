@@ -19,7 +19,7 @@ import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.com
 import { Basket } from "./navigation.styles";
 import { selectCurrentUser, selectIsLoading } from "../../store/user/user.selector";
 import { setIsBasketOpen } from "../../store/basket/basket.action";
-import { selectBasketItems, selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
+import { selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
 import Spinner from "../../components/spinner/spinner.component";
 import { signOutStart } from "../../store/user/user.action";
 
@@ -32,7 +32,6 @@ const Navigation = () => {
   const dispatch = useDispatch()
   const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
-  const basketItems = useSelector(selectBasketItems)
   const totalProductCount = useSelector(selectTotalProductCount)
   const location = useLocation();
   const isLoading = useSelector(selectIsLoading)
@@ -55,8 +54,10 @@ const Navigation = () => {
   useEffect(() => {
     location.pathname === '/' ? setCursorState('default') : setCursorState('pointer')
   },[location.pathname])
-  
-  
+
+  useEffect(() => {
+    dispatch(setIsBasketOpen(false))
+  },[location.pathname])
 
   return (
     <Fragment>
@@ -82,10 +83,15 @@ const Navigation = () => {
               :
               <Fragment>
                 {
-                  windowSize >= DEVICE_WIDTH.tabletWidth ? 
-                    <Search/>
+                  location.pathname !== '/checkout' ?
+                  (
+                    windowSize >= DEVICE_WIDTH.tabletWidth ? 
+                    <Search placeholder='Search for a craving'/>
                     :
                     <Fragment/>
+                  ) : (
+                    <Fragment/>
+                  )
                 }
                 <UserNavigationContainer>
                 {
@@ -109,15 +115,25 @@ const Navigation = () => {
 
                     }
                   </Fragment>
-                  
                 }
-                <BasketContainer>
-                  <Basket onClick={toggleBasket}/>
-                  <TotalProductContainer onClick={toggleBasket}>
-                    <TotalProductCount>{totalProductCount}</TotalProductCount>
-                  </TotalProductContainer>
-                  {isBasketOpen && <BasketDropdown/>}
-                </BasketContainer>
+                {
+                  currentUser ? (
+                    location.pathname === '/checkout' ? (
+                      <Fragment/>
+                    ) : (
+                      <BasketContainer>
+                        <Basket onClick={toggleBasket}/>
+                        <TotalProductContainer onClick={toggleBasket}>
+                          <TotalProductCount>{totalProductCount}</TotalProductCount>
+                        </TotalProductContainer>
+                        {isBasketOpen && <BasketDropdown/>}
+                      </BasketContainer>
+                    )
+                  ):(
+                    <Fragment/>
+                  )
+                }
+                
               </UserNavigationContainer>
               </Fragment>
             }

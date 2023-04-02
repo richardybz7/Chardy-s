@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectBasketItems } from "../../store/basket/basket.selector";
 import BasketItem from "../basket-item/basket-item.component";
 import { 
@@ -15,9 +15,12 @@ import {
   BasketHeaderLabel, 
   BasketHeaderImage 
 } from "./basket-dropdown.styles";
+import { setSearchItems } from "../../store/basket/basket.action";
 
 const BasketDropdown = () => {
+  const dispatch = useDispatch()
   const userBasket = useSelector(selectBasketItems)
+  const basketItems = useSelector(selectBasketItems)
 
   const hasCountItems = userBasket && userBasket
     .filter((item) => item.count > 0).map((item) =>
@@ -28,6 +31,10 @@ const BasketDropdown = () => {
     .filter((item) => item.dozenCount > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={false}/>
     )
+
+  const GoToCheckoutHandler = () => {
+    dispatch(setSearchItems(basketItems))
+  }
   return (
     <BasketDropdownContainer>
       <BasketItemsContainer>
@@ -62,7 +69,7 @@ const BasketDropdown = () => {
         </BasketItemsPerDozenContainer>
       </BasketItemsContainer>
       <BasketButtonContainer>
-        <BasketButton>Go to checkout</BasketButton>
+        <BasketButton to='/checkout' onClick={() => GoToCheckoutHandler()}>GO TO CHECKOUT</BasketButton>
       </BasketButtonContainer>
     </BasketDropdownContainer>
   )

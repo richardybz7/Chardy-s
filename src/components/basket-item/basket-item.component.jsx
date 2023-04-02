@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addBasketItem, addItemToBasket, removeBasketItem, removeItemFromBasket, setTotalCountOfProducts } from "../../store/basket/basket.action"
+import { addBasketItem, subtractBasketItem, setTotalCountStart } from "../../store/basket/basket.action"
 import { selectBasketItems } from "../../store/basket/basket.selector"
 import { selectCurrentUser } from "../../store/user/user.selector"
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils"
@@ -10,29 +10,29 @@ const BasketItem = ({item, perPiece}) => {
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
   const removeItemHandler = () => {
-    const newBasket = removeBasketItem(basketItems, item, false)
+    const newBasket = subtractBasketItem(basketItems, item, false)
     dispatch(newBasket)
+    dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const addItemHandler = () => {
     const newBasket = addBasketItem(basketItems, item, false)
     dispatch(newBasket)
+    dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const addDozenHandler = () => {
     const newBasket = addBasketItem(basketItems, item, true)
     dispatch(newBasket)
+    dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const removeDozenHandler = () => {
-    const newBasket = removeBasketItem(basketItems, item, true)
+    const newBasket = subtractBasketItem(basketItems, item, true)
     dispatch(newBasket)
+    dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
-
-  useEffect(() => {
-    dispatch(setTotalCountOfProducts(basketItems))
-  },[basketItems])
   return (
     <ItemContainer>
       <ItemImage></ItemImage>

@@ -4,7 +4,7 @@ import { LowerSearchBoxContainer } from "./lower-navigation-container.styles";
 const LowerNavigationContainer = () => {
   return (
     <LowerSearchBoxContainer>
-      <Search/>
+      <Search placeholder='Search for a craving'/>
     </LowerSearchBoxContainer>
   )
 }

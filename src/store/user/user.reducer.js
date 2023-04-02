@@ -25,6 +25,6 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case USER_ACTION_TYPES.SIGN_UP_FAILED:
       return { ...state, error: payload, isLoading: false}
     default:
-      return state
+      return { ...state, isLoading: false }
   }
 }

@@ -10,3 +10,8 @@ export const selectTotalProductCount = createSelector(
   [selectBasketReducer],
   (basket) => basket.totalItems
   )
+
+export const selectSearchItems = createSelector(
+  [selectBasketReducer],
+  (basket) => basket.searchItems
+)

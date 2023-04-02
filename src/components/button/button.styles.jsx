@@ -9,6 +9,8 @@ export const BaseButton = styled.button`
   border-radius: 0.4em;
   border: none;
   font-size: 0.8rem;
+  font-family: var(--font-family);
+  background-color: #F2F2F2;
 `
 BaseButton.defaultProps = {
   type: "button"

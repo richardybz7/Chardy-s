@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth, getCurrentUser, signInAuthUserWithEmailAndPassword, signInWithGooglePopup, signOutUser } from "../../utils/firebase/firebase.utils";
-import { setBasketItems, setTotalCountOfProducts } from "../basket/basket.action";
+import { setBasketItems, setSearchItems, setTotalCountStart } from "../basket/basket.action";
 import { signInFailed, signInSuccess, signOutFailed, signOutSuccess, signUpFailed, signUpSuccess } from "./user.action";
 import { USER_ACTION_TYPES } from "./user.types";
 
@@ -13,7 +13,8 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
     )
     yield put(signInSuccess({id: userSnapshot.id, ...userSnapshot.data()}))
     yield put(setBasketItems(userSnapshot.data().basketItems))
-    yield put(setTotalCountOfProducts(userSnapshot.data().basketItems))
+    yield put(setTotalCountStart())
+    yield put(setSearchItems(userSnapshot.data().basketItems))
   } catch (err) {
     yield put(signInFailed(err))
   }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BaseButton } from "../button/button.styles";
-
+import { Link } from "react-router-dom";
 
 export const BasketItemsPerPieceContainer = styled.div`
   width: 100%;
@@ -46,8 +46,26 @@ export const EmptyBasketLabel = styled.label`
 export const BasketButtonContainer = styled.div`
   margin-top: 1em;
 `
-export const BasketButton = styled(BaseButton)`
+export const BasketButton = styled(Link)`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.8em;
+  border-radius: 0.4em;
+  border: 1px solid #FF6161;
+  font-size: 0.8rem;
 
+  white-space: nowrap;
+  text-decoration: none;
+  color: #FF6161;
+  transition: 0.2s ease-in-out;
+  transform-origin: bottom;
+  :hover{
+    transform: scale(1.02);
+    color: #E961FF;
+    border: 1px solid #E961FF;
+  }
 `
 
 export const BasketDropdownContainer = styled.div`
