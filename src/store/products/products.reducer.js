@@ -2,7 +2,7 @@ import { PRODUCTS_ACTION_TYPES } from "./products.types";
 
 export const PRODUCTS_INITIAL_STATE = {
   products: {},
-  isLoading: false,
+  productsLoading: false,
   error: null
 }
 
@@ -13,9 +13,9 @@ export const productsReducer = (
   const { type, payload } = action
   switch(type) {
     case PRODUCTS_ACTION_TYPES.GET_PRODUCTS_START:
-      return { ...state, isLoading: true }
+      return { ...state, productsLoading: true }
     case PRODUCTS_ACTION_TYPES.GET_PRODUCTS_SUCCESS:
-      return { ...state, isLoading: false, products: payload }
+      return { ...state, productsLoading: false, products: payload }
     default:
       return state
   }

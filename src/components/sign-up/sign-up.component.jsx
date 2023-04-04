@@ -25,7 +25,6 @@ const SignUp = () => {
       passwordRef.current.value,
       displayNameRef.current.value
     ))
-    navigate('/')
 
     // try{
     //   const {user} = await createUserAuthWithEmailAndPassword(

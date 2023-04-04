@@ -7,10 +7,10 @@ import { getProductsStart, setProductsMap } from '../../store/products/products.
 import { selectProductsMap } from '../../store/products/products.selector'
 import PRODUCTS_DATA from '../../data'
 const Products = () => {
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getProductsStart())
-  },[])
+  // const dispatch = useDispatch()
+  // useEffect(() => {
+  //   dispatch(getProductsStart())
+  // },[])
   const productsMap = useSelector(selectProductsMap)
   // useEffect(() => {
   //   addCollectionAndDocuments('products', PRODUCTS_DATA)

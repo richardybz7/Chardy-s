@@ -20,7 +20,8 @@ import {
   getDocs,
   orderBy,
   updateDoc,
-  serverTimestamp
+  serverTimestamp,
+  arrayUnion
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -42,7 +43,8 @@ googleProvider.setCustomParameters({
 })
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup( auth, googleProvider );
+export const signInWithGooglePopup = async () => 
+  await signInWithPopup( auth, googleProvider )
 
 export const db = getFirestore();
 
@@ -111,7 +113,8 @@ export const getCategoriesAndDocuments = async() => {
 }
 
 export const updateBasketFieldOfUser = async (userAuth, basketItems) => {
-  const items = basketItems.filter((item) => item.count > 0 || item.dozenCount > 0)
+  const items = Object.keys(basketItems).length ? 
+    basketItems.filter((item) => item.count > 0 || item.dozenCount > 0) : []
   const userRef = doc(db, 'users', userAuth.id)
   await updateDoc(userRef, {
     basketItems: items
@@ -128,8 +131,27 @@ export const getUserBasket = async (userAuth) => {
   return userSnapShot
 }
 
-export const addPurchasesFieldToUser = async () => {
+export const udpateUserPurchases = async (userAuth, basketItems) => {
+  const date = new Date()
+  const arr = [{purchaseDate:date}, ...basketItems]
+  const newObj = arr.reduce((acc, curr, i) => {
+    acc[i] = curr
+    return acc
+  },{})
+  const userRef = doc(db, 'users', userAuth.id)
+  await updateDoc(userRef, {
+    purchases: arrayUnion(newObj)
+  })
+}
 
+export const getUserPurchases = async (userAuth) => {
+  const userRef = doc(db, 'users', userAuth.id)
+  const userSnapShot = await getDoc(userRef)
+  if(userSnapShot.exists()){
+    const purchases = userSnapShot.data().purchases
+    return purchases
+  }
+  return userSnapShot
 }
 
 export const getCurrentUser = () => {

@@ -67,8 +67,10 @@ const updateItemCount = (basketItems, item, newCount, isPerPiece) => {
 const searchItemsUpdateAfterBasketUpdate = (basketItems, searchItems) => 
   basketItems.filter((basketItem) => searchItems.some((searchItem) => searchItem.id === basketItem.id))
 
-export const setBasketItems = (basketItems) => 
-  createAction(BASKET_ACTION_TYPES.SET_BASKET, basketItems)
+export const setBasketItems = (basketItems) => {
+  console.log('BASKET ITEMS TO BE: ', basketItems)
+  return createAction(BASKET_ACTION_TYPES.SET_BASKET, basketItems)
+}
 
 export const updateBasketItemCount = (basketItems, item, newCount, isPerPiece) => {
   const newBasketItems = updateItemCount(basketItems, item, newCount, isPerPiece)

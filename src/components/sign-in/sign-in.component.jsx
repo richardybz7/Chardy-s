@@ -1,25 +1,16 @@
 import { 
   SignInContainer, SignInContent, HeaderContainer, FirstHeader, SecondHeader, UserFormContainer, UserInputContainer, EmailLabel, CredentialInput, PasswordInputContainer,  PasswordLabel, ButtonContainer, EmailInputContainer, SignInButton, SignInWithGoogleButton
 } from "./sign-in.styles";
-import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils.js'
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
-
-const defaultFormFields = {
-  email: '',
-  password: ''
-}
 
 const SignIn = () => {
   const dispatch = useDispatch()
   const emailRef = useRef();
   const passwordRef = useRef();
-  const navigate = useNavigate()
   const logGoogleUser = async () => {
       dispatch(googleSignInStart())
-      navigate('/')
   }
   const signInHandler = async (e) => {
     e.preventDefault()
@@ -27,7 +18,6 @@ const SignIn = () => {
       emailRef.current.value, 
       passwordRef.current.value
     ))
-    navigate('/')
     // try{
     // }
     // catch(err){

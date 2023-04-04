@@ -1,0 +1,1 @@
+export const selectPurchases = (state) => state.purchases.purchases

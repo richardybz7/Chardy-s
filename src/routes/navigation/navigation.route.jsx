@@ -33,10 +33,11 @@ const Navigation = () => {
   const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
   const totalProductCount = useSelector(selectTotalProductCount)
-  const location = useLocation();
-  const isLoading = useSelector(selectIsLoading)
-  const [cursorState, setCursorState] = useState('pointer');
-  const [windowSize, setWindowSize] = useState(window.innerWidth);
+  const location = useLocation()
+  const [cursorState, setCursorState] = useState('pointer')
+  const [windowSize, setWindowSize] = useState(window.innerWidth)
+  const [displaySearchBar, setDisplaySearchBar] = useState(false)
+  const [displayBurger, setDisplayBurger] = useState(true)
 
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
@@ -56,99 +57,102 @@ const Navigation = () => {
   },[location.pathname])
 
   useEffect(() => {
-    dispatch(setIsBasketOpen(false))
+    isBasketOpen && dispatch(setIsBasketOpen(false))
+    location.pathname === '/' ? setDisplaySearchBar(true) : setDisplaySearchBar(false)
+    location.pathname === '/auth' ? setDisplayBurger(false) : setDisplayBurger(true)
   },[location.pathname])
 
   return (
     <Fragment>
-    {
-      isLoading ? 
-      (
-        <Spinner/>
-      )
-      :(
-        <Fragment>
-        <ParentNavigationContainer>
-          <NavigationContainer>
-            {
+      <ParentNavigationContainer>
+        <NavigationContainer>
+          {
+            displayBurger && (
               windowSize <= DEVICE_WIDTH.phoneWidth ? 
               <Burger/>
               :
               <Fragment/>
-            }
-            <Logo to='/' location={location.pathname} cursor={cursorState}/>
-            {
-              location.pathname === '/auth' ? 
-              <Fragment/>
-              :
-              <Fragment>
-                {
-                  location.pathname !== '/checkout' ?
-                  (
-                    windowSize >= DEVICE_WIDTH.tabletWidth ? 
-                    <Search placeholder='Search for a craving'/>
+            )
+          }
+          <Logo to='/' location={location.pathname} cursor={cursorState}/>
+          {
+            location.pathname === '/auth' ? 
+            <Fragment/>
+            :
+            <Fragment>
+              {
+                displaySearchBar ?
+                (
+                  windowSize >= DEVICE_WIDTH.tabletWidth ? 
+                  <Search placeholder='Search for a craving'/>
+                  :
+                  <Fragment/>
+                ) : (
+                  <Fragment/>
+                )
+              }
+              <UserNavigationContainer>
+              {
+                windowSize <= DEVICE_WIDTH.phoneWidth ? 
+                <Fragment/>
+                :
+                <Fragment>
+                  {
+                    currentUser ? 
+                    (
+                      <Fragment>
+                        {
+                          location.pathname !== '/myPurchases' ? (
+                            <MyPurchasesLabel to='/myPurchases'>MY PURCHASES</MyPurchasesLabel>
+                          ):(
+                            <Fragment/>
+                          )
+                        }
+                        <SignInSignOutLabel to='/' onClick={signOutHandler}>SIGN OUT
+                        </SignInSignOutLabel>
+                      </Fragment>
+                    )
                     :
+                    <SignInSignOutLabel to='/auth'>SIGN IN
+                    </SignInSignOutLabel>
+
+                  }
+                </Fragment>
+              }
+              {
+                currentUser ? (
+                  location.pathname === '/checkout' ? (
                     <Fragment/>
                   ) : (
-                    <Fragment/>
+                    <BasketContainer>
+                      <Basket onClick={toggleBasket}/>
+                      <TotalProductContainer displayLowerSearch={displaySearchBar} onClick={toggleBasket}>
+                        <TotalProductCount>{totalProductCount}</TotalProductCount>
+                      </TotalProductContainer>
+                      {isBasketOpen && <BasketDropdown/>}
+                    </BasketContainer>
                   )
-                }
-                <UserNavigationContainer>
-                {
-                  windowSize <= DEVICE_WIDTH.phoneWidth ? 
+                ):(
                   <Fragment/>
-                  :
-                  <Fragment>
-                    {
-                      currentUser ? 
-                      (
-                        <Fragment>
-                          <MyPurchasesLabel to='/myPurchases'>MY PURCHASES
-                          </MyPurchasesLabel>
-                          <SignInSignOutLabel to='/' onClick={signOutHandler}>SIGN OUT
-                          </SignInSignOutLabel>
-                        </Fragment>
-                      )
-                      :
-                      <SignInSignOutLabel to='/auth'>SIGN IN
-                      </SignInSignOutLabel>
-
-                    }
-                  </Fragment>
-                }
-                {
-                  currentUser ? (
-                    location.pathname === '/checkout' ? (
-                      <Fragment/>
-                    ) : (
-                      <BasketContainer>
-                        <Basket onClick={toggleBasket}/>
-                        <TotalProductContainer onClick={toggleBasket}>
-                          <TotalProductCount>{totalProductCount}</TotalProductCount>
-                        </TotalProductContainer>
-                        {isBasketOpen && <BasketDropdown/>}
-                      </BasketContainer>
-                    )
-                  ):(
-                    <Fragment/>
-                  )
-                }
-                
-              </UserNavigationContainer>
-              </Fragment>
-            }
-          </NavigationContainer>
-          {
+                )
+              }
+              
+            </UserNavigationContainer>
+            </Fragment>
+          }
+        </NavigationContainer>
+        {
+          displaySearchBar ? (
             windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/' ? 
             <LowerNavigationContainer />
             :
             <Fragment/>
-          }
-        </ParentNavigationContainer>
-        <Outlet/>
-        </Fragment>
-      )
-    }
+          ):(
+            <Fragment/>
+          )
+        }
+      </ParentNavigationContainer>
+      <Outlet/>
     </Fragment>
   )
 }

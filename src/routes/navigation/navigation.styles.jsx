@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as BasketSVG } from '../../assets/chardybasket.svg'
 
@@ -48,8 +48,10 @@ export const TotalProductContainer = styled.div`
   cursor: pointer;
   bottom: 17px;
   right: 36px;
-  @media screen and (max-width: 768px) {
-    bottom: 63px;
+  @media screen and (max-width: 767px) {
+    ${props => props.displayLowerSearch && css`
+      bottom: 63px;
+    `}
   }
 `
 export const TotalProductCount = styled.div`

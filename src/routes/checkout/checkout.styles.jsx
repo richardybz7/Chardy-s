@@ -69,10 +69,16 @@ export const TotalPriceLabel = styled.label`
   font-size: 1rem;
 `
 export const PlaceOrderContainer = styled.div`
-  padding: 1em 0;
 `
 export const PlaceOrderButton = styled(BaseButton)`
-
+  font-size: 1rem;
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+  :hover{
+    border: 1px solid #FF7D7D;
+    outline: none;
+    color: #FF7D7D;
+  }
 `
 export const PaymentMethodParentContainer = styled.div`
   display: flex;
@@ -94,9 +100,20 @@ export const PaymentOptionsContainer = styled.div`
   display: flex;
   gap: 1em;
 `
-export const CashOnDeliveryButton = styled(BaseButton)`
+export const PaymentOptionButton = styled(BaseButton)`
+  border: 1px solid transparent;
+  transition: 0.2s ease;
+  :hover,
+  :focus{
+    border: 1px solid #FF7D7D;
+    outline: none;
+    color: #FF7D7D;
+  }
 `
-export const CreditDebitCardButton = styled(BaseButton)`
+export const PaymentOptionButtonHighlighted = styled(BaseButton)`
+  border: 1px solid #FF7D7D;
+  outline: none;
+  color: #FF7D7D;
 `
 export const DeliveryAddressContainer = styled.div`
   display: flex;
@@ -109,5 +126,5 @@ export const DeliveryInputArea = styled.textarea`
   min-height: 100px;
   font-family: var(--font-family)
 `
-export const EditAddressButton = styled(BaseButton)`
+export const EditSaveAddressButton = styled(BaseButton)`
 `

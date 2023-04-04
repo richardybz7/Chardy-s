@@ -1,4 +1,4 @@
-import { AddQuantityButton, CheckoutItemContainer, DetailContainer, ItemDetailsAndActionContainer, ItemImageAndDetailsContainer, ItemImageContainer, PerItemAndActionContainer, PerItemContainer, PerPieceOrDozenLabel, QuantityContainer, QuantityInput, ReduceQuantityButton, RemoveActionButton, TotalPriceLabel, UnitPriceLabel } from "./checkout-item.styles"
+import { AddQuantityButton, CheckoutItemContainer, DetailContainer, ItemDetailsAndActionContainer, ItemImageAndDetailsContainer, ItemImageContainer, PerItemAndActionContainer, ItemDetailsAndActionParentContainer, PerPieceOrDozenLabel, QuantityContainer, QuantityInput, ReduceQuantityButton, RemoveActionButton, TotalPriceLabel, UnitPriceLabel } from "./checkout-item.styles"
 
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector"
 import { selectCurrentUser } from "../../store/user/user.selector"
@@ -66,7 +66,7 @@ const CheckoutItem = ({item}) => {
         <DetailContainer>{item.name}</DetailContainer>
       </ItemImageAndDetailsContainer>
       <PerItemAndActionContainer>
-        <PerItemContainer>
+        <ItemDetailsAndActionParentContainer>
           <ItemDetailsAndActionContainer>
             <PerPieceOrDozenLabel>per Piece</PerPieceOrDozenLabel>
             <UnitPriceLabel>P{item.itemPrice}</UnitPriceLabel>
@@ -87,7 +87,7 @@ const CheckoutItem = ({item}) => {
             </QuantityContainer>
             <TotalPriceLabel>P{item.dozenCount * item.dozenPrice}</TotalPriceLabel>
           </ItemDetailsAndActionContainer>
-        </PerItemContainer>
+        </ItemDetailsAndActionParentContainer>
         <RemoveActionButton onClick={() => removeItemHandler()}>Remove</RemoveActionButton>
       </PerItemAndActionContainer>
     </CheckoutItemContainer>

@@ -1,13 +1,54 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import Search from "../../components/searchbox/searchbox.component";
-import { ActionsHeaderLabel, CashOnDeliveryButton, CheckoutItemsContainer, CheckoutLabel, CheckoutPageContainer, CheckoutPageParentContainer, CheckoutPaymentAndPlaceOrderContainer, CreditDebitCardButton, DeliveryAddressContainer, DeliveryInputArea, DetailsAndActionHeaderContainer, EditAddressButton, ListHeaderContainer, ListHeaderParentContainer, PaymentMethodContainer, PaymentMethodLabel, PaymentMethodLabelContainer, PaymentMethodParentContainer, PaymentOptionsContainer, PlaceOrderButton, PlaceOrderContainer, QuantityHeaderLabel, SearchBoxContainer, TotalItemPriceHeaderLabel, TotalPriceContainer, TotalPriceLabel, UnitPriceHeaderLabel } from "./checkout.styles";
-import { Fragment } from "react";
+import { ActionsHeaderLabel, CheckoutItemsContainer, CheckoutLabel, CheckoutPageContainer, CheckoutPageParentContainer, CheckoutPaymentAndPlaceOrderContainer, PaymentOptionButton, DeliveryAddressContainer, DeliveryInputArea, DetailsAndActionHeaderContainer, EditSaveAddressButton, ListHeaderContainer, ListHeaderParentContainer, PaymentMethodContainer, PaymentMethodLabel, PaymentMethodLabelContainer, PaymentMethodParentContainer, PaymentOptionsContainer, PlaceOrderButton, PlaceOrderContainer, QuantityHeaderLabel, SearchBoxContainer, TotalItemPriceHeaderLabel, TotalPriceContainer, TotalPriceLabel, UnitPriceHeaderLabel, PaymentOptionButtonHighlighted } from "./checkout.styles";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector";
+import { setBasketItems } from "../../store/basket/basket.action";
+import { udpatePurchasesStart } from "../../store/purchases/purchases.action";
+import { selectPurchases } from "../../store/purchases/purchases.selector";
+import { useNavigate } from "react-router-dom";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 
 const Checkout = () => {
+  const dispatch = useDispatch()
   const basketItems = useSelector(selectBasketItems)
   const searchItems = useSelector(selectSearchItems)
+  const currentUser = useSelector(selectCurrentUser)
+  const purchases = useSelector(selectPurchases)
+  const [editState, setEditState] = useState(false)
+  const [address, setAddress] = useState('Consolacion, Cebu')
+  const [codButtonClicked, setCodButtonClicked] = useState(false)
+  const [cardButtonClicked, setCardButtonClicked] = useState(false)
+  const codButtonRef = useRef()
+  const navigate = useNavigate()
+  const editAddressOnClickHandler = () => {
+    setEditState(true)
+  }
+  const saveAddressOnClickHandler = () => {
+    setEditState(false)
+  }
+  const addressOnChangeHandler = (e) => {
+    setAddress(e.target.value)
+  }
+  const codButtonHandler = () => {
+    setCodButtonClicked(true)
+    setCardButtonClicked(false)
+  }
+  const cardButtonHandler = () => {
+    setCardButtonClicked(true)
+    setCodButtonClicked(false)
+  }
+  const placeOrderButtonHandler = () => {
+    dispatch(udpatePurchasesStart())
+    setBasketItems({})
+    updateBasketFieldOfUser(currentUser, {})
+    navigate('/')
+  }
+  useEffect(() => {
+    codButtonRef.current.click()
+  },[])
   return (
     <CheckoutPageParentContainer>
       <CheckoutPageContainer>
@@ -59,17 +100,32 @@ const Checkout = () => {
             </PaymentMethodLabelContainer>
             <PaymentMethodContainer>
               <PaymentOptionsContainer>
-                <CashOnDeliveryButton>Cash on delivery</CashOnDeliveryButton>
-                <CreditDebitCardButton>Credit/Debit Card</CreditDebitCardButton>
+              {
+                codButtonClicked ? 
+                  <PaymentOptionButtonHighlighted ref={codButtonRef} onClick={() => codButtonHandler()}>Cash on delivery</PaymentOptionButtonHighlighted>
+                :
+                  <PaymentOptionButton ref={codButtonRef} onClick={() => codButtonHandler()}>Cash on delivery</PaymentOptionButton>
+              }
+              {
+                cardButtonClicked ? 
+                  <PaymentOptionButtonHighlighted onClick={() => cardButtonHandler()}>Credit/Debit Card</PaymentOptionButtonHighlighted>
+                :
+                  <PaymentOptionButton onClick={() => cardButtonHandler()}>Credit/Debit Card</PaymentOptionButton>
+              }
               </PaymentOptionsContainer>
               <DeliveryAddressContainer>
-                <DeliveryInputArea>Hello</DeliveryInputArea>
-                <EditAddressButton>Edit</EditAddressButton>
+                <DeliveryInputArea value={address} disabled={!editState} onChange={(e) => addressOnChangeHandler(e)}></DeliveryInputArea>
+                {
+                  editState ? 
+                    <EditSaveAddressButton onClick={() => saveAddressOnClickHandler()}>Save</EditSaveAddressButton>
+                  :
+                    <EditSaveAddressButton onClick={() => editAddressOnClickHandler()}>Edit</EditSaveAddressButton>
+                }
               </DeliveryAddressContainer>
             </PaymentMethodContainer>
           </PaymentMethodParentContainer>
           <PlaceOrderContainer>
-            <PlaceOrderButton>Place Order</PlaceOrderButton>
+            <PlaceOrderButton onClick={() => placeOrderButtonHandler()}>Place order</PlaceOrderButton>
           </PlaceOrderContainer>
         </CheckoutPaymentAndPlaceOrderContainer>
       </CheckoutPageContainer>

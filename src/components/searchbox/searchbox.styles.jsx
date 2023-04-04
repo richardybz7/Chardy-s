@@ -28,16 +28,16 @@ export const SearchBox = styled.input`
     color: #F2A9A9
   }
   ::-moz-placeholder{
-    color: #FF9D9D
+    color: #F2A9A9
   }
   :-moz-placeholder{
-    color: #FF9D9D
+    color: #F2A9A9
   }
   :-ms-input-placeholder{
-    color: #FF9D9D
+    color: #F2A9A9
   }
   :focus{
-    outline: #FF9D9D
+    outline: #F2A9A9
   }
 `
 export const SearchButton = styled(Link)`

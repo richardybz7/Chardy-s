@@ -1,8 +1,9 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth, getCurrentUser, signInAuthUserWithEmailAndPassword, signInWithGooglePopup, signOutUser } from "../../utils/firebase/firebase.utils";
 import { setBasketItems, setSearchItems, setTotalCountStart } from "../basket/basket.action";
-import { signInFailed, signInSuccess, signOutFailed, signOutSuccess, signUpFailed, signUpSuccess } from "./user.action";
+import { noUserSession, signInFailed, signInSuccess, signOutFailed, signOutSuccess, signUpFailed, signUpSuccess } from "./user.action";
 import { USER_ACTION_TYPES } from "./user.types";
+import { setPurchases } from "../purchases/purchases.action";
 
 export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
   try{
@@ -14,6 +15,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
     yield put(signInSuccess({id: userSnapshot.id, ...userSnapshot.data()}))
     yield put(setBasketItems(userSnapshot.data().basketItems))
     yield put(setTotalCountStart())
+    yield put(setPurchases(userSnapshot.data().purchases))
     yield put(setSearchItems(userSnapshot.data().basketItems))
   } catch (err) {
     yield put(signInFailed(err))
@@ -23,7 +25,10 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
 export function* isUserAuthenticated() {
   try{
     const userAuth = yield call(getCurrentUser)
-    if(!userAuth) return
+    if(!userAuth) {
+      yield put(noUserSession())
+      return
+    }
     yield call(getSnapshotFromUserAuth,userAuth)
   } catch(err) {
     yield put(signInFailed(err))
@@ -46,9 +51,10 @@ export function* signInWithEmail({payload: {email,password}}){
       email,
       password
     )
+    if(!user) return yield put(signInFailed())
     yield call(getSnapshotFromUserAuth, user)
   }catch(err){
-    put(signInFailed(err))
+    yield put(signInFailed(err))
   }
 }
 
@@ -66,7 +72,7 @@ export function* signUp({payload: {email,password,displayName}}){
     )
     yield put(signUpSuccess(user, {displayName}))
   } catch (err) {
-    yield put(signUpFailed(TypeError))
+    yield put(signUpFailed(err))
   }
 }
 
