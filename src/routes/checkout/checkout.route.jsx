@@ -4,12 +4,13 @@ import Search from "../../components/searchbox/searchbox.component";
 import { ActionsHeaderLabel, CheckoutItemsContainer, CheckoutLabel, CheckoutPageContainer, CheckoutPageParentContainer, CheckoutPaymentAndPlaceOrderContainer, PaymentOptionButton, DeliveryAddressContainer, DeliveryInputArea, DetailsAndActionHeaderContainer, EditSaveAddressButton, ListHeaderContainer, ListHeaderParentContainer, PaymentMethodContainer, PaymentMethodLabel, PaymentMethodLabelContainer, PaymentMethodParentContainer, PaymentOptionsContainer, PlaceOrderButton, PlaceOrderContainer, QuantityHeaderLabel, SearchBoxContainer, TotalItemPriceHeaderLabel, TotalPriceContainer, TotalPriceLabel, UnitPriceHeaderLabel, PaymentOptionButtonHighlighted } from "./checkout.styles";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector";
-import { setBasketItems } from "../../store/basket/basket.action";
+import { setBasketItems, setTotalCountStart } from "../../store/basket/basket.action";
 import { udpatePurchasesStart } from "../../store/purchases/purchases.action";
 import { selectPurchases } from "../../store/purchases/purchases.selector";
 import { useNavigate } from "react-router-dom";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
+import Address from "../../components/address/address.component";
 
 const Checkout = () => {
   const dispatch = useDispatch()
@@ -17,21 +18,10 @@ const Checkout = () => {
   const searchItems = useSelector(selectSearchItems)
   const currentUser = useSelector(selectCurrentUser)
   const purchases = useSelector(selectPurchases)
-  const [editState, setEditState] = useState(false)
-  const [address, setAddress] = useState('Consolacion, Cebu')
   const [codButtonClicked, setCodButtonClicked] = useState(false)
   const [cardButtonClicked, setCardButtonClicked] = useState(false)
   const codButtonRef = useRef()
   const navigate = useNavigate()
-  const editAddressOnClickHandler = () => {
-    setEditState(true)
-  }
-  const saveAddressOnClickHandler = () => {
-    setEditState(false)
-  }
-  const addressOnChangeHandler = (e) => {
-    setAddress(e.target.value)
-  }
   const codButtonHandler = () => {
     setCodButtonClicked(true)
     setCardButtonClicked(false)
@@ -41,10 +31,13 @@ const Checkout = () => {
     setCodButtonClicked(false)
   }
   const placeOrderButtonHandler = () => {
-    dispatch(udpatePurchasesStart())
-    setBasketItems({})
-    updateBasketFieldOfUser(currentUser, {})
-    navigate('/')
+    if(basketItems.length){
+      dispatch(udpatePurchasesStart())
+      dispatch(setBasketItems([]))
+      dispatch(setTotalCountStart())
+      updateBasketFieldOfUser(currentUser, {})
+      navigate('/')
+    }
   }
   useEffect(() => {
     codButtonRef.current.click()
@@ -113,15 +106,7 @@ const Checkout = () => {
                   <PaymentOptionButton onClick={() => cardButtonHandler()}>Credit/Debit Card</PaymentOptionButton>
               }
               </PaymentOptionsContainer>
-              <DeliveryAddressContainer>
-                <DeliveryInputArea value={address} disabled={!editState} onChange={(e) => addressOnChangeHandler(e)}></DeliveryInputArea>
-                {
-                  editState ? 
-                    <EditSaveAddressButton onClick={() => saveAddressOnClickHandler()}>Save</EditSaveAddressButton>
-                  :
-                    <EditSaveAddressButton onClick={() => editAddressOnClickHandler()}>Edit</EditSaveAddressButton>
-                }
-              </DeliveryAddressContainer>
+              <Address/>
             </PaymentMethodContainer>
           </PaymentMethodParentContainer>
           <PlaceOrderContainer>

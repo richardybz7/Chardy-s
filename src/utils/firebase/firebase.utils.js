@@ -133,7 +133,7 @@ export const getUserBasket = async (userAuth) => {
 
 export const udpateUserPurchases = async (userAuth, basketItems) => {
   const date = new Date()
-  const arr = [{purchaseDate:date}, ...basketItems]
+  const arr = [{purchaseDate: date.toISOString()}, ...basketItems]
   const newObj = arr.reduce((acc, curr, i) => {
     acc[i] = curr
     return acc

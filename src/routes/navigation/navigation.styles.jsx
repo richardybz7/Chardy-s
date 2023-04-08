@@ -6,21 +6,42 @@ export const MyPurchasesLabel = styled(Link)`
   white-space: nowrap;
   text-decoration: none;
   color: #FF6161;
-  transition: 0.3s ease-in-out;
-  transform-origin: bottom;
+  display: inline-block;
+  transition: 0.1s ease-in-out;
+  transform-origin: center;
   :hover{
-    transform: scale(1.05);
+    transform: scale(1.03);
     color: #E961FF
   }
+`
+export const MyPurchasesContainer = styled.div`
+  position: relative;
+`
+export const PurchasesNotificationContainer = styled.div`
+  position:absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  padding: 2px 6px;
+  background-color: #FF6161;
+  border-radius: 1rem;
+  right: -1rem;
+  top: -1.2rem;
+`
+export const PurchasesNotification = styled.label`
+  color: white;
 `
 export const SignInSignOutLabel = styled(Link)`
   white-space: nowrap;
   text-decoration: none;
+  display: inline-block;
   color: #FF6161;
-  transition: 0.3s ease-in-out;
+  transition: 0.1s ease-in-out;
   transform-origin: bottom;
   :hover{
-    transform: scale(1.05);
+    transform: scale(1.03);
     color: #E961FF
   }
 `
@@ -55,18 +76,16 @@ export const TotalProductContainer = styled.div`
   }
 `
 export const TotalProductCount = styled.div`
-  position: relative
+  position: relative;
 `
 
-export const MyPurchasesContainer = styled.div`
 
-`
 export const CartDropdownContainer = styled(Link)`
 
 `
 export const NavigationContainer = styled.div`
   display: flex;
-  padding: 0.2em 2em;
+  padding: 0.2em 1.5em;
   justify-content: space-between;
   align-items: center;
   gap: 1em;

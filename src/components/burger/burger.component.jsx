@@ -1,10 +1,9 @@
-import { ReactComponent as BurgerSVG } from '../../assets/burger.svg'
-import { BurgerContainer } from './burger.styles';
+import { BurgerContainer, BurgerSvg } from './burger.styles';
 
-const Burger = () => {
+const Burger = ({onClick}) => {
   return (
-    <BurgerContainer>
-      <BurgerSVG/>
+    <BurgerContainer onClick={onClick}>
+      <BurgerSvg/>
     </BurgerContainer>
   )
 }

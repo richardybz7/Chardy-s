@@ -4,12 +4,17 @@ import { setSearchItems } from "../../store/basket/basket.action"
 const Search = ({placeholder, items, location}) => {
   const dispatch = useDispatch()
   const searchOnChangeHandler = (e) => {
+    const searchValue = e.target.value
     switch(location){
       case 'checkout':
-        const searchValue = e.target.value
         const searchItems = items.filter((item) => 
           item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
         )
+        dispatch(setSearchItems(searchItems))
+      case 'myPurchases':
+        const searchPurchaseItems = items.filter((item) => 
+        item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+      )
         dispatch(setSearchItems(searchItems))
     }
   }

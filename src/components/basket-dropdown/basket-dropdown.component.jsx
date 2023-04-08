@@ -19,9 +19,9 @@ import { setSearchItems } from "../../store/basket/basket.action";
 
 const BasketDropdown = () => {
   const dispatch = useDispatch()
-  const userBasket = useSelector(selectBasketItems)
   const basketItems = useSelector(selectBasketItems)
-
+  const userBasket = basketItems
+  console.log('USER BASKET: ', userBasket)
   const hasCountItems = userBasket && userBasket
     .filter((item) => item.count > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={true}/>

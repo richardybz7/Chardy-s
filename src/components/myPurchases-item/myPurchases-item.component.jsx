@@ -1,11 +1,12 @@
+import { Fragment} from "react"
 import { DetailsLabel, ImageAndDetailsContainer, IndividualContainer, ItemImage, MyPurchasesItemContainer, PerPieceDozenColumnContainer, PerPieceDozenParentContainer, Quantity, QuantityColumnContainer, TotalPriceColumnContainer, UnitPriceColumnContainer } from "./myPurchases-item.styles"
 
-const MyPurchasesItem = () => {
+const MyPurchasesItem = ({item}) => {
   return (
     <MyPurchasesItemContainer>
       <ImageAndDetailsContainer>
         <ItemImage/>
-        <DetailsLabel>Maple</DetailsLabel>
+        <DetailsLabel>{item.name}</DetailsLabel>
       </ImageAndDetailsContainer>
       <PerPieceDozenParentContainer>
         <PerPieceDozenColumnContainer>
@@ -15,25 +16,24 @@ const MyPurchasesItem = () => {
         </PerPieceDozenColumnContainer>
         <UnitPriceColumnContainer>
           <IndividualContainer>Unit Price</IndividualContainer>
-          <IndividualContainer>P30</IndividualContainer>
-          <IndividualContainer>P340</IndividualContainer>
+          <IndividualContainer>{item.itemPrice}</IndividualContainer>
+          <IndividualContainer>{item.dozenPrice}</IndividualContainer>
         </UnitPriceColumnContainer>
         <QuantityColumnContainer>
           <IndividualContainer>Quantity</IndividualContainer>
           <IndividualContainer>
-            <Quantity value='1'/>
+            <Quantity value={item.count}/>
           </IndividualContainer>
           <IndividualContainer>
-            <Quantity value='0'/>
+            <Quantity value={item.dozenCount}/>
           </IndividualContainer>
         </QuantityColumnContainer>
         <TotalPriceColumnContainer>
           <IndividualContainer>Total Price</IndividualContainer>
-          <IndividualContainer>P30</IndividualContainer>
-          <IndividualContainer>P0</IndividualContainer>
+          <IndividualContainer>{item.count * item.itemPrice}</IndividualContainer>
+          <IndividualContainer>{item.dozenCount * item.dozenPrice}</IndividualContainer>
         </TotalPriceColumnContainer>
       </PerPieceDozenParentContainer>
-      
     </MyPurchasesItemContainer>
   )
 }

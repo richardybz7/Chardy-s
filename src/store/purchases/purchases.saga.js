@@ -8,8 +8,6 @@ import { selectBasketItems } from "../basket/basket.selector"
 export function* udpatePurchases(){
   const currentUser = yield select(selectCurrentUser)
   const basketItems = yield select(selectBasketItems)
-  console.log('CURRENT USER: ', currentUser)
-  console.log('BASKET ITEMS: ', basketItems)
   try{
     yield call(udpateUserPurchases, currentUser, basketItems)
     const purchases = yield call(getUserPurchases, currentUser)

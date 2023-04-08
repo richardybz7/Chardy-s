@@ -12,4 +12,3 @@ export const udpatePurchasesSuccess = (purchases) =>
 
 export const updatePurchasesFailed = (error) =>
   createAction(PURCHASES_ACTION_TYPES.UPDATE_PURCHASES_FAILED, error)
-

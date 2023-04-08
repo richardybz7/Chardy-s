@@ -115,16 +115,3 @@ export const PaymentOptionButtonHighlighted = styled(BaseButton)`
   outline: none;
   color: #FF7D7D;
 `
-export const DeliveryAddressContainer = styled.div`
-  display: flex;
-`
-export const DeliveryInputArea = styled.textarea`
-  border-right: none;
-  border-top-left-radius: 0.3em;
-  border-bottom-left-radius: 0.3em;
-  min-width: 300px;
-  min-height: 100px;
-  font-family: var(--font-family)
-`
-export const EditSaveAddressButton = styled(BaseButton)`
-`
