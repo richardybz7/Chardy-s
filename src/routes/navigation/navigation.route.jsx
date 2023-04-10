@@ -12,7 +12,8 @@ import {
   TotalProductContainer,
   MyPurchasesContainer,
   PurchasesNotification,
-  PurchasesNotificationContainer
+  PurchasesNotificationContainer,
+  SearchBoxContainer
 } from "./navigation.styles";
 import { Fragment, useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
@@ -28,6 +29,7 @@ import { signOutStart } from "../../store/user/user.action";
 import BurgerMenu from "../../components/burger-menu/burger-menu.component";
 import { selectIsOpenBurger } from "../../store/burger/burger.selector";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";
+import { selectNotificationCount } from "../../store/purchases/purchases.selector";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -36,6 +38,7 @@ const DEVICE_WIDTH = {
 
 const Navigation = () => {
   const dispatch = useDispatch()
+  const notificationCount = useSelector(selectNotificationCount)
   const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
   const totalProductCount = useSelector(selectTotalProductCount)
@@ -51,7 +54,6 @@ const Navigation = () => {
     dispatch(signOutStart())
   }
   const burgerHandler = () => {
-    console.log('hahah')
     dispatch(setBurgerIsOpen(true))
   }
   const resizeHandler = () => {
@@ -74,6 +76,7 @@ const Navigation = () => {
   },[location.pathname])
   const focusHandler = (e) => {
     console.log(e.target.textContent)
+    //document.querySelector('.category').scrollIntoView({ behavior: "smooth" })
   }
   return (
     <Fragment>
@@ -101,12 +104,14 @@ const Navigation = () => {
                 displaySearchBar &&
                 (
                   windowSize >= DEVICE_WIDTH.tabletWidth && 
-                  <Search placeholder='Search for a craving'/>
+                  <SearchBoxContainer>
+                    <Search placeholder='Search for a craving'/>
+                  </SearchBoxContainer>
                 )
               }
               <UserNavigationContainer>
               {
-                windowSize >= DEVICE_WIDTH.phoneWidth ? 
+                windowSize > DEVICE_WIDTH.phoneWidth ? 
                 (
                   currentUser ?
                   (
@@ -114,9 +119,12 @@ const Navigation = () => {
                       {
                         location.pathname !== '/myPurchases' && (
                           <MyPurchasesContainer>
-                            <PurchasesNotificationContainer>
-                              <PurchasesNotification>10</PurchasesNotification>
-                            </PurchasesNotificationContainer>
+                            {
+                              notificationCount > 0 &&
+                              <PurchasesNotificationContainer>
+                                <PurchasesNotification>{notificationCount}</PurchasesNotification>
+                              </PurchasesNotificationContainer>
+                            }
                             <MyPurchasesLabel to='/myPurchases'>MY PURCHASES</MyPurchasesLabel>
                           </MyPurchasesContainer>
                           )

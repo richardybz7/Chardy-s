@@ -4,7 +4,7 @@ export const CategoryContainer = styled.div`
   display: flex;
   gap: 2em;
   flex-wrap: wrap;
-  margin: 3em;
+  margin: 0.5em;
   justify-content: center;
 `
 

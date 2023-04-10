@@ -14,6 +14,12 @@ export const MyPurchasesLabel = styled(Link)`
     color: #E961FF
   }
 `
+export const SearchBoxContainer = styled.div`
+  padding-right: 1em;
+  width: 100%;
+  max-width: 800px;
+  box-sizing: border-box;
+`
 export const MyPurchasesContainer = styled.div`
   position: relative;
 `
@@ -52,6 +58,9 @@ export const BasketContainer = styled.div`
 `
 export const Basket = styled(BasketSVG)`
   cursor: pointer;
+  position: absolute;
+  width: 50px;
+  z-index: 5;
 `
 export const UserNavigationContainer = styled.div`
   display: flex;
@@ -62,13 +71,13 @@ export const UserNavigationContainer = styled.div`
   font-size: 0.75rem;
 `
 export const TotalProductContainer = styled.div`
-  position: absolute;
   display: flex;
+  align-items: flex-end;
   justify-content: center;
-  width: 40px;
   cursor: pointer;
-  bottom: 17px;
-  right: 36px;
+  z-index: 6;
+  width: 100%;
+  height: 35px;
   @media screen and (max-width: 767px) {
     ${props => props.displayLowerSearch && css`
       bottom: 63px;
@@ -76,7 +85,6 @@ export const TotalProductContainer = styled.div`
   }
 `
 export const TotalProductCount = styled.div`
-  position: relative;
 `
 
 

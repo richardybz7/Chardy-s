@@ -23,8 +23,8 @@ const BurgerMenu = ({focus}) => {
           <MenuItemLabel product="true" onClick={e => focus(e)}>Classics</MenuItemLabel>
           <MenuItemLabel product="true" onClick={e => focus(e)}>Drinks</MenuItemLabel>
           <LinkAddressContainer>
-            <MenuItemLabel>Checkout</MenuItemLabel>
-            <MenuItemLabel>My purchases</MenuItemLabel>
+            <MenuItemLabel to='/checkout'>Checkout</MenuItemLabel>
+            <MenuItemLabel to='/myPurchases'>My purchases</MenuItemLabel>
             <AddressContainer>
               <MenuItemLabel address="true">Address</MenuItemLabel>
               <Address/>

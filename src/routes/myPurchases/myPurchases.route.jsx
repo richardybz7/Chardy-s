@@ -1,28 +1,34 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Search from "../../components/searchbox/searchbox.component";
-import { ClearHistoryButton, ClearHistoryContainer, MyPurchasesContainer, MyPurchasesParentContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, SearchPurchasesContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer } from "./myPurchases.styles"
-import { selectPurchases } from "../../store/purchases/purchases.selector";
+import { ClearHistoryButton, ClearHistoryContainer, DateContainer, MyPurchasesContainer, MyPurchasesParentContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, SearchPurchasesContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer, TotalPurchasePrice, TotalPurchasePriceContainer } from "./myPurchases.styles"
+import { selectNotificationCount, selectPurchases } from "../../store/purchases/purchases.selector";
 import PurchaseDate from "../../components/purchaseDate/purchaseDate.component";
 import MyPurchasesItem from "../../components/myPurchases-item/myPurchases-item.component";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import PRODUCTS_DATA from "../../data";
+import { removeAllUserPurchases, udpateUserPurchases, updateUserPurchaseNotification } from "../../utils/firebase/firebase.utils";
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { setPurchases, setPurchasesNotificationToZero } from "../../store/purchases/purchases.action";
+import { setBurgerIsOpen } from "../../store/burger/burger.action";
+import { selectIsOpenBurger } from "../../store/burger/burger.selector";
 
 const MyPurchases = () => {
+  const dispatch = useDispatch()
+  const isBurgerOpen = useSelector(selectIsOpenBurger)
+  const currentUser = useSelector(selectCurrentUser)
   const purchases = useSelector(selectPurchases)
+  const notificationCount = useSelector(selectNotificationCount)
   const [purchasesButtonClick, setPurchasesButtonClick] = useState(false)
   const [toReceiveButtonClick, setToReceiveButtonClick] = useState(false)
   const purchaseButtonRef = useRef(null)
   const purchaseItemContainerRef = useRef([])
   const dateContainerRef = useRef([])
   const purchaseDateOnClickHandler = (purchaseIndex) => {
-    console.log('hello?', purchaseItemContainerRef.current[purchaseIndex].attributes)
     if(purchaseItemContainerRef.current[purchaseIndex].hasAttribute('open')){
-      console.log('skrrr')
       purchaseItemContainerRef.current[purchaseIndex].removeAttribute('open')
       purchaseItemContainerRef.current[purchaseIndex].style.display = 'none'
     }
     else{
-      console.log('luhhh')
       purchaseItemContainerRef.current[purchaseIndex].setAttribute('open','')
       purchaseItemContainerRef.current[purchaseIndex].style.display = 'block'
     } 
@@ -35,8 +41,19 @@ const MyPurchases = () => {
     setToReceiveButtonClick(true)
     setPurchasesButtonClick(false)
   }
+  const clearPurchaseHistoryHandler = () => {
+    if(window.confirm("Cleared purchase history will not be recovered. Continue?")){
+      removeAllUserPurchases(currentUser)
+      dispatch(setPurchases([]))
+    }
+  }
   useEffect(() => {
+    isBurgerOpen && dispatch(setBurgerIsOpen(false))
     purchaseButtonRef.current.click()
+    if(notificationCount > 0){
+      updateUserPurchaseNotification(currentUser, purchases)
+      dispatch(setPurchasesNotificationToZero())
+    }
   },[])
   return (
     <ParentMyPurchasesContainer>
@@ -61,30 +78,45 @@ const MyPurchases = () => {
             <TabsContentContainer>
             {
               purchasesButtonClick ? (
-                purchases.length && 
-                purchases.map((purchase, purchaseIndex) => {
+                purchases.length > 0 ? (
+                  purchases.map((purchase, purchaseIndex) => {
+                    let total = 0
                     return(
                       <MyPurchasesParentContainer key={purchaseIndex}>
                         {
-                          Object.values(purchase).map((item, i) => {
-                            return (
-                              item.purchaseDate && <PurchaseDate key={i} ref={el=>dateContainerRef.current[purchaseIndex] = el} date={item.purchaseDate} click={()=>purchaseDateOnClickHandler(purchaseIndex)}/> 
-                            )
-                          })
+                          Object.values(purchase).map((item, i) => 
+                            item.purchaseDate && 
+                              <DateContainer key={i} ref={el=>dateContainerRef.current[purchaseIndex] = el} >
+                                <PurchaseDate date={item.purchaseDate} click={()=>purchaseDateOnClickHandler(purchaseIndex)}/> 
+                              </DateContainer>
+                          )
                         }
-                        <PurchaseItemsContainer open key={purchaseIndex} ref={el=>purchaseItemContainerRef.current[purchaseIndex] = el}>
+                      <PurchaseItemsContainer open key={purchaseIndex} ref={el=>purchaseItemContainerRef.current[purchaseIndex] = el}>
                         {
-                          Object.values(purchase).map((item, i) => {
-                            return (
-                              !item.purchaseDate && <MyPurchasesItem key={i} item={item}/>
+                          Object.values(purchase).map((purchaseItemsObj) => 
+                            purchaseItemsObj.items && Object.values(purchaseItemsObj).map((item) => 
+                              Object.values(item).map((itemProps, i) => {
+                                total += (itemProps.count * itemProps.itemPrice) + (itemProps.dozenCount * itemProps.dozenPrice)
+                                return <MyPurchasesItem key={i} item={itemProps}/>
+                              })
                             )
-                          })
+                          )
+                        }
+                        {
+                          <TotalPurchasePriceContainer>
+                            <TotalPurchasePrice>
+                              Total purchase price: P{total}
+                            </TotalPurchasePrice>
+                          </TotalPurchasePriceContainer>
                         }
                         </PurchaseItemsContainer>
                       </MyPurchasesParentContainer>
                     )
-                  }
-                )
+                  })
+                ):(
+                  <Fragment>wa sa ta run ster</Fragment>
+                ) 
+                  
               ):(
                 <div>
                   <h1>wa pay to receive, sarreyh</h1>
@@ -96,7 +128,7 @@ const MyPurchases = () => {
           </TabsParentContentContainer>
         </TabsContainer>
         <ClearHistoryContainer>
-          <ClearHistoryButton>Clear purchase history</ClearHistoryButton>
+          <ClearHistoryButton onClick={() => clearPurchaseHistoryHandler()}>Clear purchase history</ClearHistoryButton>
         </ClearHistoryContainer>
       </MyPurchasesContainer>
     </ParentMyPurchasesContainer>

@@ -86,3 +86,10 @@ export const ClearHistoryButton = styled(BaseButton)`
     color: #3E6D6D;
   }
 `
+export const TotalPurchasePriceContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`
+export const TotalPurchasePrice = styled.label`
+  padding: 0.5em;
+`

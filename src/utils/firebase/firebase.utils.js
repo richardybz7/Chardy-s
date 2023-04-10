@@ -133,7 +133,7 @@ export const getUserBasket = async (userAuth) => {
 
 export const udpateUserPurchases = async (userAuth, basketItems) => {
   const date = new Date()
-  const arr = [{purchaseDate: date.toISOString()}, ...basketItems]
+  const arr = [{purchaseDate: date.toISOString()}, {notify: true}, {items: {...basketItems}}]
   const newObj = arr.reduce((acc, curr, i) => {
     acc[i] = curr
     return acc
@@ -141,6 +141,17 @@ export const udpateUserPurchases = async (userAuth, basketItems) => {
   const userRef = doc(db, 'users', userAuth.id)
   await updateDoc(userRef, {
     purchases: arrayUnion(newObj)
+  })
+}
+
+export const updateUserPurchaseNotification = async (userAuth, purchases) => {
+  const p = purchases
+  for(let i = 0; i<p.length; i++){
+    if(p[i][1]) {p[i][1] = {notify: false}}
+  }
+  const userRef = doc(db, 'users', userAuth.id)
+  await updateDoc(userRef, {
+    purchases: p
   })
 }
 
@@ -152,6 +163,13 @@ export const getUserPurchases = async (userAuth) => {
     return purchases
   }
   return userSnapShot
+}
+
+export const removeAllUserPurchases = async (userAuth) => {
+  const userRef = doc(db, 'users', userAuth.id)
+  await updateDoc(userRef, {
+    purchases: []
+  })
 }
 
 export const getCurrentUser = () => {

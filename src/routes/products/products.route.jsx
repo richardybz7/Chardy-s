@@ -17,19 +17,15 @@ const Products = () => {
   //   console.log('done')
   // },[])
   return (
-    <div>
-      <ProductsParentContainer>
-        <div>
-          {
-            Object.keys(productsMap).map((title, index) => {
-              return (
-                <Categories key={index} title={title} products={productsMap[title]}/>
-                )
-            })
-          }
-        </div>
-      </ProductsParentContainer>
-    </div>
+    <ProductsParentContainer>
+      {
+        Object.keys(productsMap).map((title, index) => {
+          return (
+            <Categories key={index} title={title} products={productsMap[title]}/>
+            )
+        })
+      }
+    </ProductsParentContainer>
   )
 }
 

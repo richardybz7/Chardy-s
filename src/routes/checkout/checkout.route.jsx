@@ -6,18 +6,19 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector";
 import { setBasketItems, setTotalCountStart } from "../../store/basket/basket.action";
 import { udpatePurchasesStart } from "../../store/purchases/purchases.action";
-import { selectPurchases } from "../../store/purchases/purchases.selector";
 import { useNavigate } from "react-router-dom";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import Address from "../../components/address/address.component";
+import { setBurgerIsOpen } from "../../store/burger/burger.action";
+import { selectIsOpenBurger } from "../../store/burger/burger.selector";
 
 const Checkout = () => {
   const dispatch = useDispatch()
+  const isBurgerOpen = useSelector(selectIsOpenBurger)
   const basketItems = useSelector(selectBasketItems)
   const searchItems = useSelector(selectSearchItems)
   const currentUser = useSelector(selectCurrentUser)
-  const purchases = useSelector(selectPurchases)
   const [codButtonClicked, setCodButtonClicked] = useState(false)
   const [cardButtonClicked, setCardButtonClicked] = useState(false)
   const codButtonRef = useRef()
@@ -41,6 +42,7 @@ const Checkout = () => {
   }
   useEffect(() => {
     codButtonRef.current.click()
+    isBurgerOpen && dispatch(setBurgerIsOpen(false))
   },[])
   return (
     <CheckoutPageParentContainer>
@@ -61,8 +63,9 @@ const Checkout = () => {
         </ListHeaderParentContainer>
         <CheckoutItemsContainer>
         {
-          searchItems.length ? (
+          searchItems.length > 0 ? (
             searchItems.map((item) => 
+              !(item.count === 0 && item.dozenCount === 0) &&
               <CheckoutItem key={item.id} item={item}/>
             )
           ):(
@@ -73,7 +76,7 @@ const Checkout = () => {
         <TotalPriceContainer>
           <TotalPriceLabel>Total price: P
           {
-            basketItems.length ? (
+            basketItems.length > 0 ? (
               basketItems.reduce((total, basketItem) => 
                 total + 
                 (basketItem.itemPrice * basketItem.count) +
