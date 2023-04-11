@@ -12,8 +12,9 @@ import {
   BasketDivider, 
   BasketHeader, 
   BasketItems, 
-  BasketHeaderLabel, 
-  BasketHeaderImage 
+  BasketHeaderLabel,
+  PerPieceImage,
+  PerDozenImage
 } from "./basket-dropdown.styles";
 import { setSearchItems } from "../../store/basket/basket.action";
 
@@ -41,7 +42,7 @@ const BasketDropdown = () => {
         <BasketItemsPerPieceContainer>
           <BasketHeader>
             <BasketHeaderLabel>PER PIECE</BasketHeaderLabel>
-            <BasketHeaderImage></BasketHeaderImage>
+            <PerPieceImage/>
           </BasketHeader>
           <BasketItems>
             {
@@ -56,7 +57,7 @@ const BasketDropdown = () => {
         <BasketItemsPerDozenContainer>
           <BasketHeader>
             <BasketHeaderLabel>PER DOZEN</BasketHeaderLabel>
-            <BasketHeaderImage></BasketHeaderImage>
+            <PerDozenImage/>
           </BasketHeader>
           <BasketItems>
             {

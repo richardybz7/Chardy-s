@@ -9,8 +9,12 @@ export const CategoryContainer = styled.div`
 `
 
 export const TitleHeader = styled.label`
-  width: 100%;
   font-size: 2rem;
+`
+export const TitleContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
 `
 export const CardsContainer = styled.label`
   display: flex;

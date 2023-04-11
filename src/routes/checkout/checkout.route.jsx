@@ -32,7 +32,7 @@ const Checkout = () => {
     setCodButtonClicked(false)
   }
   const placeOrderButtonHandler = () => {
-    if(basketItems.length){
+    if(basketItems.length > 0){
       dispatch(udpatePurchasesStart())
       dispatch(setBasketItems([]))
       dispatch(setTotalCountStart())
@@ -63,14 +63,9 @@ const Checkout = () => {
         </ListHeaderParentContainer>
         <CheckoutItemsContainer>
         {
-          searchItems.length > 0 ? (
-            searchItems.map((item) => 
-              !(item.count === 0 && item.dozenCount === 0) &&
+          searchItems.map((item) => 
               <CheckoutItem key={item.id} item={item}/>
             )
-          ):(
-            <Fragment/>
-          )
         }
         </CheckoutItemsContainer>
         <TotalPriceContainer>

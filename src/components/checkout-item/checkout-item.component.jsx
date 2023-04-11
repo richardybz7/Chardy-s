@@ -5,15 +5,15 @@ import { selectCurrentUser } from "../../store/user/user.selector"
 import { useDispatch, useSelector } from "react-redux"
 import { addBasketItem, subtractBasketItem, setTotalCountStart, updateBasketItemCount, removeBasketItem, updateSearchItemsAfterBasketUpdateStart } from "../../store/basket/basket.action"
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
 const CheckoutItem = ({item}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
   const searchItems = useSelector(selectSearchItems)
-  const perPieceRef = useRef()
-  const perDozenRef = useRef()
+  const perPieceRef = useRef({value: item.count})
+  const perDozenRef = useRef({value: item.dozenCount})
 
   const dispatchAndUpdate = (currentUser, newBasket) => {
     dispatch(newBasket)
@@ -24,13 +24,20 @@ const CheckoutItem = ({item}) => {
   const reduceQuantityHandler = (perPiece) => {
     if(perPiece) {
       const newBasket = subtractBasketItem(basketItems, item, false)
-      dispatchAndUpdate(currentUser, newBasket)
+      dispatchAndUpdate(currentUser, newBasket) 
     }
     else{
       const newBasket = subtractBasketItem(basketItems, item, true)
       dispatchAndUpdate(currentUser, newBasket)
     }
   }
+
+  useEffect(() => {
+    if(perPieceRef.current.value === '0' && perDozenRef.current.value === '0'){
+        removeItemHandler()
+    }
+  },[item.count, item.dozenCount])
+  
   const addQuantityHandler = (perPiece) => {
     if(perPiece) {
       const newBasket = addBasketItem(basketItems, item, false)

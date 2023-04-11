@@ -13,7 +13,8 @@ import {
   MyPurchasesContainer,
   PurchasesNotification,
   PurchasesNotificationContainer,
-  SearchBoxContainer
+  SearchBoxContainer,
+  BasketSVGContainer
 } from "./navigation.styles";
 import { Fragment, useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
@@ -143,7 +144,9 @@ const Navigation = () => {
                 currentUser && (
                   location.pathname !== '/checkout' && (
                     <BasketContainer>
-                      <Basket onClick={toggleBasket}/>
+                      <BasketSVGContainer onClick={toggleBasket}>
+                        <Basket/>
+                      </BasketSVGContainer>
                       <TotalProductContainer displayLowerSearch={displaySearchBar} onClick={toggleBasket}>
                         <TotalProductCount>{totalProductCount}</TotalProductCount>
                       </TotalProductContainer>

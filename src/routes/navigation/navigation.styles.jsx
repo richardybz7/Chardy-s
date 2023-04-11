@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ReactComponent as BasketSVG } from '../../assets/chardybasket.svg'
+import { ReactComponent as BasketSVG } from '../../assets/chardybasket2.svg'
 
 export const MyPurchasesLabel = styled(Link)`
   white-space: nowrap;
@@ -57,6 +57,8 @@ export const BasketContainer = styled.div`
   align-items: center;
 `
 export const Basket = styled(BasketSVG)`
+`
+export const BasketSVGContainer = styled.div`
   cursor: pointer;
   position: absolute;
   width: 50px;
@@ -78,6 +80,11 @@ export const TotalProductContainer = styled.div`
   z-index: 6;
   width: 100%;
   height: 35px;
+  &:hover{
+    & > div{
+      color: darkviolet;
+    }
+  }
   @media screen and (max-width: 767px) {
     ${props => props.displayLowerSearch && css`
       bottom: 63px;
@@ -85,11 +92,8 @@ export const TotalProductContainer = styled.div`
   }
 `
 export const TotalProductCount = styled.div`
-`
-
-
-export const CartDropdownContainer = styled(Link)`
-
+  font-size: 1.25em;
+  color: peru;
 `
 export const NavigationContainer = styled.div`
   display: flex;
