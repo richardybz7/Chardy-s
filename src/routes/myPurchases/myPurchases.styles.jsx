@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
+import NoPurchaseSVG from '../../assets/noPurchaseAsset.svg'
+import ToReceiveSVG from '../../assets/toReceiveAsset.svg'
 
 export const ParentMyPurchasesContainer = styled.div`
   display: flex;
@@ -92,4 +94,24 @@ export const TotalPurchasePriceContainer = styled.div`
 `
 export const TotalPurchasePrice = styled.label`
   padding: 0.5em;
+`
+export const NoPurchaseContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
+export const NoPurchase = styled.div`
+  background-image: url(${NoPurchaseSVG});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 30vw;
+  height: 30vw;
+`
+export const ToReceive = styled.div`
+  background-image: url(${ToReceiveSVG});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 60vw;
+  height: 40vw;
 `

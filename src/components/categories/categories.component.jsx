@@ -1,12 +1,12 @@
-import { CategoryContainer, TitleHeader, CardsContainer, TitleContainer } from "./categories.styles";
+import { CategoryContainer, TitleHeaderImage, CardsContainer, TitleContainer, Title } from "./categories.styles";
 import Card from "../card/card.component";
 
 const Categories = ({ title, products}) => {
   return (
     <CategoryContainer onClick={e => e.preventDefault()}>
       <TitleContainer>
-        <TitleHeader>{title}</TitleHeader>
-      </TitleContainer>
+        <Title>{title}</Title>
+      </TitleContainer>  
       <CardsContainer>
         {
           products

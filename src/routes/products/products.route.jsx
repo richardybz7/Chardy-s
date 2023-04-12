@@ -1,4 +1,4 @@
-import { ProductsParentContainer } from './products.style'
+import { CategoriesContainer, ProductsParentContainer, SideNavigationButton, SideNavigationContainer } from './products.style'
 import Categories from '../../components/categories/categories.component'
 import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useState } from 'react'
@@ -17,14 +17,17 @@ const Products = () => {
   //   console.log('done')
   // },[])
   return (
+
     <ProductsParentContainer>
-      {
-        Object.keys(productsMap).map((title, index) => {
-          return (
-            <Categories key={index} title={title} products={productsMap[title]}/>
-            )
-        })
-      }
+      <CategoriesContainer>
+        {
+          Object.keys(productsMap).map((title, index) => {
+            return (
+              <Categories key={index} title={title} products={productsMap[title]}/>
+              )
+            })
+        }
+      </CategoriesContainer>
     </ProductsParentContainer>
   )
 }

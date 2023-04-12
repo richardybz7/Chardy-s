@@ -1,8 +1,12 @@
+import { DonutImage, ParentSpinnerContainer, SpinnerContainer } from "./spinner.styles"
+
 const Spinner = () => {
   return (
-    <>
-      <h1>SPINNER</h1>
-    </>
+    <ParentSpinnerContainer>
+      <SpinnerContainer>
+        <DonutImage/>
+      </SpinnerContainer>
+    </ParentSpinnerContainer>
   )
 }
 

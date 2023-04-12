@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import Search from "../../components/searchbox/searchbox.component";
-import { ClearHistoryButton, ClearHistoryContainer, DateContainer, MyPurchasesContainer, MyPurchasesParentContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, SearchPurchasesContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer, TotalPurchasePrice, TotalPurchasePriceContainer } from "./myPurchases.styles"
+import { ClearHistoryButton, ClearHistoryContainer, DateContainer, MyPurchasesContainer, MyPurchasesParentContainer, NoPurchase, NoPurchaseContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, SearchPurchasesContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer, ToReceive, TotalPurchasePrice, TotalPurchasePriceContainer } from "./myPurchases.styles"
 import { selectNotificationCount, selectPurchases } from "../../store/purchases/purchases.selector";
 import PurchaseDate from "../../components/purchaseDate/purchaseDate.component";
 import MyPurchasesItem from "../../components/myPurchases-item/myPurchases-item.component";
@@ -114,13 +114,15 @@ const MyPurchases = () => {
                     )
                   })
                 ):(
-                  <Fragment>wa sa ta run ster</Fragment>
+                  <NoPurchaseContainer>
+                    <NoPurchase/>
+                  </NoPurchaseContainer>
                 ) 
                   
               ):(
-                <div>
-                  <h1>wa pay to receive, sarreyh</h1>
-                </div>
+                <NoPurchaseContainer>
+                  <ToReceive/>
+                </NoPurchaseContainer>
               )
               
             }

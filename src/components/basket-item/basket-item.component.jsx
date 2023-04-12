@@ -1,19 +1,26 @@
 import { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addBasketItem, subtractBasketItem, setTotalCountStart } from "../../store/basket/basket.action"
+import { addBasketItem, subtractBasketItem, setTotalCountStart, removeBasketItem } from "../../store/basket/basket.action"
 import { selectBasketItems } from "../../store/basket/basket.selector"
 import { selectCurrentUser } from "../../store/user/user.selector"
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils"
 import { ItemContainer, ItemLabel, ItemCount, ItemImage, ActionsContainer, ActionContainer, ItemButton, NumberOfDonutsLabel, ButtonAndCountContainer } from "./basket-item.styles"
+import { useRef } from "react"
 const BasketItem = ({item, perPiece}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
-  const removeItemHandler = () => {
-    const newBasket = subtractBasketItem(basketItems, item, false)
-    dispatch(newBasket)
-    dispatch(setTotalCountStart())
-    updateBasketFieldOfUser(currentUser, newBasket.payload)
+  const subtractItemHandler = () => {
+    console.log(basketItems.length)
+    if(item.count === 1 && item.dozenCount === 0) {
+      removeItemHandler()
+    }
+    else{
+      const newBasket = subtractBasketItem(basketItems, item, false)
+      dispatch(newBasket)
+      dispatch(setTotalCountStart())
+      updateBasketFieldOfUser(currentUser, newBasket.payload)
+    }
   }
   const addItemHandler = () => {
     const newBasket = addBasketItem(basketItems, item, false)
@@ -27,8 +34,19 @@ const BasketItem = ({item, perPiece}) => {
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
-  const removeDozenHandler = () => {
-    const newBasket = subtractBasketItem(basketItems, item, true)
+  const subtractDozenHandler = () => {
+    if(item.count === 0 && item.dozenCount === 1) {
+      removeItemHandler()
+    }
+    else{
+      const newBasket = subtractBasketItem(basketItems, item, true)
+      dispatch(newBasket)
+      dispatch(setTotalCountStart())
+      updateBasketFieldOfUser(currentUser, newBasket.payload)
+    }
+  }
+  const removeItemHandler = () => {
+    const newBasket = removeBasketItem(basketItems, item)
     dispatch(newBasket)
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
@@ -49,13 +67,13 @@ const BasketItem = ({item, perPiece}) => {
             {
               perPiece ? (
                 <Fragment>
-                  <ItemButton onClick={removeItemHandler}>-</ItemButton>
+                  <ItemButton onClick={subtractItemHandler}>-</ItemButton>
                   <ItemCount>{item.count}</ItemCount>
                   <ItemButton onClick={addItemHandler}>+</ItemButton>
                 </Fragment>
               ) : (
                 <Fragment>
-                  <ItemButton onClick={removeDozenHandler}>-</ItemButton>
+                  <ItemButton onClick={subtractDozenHandler}>-</ItemButton>
                   <ItemCount>{item.dozenCount}</ItemCount>
                   <ItemButton onClick={addDozenHandler}>+</ItemButton>
                 </Fragment>

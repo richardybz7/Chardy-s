@@ -79,7 +79,7 @@ export const TotalProductContainer = styled.div`
   cursor: pointer;
   z-index: 6;
   width: 100%;
-  height: 35px;
+  height: 40px;
   &:hover{
     & > div{
       color: darkviolet;
@@ -92,7 +92,8 @@ export const TotalProductContainer = styled.div`
   }
 `
 export const TotalProductCount = styled.div`
-  font-size: 1.25em;
+  font-family: 'Pacifico', cursive;
+  font-size: 1.3em;
   color: peru;
 `
 export const NavigationContainer = styled.div`

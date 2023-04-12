@@ -14,26 +14,30 @@ import {
   BasketItems, 
   BasketHeaderLabel,
   PerPieceImage,
-  PerDozenImage
+  PerDozenImage,
+  EmptyBasketImage,
+  EmptyBasketImageContainer
 } from "./basket-dropdown.styles";
 import { setSearchItems } from "../../store/basket/basket.action";
+import { Fragment } from "react";
 
 const BasketDropdown = () => {
   const dispatch = useDispatch()
   const basketItems = useSelector(selectBasketItems)
   const userBasket = basketItems
-  console.log('USER BASKET: ', userBasket)
-  const hasCountItems = userBasket && userBasket
+  const hasCountItems = userBasket
     .filter((item) => item.count > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={true}/>
     )
   
-  const hasDozenItems = userBasket && userBasket
+  const hasDozenItems = userBasket
     .filter((item) => item.dozenCount > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={false}/>
     )
 
   const GoToCheckoutHandler = () => {
+    console.log(basketItems.length)
+    if(basketItems.length > 0)
     dispatch(setSearchItems(basketItems))
   }
   return (
@@ -46,10 +50,15 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasCountItems && hasCountItems.length ? 
+              hasCountItems.length > 0 ? 
                 hasCountItems
               : 
-              <EmptyBasketLabel>Click 'buy a piece'</EmptyBasketLabel>
+              <Fragment>
+                <EmptyBasketImageContainer>
+                  <EmptyBasketLabel>Click 'buy a piece'</EmptyBasketLabel>
+                  <EmptyBasketImage perPieceDozen='true'/>
+                </EmptyBasketImageContainer>
+              </Fragment>
             }
           </BasketItems>
         </BasketItemsPerPieceContainer>
@@ -61,16 +70,21 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasDozenItems && hasDozenItems.length ? 
+              hasDozenItems.length > 0 ? 
                 hasDozenItems
               : 
-              <EmptyBasketLabel>Click 'buy a dozen'</EmptyBasketLabel>
+              <Fragment>
+                <EmptyBasketImageContainer>
+                  <EmptyBasketLabel>Click 'buy a dozen'</EmptyBasketLabel>
+                  <EmptyBasketImage perPieceDozen='false'/>
+                </EmptyBasketImageContainer>
+              </Fragment>
             }
           </BasketItems>
         </BasketItemsPerDozenContainer>
       </BasketItemsContainer>
       <BasketButtonContainer>
-        <BasketButton to='/checkout' onClick={() => GoToCheckoutHandler()}>GO TO CHECKOUT</BasketButton>
+        <BasketButton to={ basketItems.length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={basketItems.length}>GO TO CHECKOUT</BasketButton>
       </BasketButtonContainer>
     </BasketDropdownContainer>
   )

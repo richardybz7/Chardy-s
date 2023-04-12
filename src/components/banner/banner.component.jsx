@@ -1,13 +1,9 @@
-import { BannerContainer } from "./banner.styles";
-//temporary
-import BannerImg from '../../assets/banner1.jpg'
+import { BannerContainer, BannerImage } from "./banner.styles";
 const Banner = () => {
   return (
-    <>
-      <BannerContainer>
-        <img src={BannerImg} style={{width: '100%'}}/>
-      </BannerContainer>
-    </>
+    <BannerContainer>
+      <BannerImage/>
+    </BannerContainer>
   )
 }
 

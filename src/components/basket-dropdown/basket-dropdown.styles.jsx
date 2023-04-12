@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PerPieceSVG from '../../assets/perPiece3Asset.svg'
 import PerDozenSVG from '../../assets/perDozen3Asset.svg'
+import BuyAPieceSVG from '../../assets/buyAPieceAsset.svg'
+import BuyADozenSVG from '../../assets/buyADozenAsset.svg'
 export const BasketItemsPerPieceContainer = styled.div`
   width: 100%;
   display: flex;
@@ -59,6 +61,23 @@ export const BasketItems = styled.div`
 
 export const EmptyBasketLabel = styled.label`
 `
+export const EmptyBasketImageContainer = styled.div`
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+`
+export const EmptyBasketImage = styled.div`
+  background-image: ${props => props.perPieceDozen === 'true' ? `url(${BuyAPieceSVG})` : `url(${BuyADozenSVG})`};
+  width: 200px;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+`
 
 export const BasketButtonContainer = styled.div`
   margin-top: 1em;
@@ -70,21 +89,20 @@ export const BasketButton = styled(Link)`
   align-items: center;
   padding: 0.8em;
   border-radius: 0.4em;
-  border: 1px solid #FF6161;
+  border: ${props => props.disabled > 0 ? '1px solid #FF6161' : '1px solid #DBDBDB'};
   font-size: 0.8rem;
 
   white-space: nowrap;
   text-decoration: none;
-  color: #FF6161;
+  color: ${props => props.disabled > 0 ? '#FF6161' : '#DBDBDB'};
   transition: 0.1s ease-in-out;
   transform-origin: center;
   :hover{
-    transform: scale(1.015);
-    color: #E961FF;
-    border: 1px solid #E961FF;
+    transform: ${props => props.disabled > 0 && 'scale(1.015)'};
+    color: ${props => props.disabled > 0 ? '#E961FF' : '#DBDBDB'};
+    border: ${props => props.disabled > 0 ? '1px solid #E961FF' : '1px solid #DBDBDB'};
   }
 `
-
 export const BasketDropdownContainer = styled.div`
   position: absolute;
   width: max-content;
