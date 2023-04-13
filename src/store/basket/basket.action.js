@@ -68,7 +68,6 @@ const searchItemsUpdateAfterBasketUpdate = (basketItems, searchItems) =>
   basketItems.filter((basketItem) => searchItems.some((searchItem) => searchItem.id === basketItem.id))
 
 export const setBasketItems = (basketItems) => {
-  console.log('BASKET ITEMS TO BE: ', basketItems)
   return createAction(BASKET_ACTION_TYPES.SET_BASKET, basketItems)
 }
 

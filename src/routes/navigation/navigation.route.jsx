@@ -14,7 +14,10 @@ import {
   PurchasesNotification,
   PurchasesNotificationContainer,
   SearchBoxContainer,
-  BasketSVGContainer
+  BasketSVGContainer,
+  MiddleNavigationContainer,
+  ProductNavigationContainer,
+  CategoryLabel
 } from "./navigation.styles";
 import { Fragment, useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
@@ -31,6 +34,7 @@ import BurgerMenu from "../../components/burger-menu/burger-menu.component";
 import { selectIsOpenBurger } from "../../store/burger/burger.selector";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";
 import { selectNotificationCount } from "../../store/purchases/purchases.selector";
+import ProductNavigation from "../../components/product-navigation/product-navigation.component";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -60,7 +64,7 @@ const Navigation = () => {
   const resizeHandler = () => {
     setWindowSize(window.innerWidth)
   }
-
+  
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
     return () => window.removeEventListener('resize', resizeHandler)
@@ -75,13 +79,9 @@ const Navigation = () => {
     location.pathname === '/' ? setDisplaySearchBar(true) : setDisplaySearchBar(false)
     location.pathname === '/auth' ? setDisplayBurger(false) : setDisplayBurger(true)
   },[location.pathname])
-  const focusHandler = (e) => {
-    console.log(e.target.textContent)
-    //document.querySelector('.category').scrollIntoView({ behavior: "smooth" })
-  }
   return (
     <Fragment>
-      <ParentNavigationContainer>
+      <ParentNavigationContainer location={location.pathname}>
         <NavigationContainer>
           {
             displayBurger && (
@@ -91,7 +91,7 @@ const Navigation = () => {
                   !isBurgerOpen ? (
                     <Burger onClick={() => burgerHandler()}/>
                   ):(
-                    <BurgerMenu focus={e => focusHandler(e)}/>
+                    <BurgerMenu/>
                   )
                 }
               </Fragment>
@@ -105,9 +105,12 @@ const Navigation = () => {
                 displaySearchBar &&
                 (
                   windowSize >= DEVICE_WIDTH.tabletWidth && 
-                  <SearchBoxContainer>
-                    <Search placeholder='Search for a craving'/>
-                  </SearchBoxContainer>
+                  <MiddleNavigationContainer>
+                    <SearchBoxContainer>
+                      <Search placeholder='Search for a craving'/>
+                    </SearchBoxContainer>
+                    <ProductNavigation/>
+                  </MiddleNavigationContainer>
                 )
               }
               <UserNavigationContainer>

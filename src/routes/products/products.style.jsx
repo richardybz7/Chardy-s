@@ -10,13 +10,4 @@ export const CategoriesContainer = styled.div`
   flex-direction: column;
   align-items: center;
 `
-export const SideNavigationContainer = styled.div`
-  background-color: red;
-  height: 77vh;
-  width: 80px;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-`
-export const SideNavigationButton = styled(BaseButton)`
-`
+export const ReferenceContainer = styled.div``

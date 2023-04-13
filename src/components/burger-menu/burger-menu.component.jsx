@@ -3,7 +3,7 @@ import Address from "../address/address.component"
 import { useDispatch } from "react-redux"
 import { setBurgerIsOpen } from "../../store/burger/burger.action"
 
-const BurgerMenu = ({focus}) => {
+const BurgerMenu = () => {
   const dispatch = useDispatch()
   const backHandler = () => {
     dispatch(setBurgerIsOpen(false))
@@ -18,10 +18,6 @@ const BurgerMenu = ({focus}) => {
       </HeaderContainer>
       <ParentContentContainer>
         <ContentContainer>
-          <MenuItemLabel product="true" onClick={e => focus(e)}>New</MenuItemLabel>
-          <MenuItemLabel product="true" onClick={e => focus(e)}>Best sellers</MenuItemLabel>
-          <MenuItemLabel product="true" onClick={e => focus(e)}>Classics</MenuItemLabel>
-          <MenuItemLabel product="true" onClick={e => focus(e)}>Drinks</MenuItemLabel>
           <LinkAddressContainer>
             <MenuItemLabel to='/checkout'>Checkout</MenuItemLabel>
             <MenuItemLabel to='/myPurchases'>My purchases</MenuItemLabel>

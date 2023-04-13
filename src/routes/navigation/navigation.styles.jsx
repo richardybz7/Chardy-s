@@ -11,7 +11,7 @@ export const MyPurchasesLabel = styled(Link)`
   transform-origin: center;
   :hover{
     transform: scale(1.03);
-    color: #E961FF
+    color: darkviolet;
   }
 `
 export const SearchBoxContainer = styled.div`
@@ -19,6 +19,14 @@ export const SearchBoxContainer = styled.div`
   width: 100%;
   max-width: 800px;
   box-sizing: border-box;
+`
+export const MiddleNavigationContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 500px;
+  gap: 0.5em;
+  padding: 0.5em 0;
 `
 export const MyPurchasesContainer = styled.div`
   position: relative;
@@ -48,7 +56,7 @@ export const SignInSignOutLabel = styled(Link)`
   transform-origin: bottom;
   :hover{
     transform: scale(1.03);
-    color: #E961FF
+    color: darkviolet;
   }
 `
 export const BasketContainer = styled.div`
@@ -82,7 +90,7 @@ export const TotalProductContainer = styled.div`
   height: 40px;
   &:hover{
     & > div{
-      color: darkviolet;
+      color: #FF5938;
     }
   }
   @media screen and (max-width: 767px) {
@@ -108,4 +116,5 @@ export const ParentNavigationContainer = styled.div`
   position: sticky;
   top: 0;
   z-index: 10;
+  border-bottom: ${prop => prop.location === '/' && '1px solid pink'};
 `

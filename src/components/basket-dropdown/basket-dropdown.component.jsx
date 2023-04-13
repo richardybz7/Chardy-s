@@ -36,7 +36,6 @@ const BasketDropdown = () => {
     )
 
   const GoToCheckoutHandler = () => {
-    console.log(basketItems.length)
     if(basketItems.length > 0)
     dispatch(setSearchItems(basketItems))
   }

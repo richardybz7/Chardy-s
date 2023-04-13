@@ -11,7 +11,6 @@ const BasketItem = ({item, perPiece}) => {
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
   const subtractItemHandler = () => {
-    console.log(basketItems.length)
     if(item.count === 1 && item.dozenCount === 0) {
       removeItemHandler()
     }
