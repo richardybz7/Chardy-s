@@ -1,4 +1,4 @@
-import { DonutImage, ParentSpinnerContainer, SpinnerContainer } from "./spinner.styles"
+import { DonutImage, LogoSvg, LogoContainer, ParentSpinnerContainer, SpinnerContainer } from "./spinner.styles"
 
 const Spinner = () => {
   return (
@@ -6,6 +6,9 @@ const Spinner = () => {
       <SpinnerContainer>
         <DonutImage/>
       </SpinnerContainer>
+      <LogoContainer>
+        <LogoSvg/>
+      </LogoContainer>
     </ParentSpinnerContainer>
   )
 }

@@ -91,7 +91,7 @@ export const BasketButton = styled(Link)`
   border-radius: 0.4em;
   border: ${props => props.disabled > 0 ? '1px solid #FF6161' : '1px solid #DBDBDB'};
   font-size: 0.8rem;
-
+  outline: none;
   white-space: nowrap;
   text-decoration: none;
   color: ${props => props.disabled > 0 ? '#FF6161' : '#DBDBDB'};
@@ -106,8 +106,8 @@ export const BasketButton = styled(Link)`
 export const BasketDropdownContainer = styled.div`
   position: absolute;
   width: max-content;
-  right: 10px;
-  top: 62px;
+  right: 7px;
+  top: 68px;
   border-radius: 0.3em;
   background-color: var(--background-color);
   display: flex;
@@ -118,6 +118,7 @@ export const BasketDropdownContainer = styled.div`
   padding: 1.3em 0.5em;
   box-shadow: 0 0 3px 0 #B8B8B8;
   @media screen and (max-width: 768px) {
+    top: 60px;
     ${BasketItemsContainer}{
       flex-direction: column;
     }
