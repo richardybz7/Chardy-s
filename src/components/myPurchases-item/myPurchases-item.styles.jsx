@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import testImage from '../../assets/Capturetest.JPG'
 export const MyPurchasesItemContainer = styled.div`
   display: flex;
   box-sizing: border-box;
@@ -11,7 +11,7 @@ export const MyPurchasesItemContainer = styled.div`
   :nth-of-type(even){
     background-color: #ECECEC;
   }
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 830px){
     flex-direction: column;
     align-items: initial;
     gap: 0.5em;
@@ -21,15 +21,18 @@ export const ImageAndDetailsContainer = styled.div`
   display: flex;
   align-items: center;
 `
-export const ItemImage = styled.img`
-  width: 120px;
-  height: 120px;
-  background-color: green;
+export const ItemImage = styled.div`
+  background-image: url(${testImage});
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  width: 100px;
+  height: 100px;
   border: none;
   border-radius: 0.3em;
 `
 export const DetailsLabel = styled.label`
-  width: 80px;
+  width: 150px;
   padding-left: 1em;
 `
 export const PerPieceDozenParentContainer = styled.div`
@@ -56,7 +59,8 @@ export const IndividualContainer = styled.div`
   justify-content: center;
   align-items: center;
   white-space: nowrap;
-  width: 10vw;
+  width: 8em;
+  height: 1em;
   :nth-child(1){
     border-bottom: 1px solid black;
     padding-bottom: 0.5em;
@@ -68,7 +72,7 @@ export const IndividualContainer = styled.div`
   :nth-child(3){
     padding-top: 0.5em;
   }
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 830px){
     width: 20.5vw;
   }
 `

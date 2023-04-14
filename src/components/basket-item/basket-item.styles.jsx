@@ -40,4 +40,7 @@ export const ButtonAndCountContainer = styled.div`
 export const ItemButton = styled(BaseButton)`
   padding: 0.5em;
   width: 2em;
+  color: white;
+  font-size: 0.9rem;
+  background-color: #FFD2D2;
 `

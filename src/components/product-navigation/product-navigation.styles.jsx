@@ -10,7 +10,12 @@ export const ProductNavigationContainer = styled.div`
 export const CategoryLabel = styled.label`
   cursor: pointer;
   color: #FF6161;
-  :hover{
+  :active{
     color: darkviolet;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      color: darkviolet;
+    }
   }
 `

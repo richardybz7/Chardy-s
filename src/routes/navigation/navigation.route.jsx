@@ -15,9 +15,7 @@ import {
   PurchasesNotificationContainer,
   SearchBoxContainer,
   BasketSVGContainer,
-  MiddleNavigationContainer,
-  ProductNavigationContainer,
-  CategoryLabel
+  MiddleNavigationContainer
 } from "./navigation.styles";
 import { Fragment, useEffect, useState } from "react";
 import Logo from "../../components/logo/logo.component";
@@ -25,10 +23,9 @@ import LowerNavigationContainer from "../../components/lower-navigation-div/lowe
 import Burger from "../../components/burger/burger.component";
 import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.component";
 import { Basket } from "./navigation.styles";
-import { selectCurrentUser, selectIsLoading } from "../../store/user/user.selector";
+import { selectCurrentUser } from "../../store/user/user.selector";
 import { setIsBasketOpen } from "../../store/basket/basket.action";
 import { selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
-import Spinner from "../../components/spinner/spinner.component";
 import { signOutStart } from "../../store/user/user.action";
 import BurgerMenu from "../../components/burger-menu/burger-menu.component";
 import { selectIsOpenBurger } from "../../store/burger/burger.selector";

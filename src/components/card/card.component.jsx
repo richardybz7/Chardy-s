@@ -1,17 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { addBasketItem, addItemToBasket, setTotalCountOfProducts, setTotalCountStart } from "../../store/basket/basket.action";
-import { selectBasketItems, selectTotalProductCount } from "../../store/basket/basket.selector";
+import { addBasketItem, setTotalCountStart } from "../../store/basket/basket.action";
+import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
-import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage } from "./card.styles";
-import { updateSearchItemsAfterBasketUpdateStart } from "../../store/basket/basket.saga";
-import { useRef } from "react";
+import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton } from "./card.styles";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
-  const addToBoxButtonRef = useRef([])
   const addPieceToBasketHandler = () => {
     if(!currentUser) return
     const newBasket = addBasketItem(basketItems, product, false)
@@ -26,12 +23,6 @@ const Card = ({product}) => {
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
-  const onMouseOverHandler = () => {
-    addToBoxButtonRef.current.style.backgroundColor = '#FF5938'
-  }
-  const onMouseOutHandler = () => {
-    addToBoxButtonRef.current.style.backgroundColor = '#FF8F8F'
-  }
   return (
     <CardContainer>
       <ProductImage/>
@@ -45,7 +36,8 @@ const Card = ({product}) => {
       </PriceContainer>
       <Label>{product.name ? product.name : product}</Label>
       <ButtonContainer>
-        <AddToBoxButton ref={addToBoxButtonRef} onClick={addPieceToBasketHandler} onMouseOver={onMouseOverHandler} onMouseOut={onMouseOutHandler}>buy a piece</AddToBoxButton>
+        <BugRecoveryButton/>
+        <AddToBoxButton onClick={addPieceToBasketHandler}>buy a piece</AddToBoxButton>
         <BuyADozenButton onClick={addDozenToBasketHandler}>buy a dozen</BuyADozenButton>
       </ButtonContainer>
     </CardContainer>

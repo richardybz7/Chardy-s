@@ -16,7 +16,8 @@ import {
   PerPieceImage,
   PerDozenImage,
   EmptyBasketImage,
-  EmptyBasketImageContainer
+  EmptyBasketImageContainer,
+  PerPieceImageContainer
 } from "./basket-dropdown.styles";
 import { setSearchItems } from "../../store/basket/basket.action";
 import { Fragment } from "react";
@@ -45,7 +46,9 @@ const BasketDropdown = () => {
         <BasketItemsPerPieceContainer>
           <BasketHeader>
             <BasketHeaderLabel>PER PIECE</BasketHeaderLabel>
-            <PerPieceImage/>
+            <PerPieceImageContainer>
+              <PerPieceImage/>
+            </PerPieceImageContainer>
           </BasketHeader>
           <BasketItems>
             {
@@ -54,7 +57,6 @@ const BasketDropdown = () => {
               : 
               <Fragment>
                 <EmptyBasketImageContainer>
-                  <EmptyBasketLabel>Click 'buy a piece'</EmptyBasketLabel>
                   <EmptyBasketImage perPieceDozen='true'/>
                 </EmptyBasketImageContainer>
               </Fragment>
@@ -74,7 +76,6 @@ const BasketDropdown = () => {
               : 
               <Fragment>
                 <EmptyBasketImageContainer>
-                  <EmptyBasketLabel>Click 'buy a dozen'</EmptyBasketLabel>
                   <EmptyBasketImage perPieceDozen='false'/>
                 </EmptyBasketImageContainer>
               </Fragment>

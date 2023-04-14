@@ -37,12 +37,17 @@ export const CardContainer = styled.div`
   justify-content: flex-end;
   transition: 0.2s ease-in-out;
   z-index: 1;
-  :hover{
-    transform: scale(1.03)
-  }
   @media screen and (max-width: 574px) {
     width: 45%;
   }
+  @media screen and (min-width: 430px){
+    :hover{
+      transform: scale(1.03)
+    }
+  }
+`
+export const BugRecoveryButton = styled.button`
+  display: none;
 `
 export const AddToBoxButton = styled(BaseButton)`
   width: 100%;
@@ -51,6 +56,14 @@ export const AddToBoxButton = styled(BaseButton)`
   color: white;
   background-color: #FF8F8F;
   transition: 0.1s ease-in-out;
+  :active{
+    background-color: #FF5938;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      background-color: #FF5938;
+    }
+  }
 `
 export const BuyADozenButton = styled(BaseButton)`
   width: 100%;
@@ -59,8 +72,13 @@ export const BuyADozenButton = styled(BaseButton)`
   color: white;
   background-color: #FB7071;
   transition: 0.1s ease-in-out;
-  :hover{
+  :active{
     background-color: #FF5938;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      background-color: #FF5938;
+    }
   }
 `
 export const ProductImage = styled.div`

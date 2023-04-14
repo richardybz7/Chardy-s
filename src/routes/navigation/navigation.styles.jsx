@@ -88,9 +88,16 @@ export const TotalProductContainer = styled.div`
   z-index: 6;
   width: 100%;
   height: 40px;
-  &:hover{
+  &:active{
     & > div{
       color: #FF5938;
+    }
+  }
+  @media screen and (min-width: 430px){
+    &:hover{
+      & > div{
+        color: #FF5938;
+      }
     }
   }
   @media screen and (max-width: 767px) {

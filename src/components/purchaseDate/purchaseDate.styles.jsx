@@ -8,9 +8,15 @@ export const ItemPurchaseDateContainer = styled.div`
   display: flex;
   justify-content: space-between;
   transition: 0.15s ease-in-out;
-  :hover{
+  :active{
     background-color: pink;
     color: #3E6D6D;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      background-color: pink;
+      color: #3E6D6D;
+    }
   }
 `
 export const PurchaseDateElements = styled.div`

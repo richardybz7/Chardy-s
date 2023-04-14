@@ -7,20 +7,22 @@ export const ParentMyPurchasesContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
   font-size: 0.85em;
+  justify-content: center;
 `
 export const MyPurchasesContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: var(--checkOutWidth);
+  max-width: 1000px;
+  width: 100%;
   align-items: center;
   @media screen and (max-width: 800px){
     width: 100%;
   }
 `
 export const SearchPurchasesContainer = styled.div`
-  width: 100%;
+  width: 90%;
+  max-width: 436px;
   padding: 1em 0;
   display: flex;
   justify-content: center;
@@ -86,9 +88,13 @@ export const ClearHistoryButton = styled(BaseButton)`
   font-family: var(--font-family);
   background-color: #FF7E7E;
   transition: 0.15s ease-in-out;
-  :hover{
-    background-color: pink;
-    color: #3E6D6D;
+  :active{
+    background-color: #FF5938;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      background-color: #FF5938;
+    }
   }
 `
 export const TotalPurchasePriceContainer = styled.div`
