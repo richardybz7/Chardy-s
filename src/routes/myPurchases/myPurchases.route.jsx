@@ -91,24 +91,24 @@ const MyPurchases = () => {
                               </DateContainer>
                           )
                         }
-                      <PurchaseItemsContainer open key={purchaseIndex} ref={el=>purchaseItemContainerRef.current[purchaseIndex] = el}>
-                        {
-                          Object.values(purchase).map((purchaseItemsObj) => 
-                            purchaseItemsObj.items && Object.values(purchaseItemsObj).map((item) => 
-                              Object.values(item).map((itemProps, i) => {
-                                total += (itemProps.count * itemProps.itemPrice) + (itemProps.dozenCount * itemProps.dozenPrice)
-                                return <MyPurchasesItem key={i} item={itemProps}/>
-                              })
+                        <PurchaseItemsContainer open key={purchaseIndex} ref={el=>purchaseItemContainerRef.current[purchaseIndex] = el}>
+                          {
+                            Object.values(purchase).map((purchaseItemsObj) => 
+                              purchaseItemsObj.items && Object.values(purchaseItemsObj).map((item) => 
+                                Object.values(item).map((itemProps, i) => {
+                                  total += (itemProps.count * itemProps.itemPrice) + (itemProps.dozenCount * itemProps.dozenPrice)
+                                  return <MyPurchasesItem key={i} item={itemProps}/>
+                                })
+                              )
                             )
-                          )
-                        }
-                        {
-                          <TotalPurchasePriceContainer>
-                            <TotalPurchasePrice>
-                              Total purchase price: P{total}
-                            </TotalPurchasePrice>
-                          </TotalPurchasePriceContainer>
-                        }
+                          }
+                          {
+                            <TotalPurchasePriceContainer>
+                              <TotalPurchasePrice>
+                                Total purchase price: P{total}
+                              </TotalPurchasePrice>
+                            </TotalPurchasePriceContainer>
+                          }
                         </PurchaseItemsContainer>
                       </MyPurchasesParentContainer>
                     )

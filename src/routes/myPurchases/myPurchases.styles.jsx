@@ -15,6 +15,9 @@ export const MyPurchasesContainer = styled.div`
   flex-direction: column;
   width: var(--checkOutWidth);
   align-items: center;
+  @media screen and (max-width: 800px){
+    width: 100%;
+  }
 `
 export const SearchPurchasesContainer = styled.div`
   width: 100%;

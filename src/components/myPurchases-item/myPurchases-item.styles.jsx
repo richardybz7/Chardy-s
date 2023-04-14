@@ -11,6 +11,11 @@ export const MyPurchasesItemContainer = styled.div`
   :nth-of-type(even){
     background-color: #ECECEC;
   }
+  @media screen and (max-width: 750px){
+    flex-direction: column;
+    align-items: initial;
+    gap: 0.5em;
+  }
 `
 export const ImageAndDetailsContainer = styled.div`
   display: flex;
@@ -50,6 +55,7 @@ export const IndividualContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  white-space: nowrap;
   width: 10vw;
   :nth-child(1){
     border-bottom: 1px solid black;
@@ -61,6 +67,9 @@ export const IndividualContainer = styled.div`
   }
   :nth-child(3){
     padding-top: 0.5em;
+  }
+  @media screen and (max-width: 750px){
+    width: 20.5vw;
   }
 `
 
