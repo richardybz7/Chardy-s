@@ -11,6 +11,8 @@ export const BaseButton = styled.button`
   font-size: 0.8rem;
   font-family: var(--font-family);
   background-color: #F2F2F2;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
 `
 BaseButton.defaultProps = {
   type: "button"

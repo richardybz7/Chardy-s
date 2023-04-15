@@ -48,6 +48,8 @@ export const MenuItemLabel = styled(Link)`
   text-decoration: none;
   color: black;
   font-size: 4vw;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   transition: 0.1s ease-in-out;
   :hover{
     background-color: pink;

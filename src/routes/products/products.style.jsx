@@ -23,6 +23,8 @@ export const BackToTopButton = styled.div`
   border-radius: 100%;
   border: 1px solid pink;
   font-size: 1.2rem;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   color: #FF8F8F;
   background-color: white;
   bottom: 20px;
