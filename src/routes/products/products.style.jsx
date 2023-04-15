@@ -13,14 +13,16 @@ export const CategoriesContainer = styled.div`
 `
 export const ReferenceContainer = styled.div``
 export const BackToTopButton = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   border-radius: 100%;
   border: 1px solid pink;
+  font-size: 1.2rem;
   color: #FF8F8F;
   background-color: white;
   bottom: 20px;
