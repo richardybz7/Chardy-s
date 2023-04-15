@@ -16,6 +16,7 @@ export const CheckoutItemContainer = styled.div`
   }
   @media screen and (max-width: 921px){
     flex-direction: column;
+    padding-right: 0.7em;
   }
 `
 export const PerItemAndActionContainer = styled.div`
@@ -101,11 +102,19 @@ export const ReduceQuantityButton = styled(BaseButton)`
   border-bottom-right-radius: 0;
   transition: 0.2s ease;
   ${props => !props.disabled && css`
-    &:hover{
+    &:active{
       border: 1px solid #FF7D7D;
       outline: none;
       color: #FF7D7D;
       cursor: pointer;
+    }
+    @media screen and (min-width: 430px){
+      &:hover{
+        border: 1px solid #FF7D7D;
+        outline: none;
+        color: #FF7D7D;
+        cursor: pointer;
+      }
     }
   `}
 `
@@ -133,10 +142,17 @@ export const AddQuantityButton = styled(BaseButton)`
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   transition: 0.2s ease;
-  :hover{
+  :active{
     border: 1px solid #FF7D7D;
     outline: none;
     color: #FF7D7D;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      border: 1px solid #FF7D7D;
+      outline: none;
+      color: #FF7D7D;
+    }
   }
 `
 export const TotalPriceLabel = styled.label`
@@ -145,10 +161,17 @@ export const TotalPriceLabel = styled.label`
 export const RemoveActionButton = styled(BaseButton)`
   border: 1px solid #F2F2F2;
   transition: 0.2s ease;
-  :hover{
+  :active{
     border: 1px solid #FF7D7D;
     outline: none;
     color: #FF7D7D;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      border: 1px solid #FF7D7D;
+      outline: none;
+      color: #FF7D7D;
+    }
   }
 `
 export const DetailsAndActionHeaderContainer = styled.div`

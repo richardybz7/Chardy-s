@@ -1,4 +1,4 @@
-import { CategoriesContainer, ProductsParentContainer, ReferenceContainer, SideNavigationButton, SideNavigationContainer } from './products.style'
+import { BackToTopButton, CategoriesContainer, ProductsParentContainer, ReferenceContainer, SideNavigationButton, SideNavigationContainer } from './products.style'
 import Categories from '../../components/categories/categories.component'
 import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useRef, useState } from 'react'
@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProductsStart, setProductReference } from '../../store/products/products.action'
 import { selectProductTargetReference, selectProductsMap } from '../../store/products/products.selector'
 import PRODUCTS_DATA from '../../data'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 const Products = () => {
   const categoryRef = useRef([])
   const [windowSize, setWindowSize] = useState(window.innerWidth)
@@ -30,6 +32,12 @@ const Products = () => {
   const resizeHandler = () => {
     setWindowSize(window.innerWidth)
   }
+  const backToTopButtonHandler = () => {
+    window.scrollTo({
+      top: document.body.getBoundingClientRect().top,
+      behavior: 'smooth'
+    })
+  }
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
     return () => window.removeEventListener('resize', resizeHandler)
@@ -53,6 +61,9 @@ const Products = () => {
             })
         }
       </CategoriesContainer>
+      <BackToTopButton onClick={() => backToTopButtonHandler()}>
+        <FontAwesomeIcon icon={faArrowUp}></FontAwesomeIcon>
+      </BackToTopButton>
     </ProductsParentContainer>
   )
 }
