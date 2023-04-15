@@ -1,4 +1,4 @@
-import { CategoryContainer, TitleHeaderImage, CardsContainer, TitleContainer, Title } from "./categories.styles";
+import { CategoryContainer, CardsContainer, TitleContainer, Title } from "./categories.styles";
 import Card from "../card/card.component";
 
 const Categories = ({ title, products}) => {
