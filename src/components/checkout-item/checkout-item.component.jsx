@@ -1,4 +1,4 @@
-import { AddQuantityButton, CheckoutItemContainer, DetailContainer, ItemDetailsAndActionContainer, ItemImageAndDetailsContainer, ItemImageContainer, PerItemAndActionContainer, ItemDetailsAndActionParentContainer, PerPieceOrDozenLabel, QuantityContainer, QuantityInput, ReduceQuantityButton, RemoveActionButton, TotalPriceLabel, UnitPriceLabel } from "./checkout-item.styles"
+import { AddQuantityButton, CheckoutItemContainer, DetailContainer, ItemDetailsAndActionContainer, ItemImageAndDetailsContainer, ItemImageContainer, PerItemAndActionContainer, ItemDetailsAndActionParentContainer, PerPieceOrDozenLabel, QuantityContainer, QuantityInput, ReduceQuantityButton, RemoveActionButton, TotalPriceLabel, UnitPriceLabel, NumbersContainer, DetailsAndActionHeaderContainer, UnitPriceHeaderLabel, QuantityHeaderLabel, TotalItemPriceHeaderLabel } from "./checkout-item.styles"
 
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector"
 import { selectCurrentUser } from "../../store/user/user.selector"
@@ -76,23 +76,37 @@ const CheckoutItem = ({item}) => {
         <ItemDetailsAndActionParentContainer>
           <ItemDetailsAndActionContainer>
             <PerPieceOrDozenLabel>per Piece</PerPieceOrDozenLabel>
-            <UnitPriceLabel>P{item.itemPrice}</UnitPriceLabel>
-            <QuantityContainer>
+            <DetailsAndActionHeaderContainer>
+              <UnitPriceHeaderLabel>Unit Price</UnitPriceHeaderLabel>
+              <QuantityHeaderLabel>Quantity</QuantityHeaderLabel>
+              <TotalItemPriceHeaderLabel>Total Price</TotalItemPriceHeaderLabel>
+            </DetailsAndActionHeaderContainer>
+            <NumbersContainer>
+              <UnitPriceLabel>P{item.itemPrice}</UnitPriceLabel>
+              <QuantityContainer>
               <ReduceQuantityButton onClick={() => reduceQuantityHandler(true)} disabled={item.count < 1}>&#60;</ReduceQuantityButton>
               <QuantityInput ref={perPieceRef} value={item.count} onKeyPress={onKeyPressHandler} onChange={() => onChangeQuantityHandler(true)}></QuantityInput>
               <AddQuantityButton onClick={() => addQuantityHandler(true)}>&#62;</AddQuantityButton>
-            </QuantityContainer>
-            <TotalPriceLabel>P{item.count * item.itemPrice}</TotalPriceLabel>
+              </QuantityContainer>
+              <TotalPriceLabel>P{item.count * item.itemPrice}</TotalPriceLabel>
+            </NumbersContainer>
           </ItemDetailsAndActionContainer>
           <ItemDetailsAndActionContainer>
             <PerPieceOrDozenLabel>per Dozen</PerPieceOrDozenLabel>
-            <UnitPriceLabel>P{item.dozenPrice}</UnitPriceLabel>
-            <QuantityContainer>
-              <ReduceQuantityButton onClick={() => reduceQuantityHandler(false)} disabled={item.dozenCount < 1}>&#60;</ReduceQuantityButton>
-              <QuantityInput ref={perDozenRef} value={item.dozenCount} onKeyPress={onKeyPressHandler} onChange={() => onChangeQuantityHandler(false)}></QuantityInput>
-              <AddQuantityButton onClick={() => addQuantityHandler(false)}>&#62;</AddQuantityButton>
-            </QuantityContainer>
-            <TotalPriceLabel>P{item.dozenCount * item.dozenPrice}</TotalPriceLabel>
+            <DetailsAndActionHeaderContainer>
+              <UnitPriceHeaderLabel>Unit Price</UnitPriceHeaderLabel>
+              <QuantityHeaderLabel>Quantity</QuantityHeaderLabel>
+              <TotalItemPriceHeaderLabel>Total Price</TotalItemPriceHeaderLabel>
+            </DetailsAndActionHeaderContainer>
+            <NumbersContainer>
+              <UnitPriceLabel>P{item.dozenPrice}</UnitPriceLabel>
+              <QuantityContainer>
+                <ReduceQuantityButton onClick={() => reduceQuantityHandler(false)} disabled={item.dozenCount < 1}>&#60;</ReduceQuantityButton>
+                <QuantityInput ref={perDozenRef} value={item.dozenCount} onKeyPress={onKeyPressHandler} onChange={() => onChangeQuantityHandler(false)}></QuantityInput>
+                <AddQuantityButton onClick={() => addQuantityHandler(false)}>&#62;</AddQuantityButton>
+              </QuantityContainer>
+              <TotalPriceLabel>P{item.dozenCount * item.dozenPrice}</TotalPriceLabel>
+            </NumbersContainer>
           </ItemDetailsAndActionContainer>
         </ItemDetailsAndActionParentContainer>
         <RemoveActionButton onClick={() => removeItemHandler()}>Remove</RemoveActionButton>

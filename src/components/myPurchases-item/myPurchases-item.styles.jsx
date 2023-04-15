@@ -41,18 +41,30 @@ export const PerPieceDozenParentContainer = styled.div`
 export const PerPieceDozenColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 830px){
+    width: 100%;
+  }
 `
 export const UnitPriceColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 830px){
+    width: 100%;
+  }
 `
 export const QuantityColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 830px){
+    width: 100%;
+  }
 `
 export const TotalPriceColumnContainer = styled.div`
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 830px){
+    width: 100%;
+  }
 `
 export const IndividualContainer = styled.div`
   display: flex;
@@ -73,7 +85,7 @@ export const IndividualContainer = styled.div`
     padding-top: 0.5em;
   }
   @media screen and (max-width: 830px){
-    width: 20.5vw;
+    width: 100%;
   }
 `
 

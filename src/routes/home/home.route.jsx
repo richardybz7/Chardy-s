@@ -1,12 +1,14 @@
-import { Outlet } from "react-router-dom";
 import Banner from "../../components/banner/banner.component";
 import Products from "../products/products.route";
+import Footer from "../../components/footer/footer.component";
+import { Fragment } from "react";
 const Home = () => {
   return (
-    <div>
+    <Fragment>
       <Banner/>
       <Products/>
-    </div>
+      <Footer/>
+    </Fragment>
   )
 }
 

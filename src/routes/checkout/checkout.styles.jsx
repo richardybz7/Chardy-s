@@ -6,13 +6,15 @@ export const CheckoutPageParentContainer = styled.div`
   justify-content: center;
   width: 100%;
   font-size: 0.85em;
+  margin-bottom: 200px;
 `
 
 export const CheckoutPageContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: var(--checkOutWidth);
+  width: 100%;
+  max-width: 1000px;
 `
 
 export const SearchBoxContainer = styled.div`
@@ -34,6 +36,9 @@ export const CheckoutPaymentAndPlaceOrderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: var(--checkOutWidth);
+  @media screen and (max-width: 565px){
+    flex-direction: column;
+  }
 `
 
 export const ListHeaderContainer = styled.div`
@@ -47,7 +52,10 @@ export const CheckoutLabel = styled.label`
 `
 export const DetailsAndActionHeaderContainer = styled.div`
   display: flex;
-  gap: 6vw;
+  gap: 50px;
+  @media screen and (max-width: 921px){
+    display: none;
+  }
 `
 export const UnitPriceHeaderLabel = styled.label`
 `
@@ -69,6 +77,11 @@ export const TotalPriceLabel = styled.label`
   font-size: 1rem;
 `
 export const PlaceOrderContainer = styled.div`
+  @media screen and (max-width: 565px){
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1em;
+  }
 `
 export const PlaceOrderButton = styled(BaseButton)`
   font-size: 1rem;
