@@ -32,6 +32,7 @@ import { selectIsOpenBurger } from "../../store/burger/burger.selector";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";
 import { selectNotificationCount } from "../../store/purchases/purchases.selector";
 import ProductNavigation from "../../components/product-navigation/product-navigation.component";
+import { selectProductsMap } from "../../store/products/products.selector";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -40,6 +41,7 @@ const DEVICE_WIDTH = {
 
 const Navigation = () => {
   const dispatch = useDispatch()
+  const products = useSelector(selectProductsMap)
   const notificationCount = useSelector(selectNotificationCount)
   const isBasketOpen = useSelector(selectIsCartOpen)
   const currentUser = useSelector(selectCurrentUser)
@@ -50,7 +52,7 @@ const Navigation = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const [displaySearchBar, setDisplaySearchBar] = useState(false)
   const [displayBurger, setDisplayBurger] = useState(true)
-
+  
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
     dispatch(signOutStart())
@@ -104,7 +106,7 @@ const Navigation = () => {
                   windowSize >= DEVICE_WIDTH.tabletWidth && 
                   <MiddleNavigationContainer>
                     <SearchBoxContainer>
-                      <Search placeholder='Search for a craving'/>
+                      <Search placeholder='Search for a craving' items={products} location='/'/>
                     </SearchBoxContainer>
                     <ProductNavigation/>
                   </MiddleNavigationContainer>

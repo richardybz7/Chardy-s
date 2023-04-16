@@ -65,12 +65,16 @@ export const BasketContainer = styled.div`
   align-items: center;
 `
 export const Basket = styled(BasketSVG)`
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 `
 export const BasketSVGContainer = styled.div`
   cursor: pointer;
   position: absolute;
   width: 50px;
   z-index: 5;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 `
 export const UserNavigationContainer = styled.div`
   display: flex;
@@ -88,6 +92,8 @@ export const TotalProductContainer = styled.div`
   z-index: 6;
   width: 100%;
   height: 40px;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
   &:active{
     & > div{
       color: #FF5938;

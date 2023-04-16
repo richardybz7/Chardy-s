@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BaseButton } from "../button/button.styles";
+import Donut from '../../assets/Capturetest.JPG'
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -15,10 +16,13 @@ export const ItemLabel = styled.label`
 export const ItemCount = styled.label`
 `
 export const ItemImage = styled.div`
-  background-color: green;
   width: 50px;
   height: 50px;
   border-radius: 0.3em;
+  background-image: url(${Donut});
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
 `
 export const ActionsContainer = styled.div`
   display: flex;

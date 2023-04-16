@@ -52,7 +52,7 @@ const BasketItem = ({item, perPiece}) => {
   }
   return (
     <ItemContainer>
-      <ItemImage></ItemImage>
+      <ItemImage/>
       <ActionsContainer>
         <ItemLabel>{item.name}</ItemLabel>
         <ActionContainer>

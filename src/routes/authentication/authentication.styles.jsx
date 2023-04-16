@@ -1,12 +1,8 @@
 import styled from "styled-components";
 
 export const AuthenticationContainer = styled.div`
-  &:before, &:after{
-    content:'';
-  }
-  display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 10fr 1fr;
+  display: flex;
+  justify-content: center;
 `
 export const ContentContainer = styled.div`
   display: flex;
@@ -14,6 +10,8 @@ export const ContentContainer = styled.div`
   padding: 5rem;
   gap: 5em;
   margin-bottom: 2rem;
+  width: 100%;
+  max-width: 1000px;
 
   @media all and (max-width: 1060px){
     flex-direction: column;
