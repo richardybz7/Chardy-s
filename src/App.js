@@ -13,7 +13,9 @@ import { checkUserSession } from "./store/user/user.action";
 import { getProductsStart } from "./store/products/products.action";
 import { selectCurrentUser, selectIsLoading } from "./store/user/user.selector";
 import Spinner from "./components/spinner/spinner.component";
+import Modal from "react-modal";
 
+Modal.setAppElement('#root');
 const App = () => {
   const dispatch = useDispatch()
   const userIsLoading = useSelector(selectIsLoading)

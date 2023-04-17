@@ -26,6 +26,7 @@ export const PriceLabel = styled.label`
   font-size: 0.8em;
 `
 export const CardContainer = styled.div`
+  position: relative;
   width: calc(1.2*12em);
   height: calc(1.2*15em);
   border-radius: 0.3em;
@@ -88,4 +89,20 @@ export const ProductImage = styled.div`
   background-size: contain;
   width: 100%;
   height: 100%;
+`
+export const CountIndicatorContainer = styled.div`
+  display: ${prop => prop.count === 0 ? 'none' : 'flex'};
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: #FB7071;
+  color: white;
+  top: 2px;
+  right: 2px;
+  z-index: 2;
+  padding: 0.2em;
+  border-radius: 0.3em;
+  width: max-content;
 `

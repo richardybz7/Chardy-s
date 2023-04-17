@@ -64,6 +64,17 @@ export const BasketItems = styled.div`
   padding: 0.5em;
   //border: 1px solid #DBDBDB;
   background-color: var(--background-color);
+  ::-webkit-scrollbar{
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track{
+    border-radius: 0.3em;
+    background-color: #ECECEC;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: pink;
+    border-radius: 0.3em;
+  }
   //box-shadow: inset 0 0 3px 0 #B8B8B8;
 `
 export const EmptyBasketLabel = styled.label`

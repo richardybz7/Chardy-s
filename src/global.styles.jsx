@@ -13,6 +13,17 @@ export const GlobalStyle = createGlobalStyle`
     user-select:none;
     background-color: var(--background-color);
     font-family: var(--font-family);
+    ::-webkit-scrollbar{
+      width: 12px;
+    }
+    ::-webkit-scrollbar-track{
+      border-radius: 0.5em;
+      background-color: #ECECEC;
+    }
+    ::-webkit-scrollbar-thumb{
+      background-color: pink;
+      border-radius: 0.5em;
+    }
   }
 
   a{

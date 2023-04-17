@@ -3,7 +3,7 @@ import { addBasketItem, setTotalCountStart } from "../../store/basket/basket.act
 import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
-import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton } from "./card.styles";
+import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer } from "./card.styles";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
@@ -23,8 +23,18 @@ const Card = ({product}) => {
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
+  let countTotal = 0
+  for(let i=0; i < basketItems.length; i++){
+    if(product.name){
+      basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
+    }
+    else{
+      basketItems[i].name === product && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
+    }
+  }
   return (
     <CardContainer>
+      <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
       <ProductImage/>
       <PriceContainer>
         <Price>P{product.itemPrice}</Price>

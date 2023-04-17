@@ -4,7 +4,7 @@ export const FooterParentContainer = styled.div`
   display: flex;
   justify-content: center;
   //temporary
-  background-color: pink;
+  background-color: #CBADAD;
   height: max-content;
 `
 

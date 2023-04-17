@@ -20,7 +20,7 @@ export const SearchBoxItem = styled.div`
   align-items: center;
   padding: 0.5em;
   :not(:first-child){
-    border-top: 1px solid gray;
+    border-top: 1px solid pink;
   }
   @media screen and (max-width: 533px){
     flex-direction: column;

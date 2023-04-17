@@ -63,7 +63,6 @@ export const LinkAddressContainer = styled.div`
 export const AddressContainer = styled.div`
   padding: 0 0.5em;
   padding-top: 0;
-  padding-bottom: 0.5em;
   display: flex;
   flex-direction: column;
   :hover{

@@ -61,10 +61,28 @@ export const SearchResultContainer = styled.div`
   width: 88%;
   max-width: 480px;
   max-height: 200px;
-  border-radius: 0.3em;
+  border-radius: 0.5em;
   overflow: auto;
   background-color: var(--background-color);
-  border: 1px solid gray;
+  border: 1px solid pink;
   margin-top: 0.5em;
   margin-right: 1.5rem;
+  ::-webkit-scrollbar{
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track{
+    border-radius: 0.5em;
+    background-color: #ECECEC;
+  }
+  ::-webkit-scrollbar-thumb{
+    background-color: pink;
+    border-radius: 0.5em;
+  }
+`
+export const CantFindContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1em 0;
+  font-size: 0.8em;
 `

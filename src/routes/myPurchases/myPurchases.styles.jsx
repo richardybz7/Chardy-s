@@ -8,6 +8,7 @@ export const ParentMyPurchasesContainer = styled.div`
   align-items: center;
   flex-direction: column;
   font-size: 0.85em;
+  margin-top: 1em;
   justify-content: center;
 `
 export const MyPurchasesContainer = styled.div`

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux"
-import { SearchBoxFormContainer, SearchBox, SearchButton, ParentSearchBoxContainer, SearchLogo, SearchResultContainer } from "./searchbox.styles"
+import { SearchBoxFormContainer, SearchBox, SearchButton, ParentSearchBoxContainer, SearchLogo, SearchResultContainer, CantFindContainer } from "./searchbox.styles"
 import { setSearchItems } from "../../store/basket/basket.action"
 import SearchBoxItems from "../searchbox-items/searchbox-items.component"
 import { selectSearchItems } from "../../store/basket/basket.selector"
@@ -8,11 +8,10 @@ const Search = ({placeholder, items, location}) => {
   const dispatch = useDispatch()
   const searchItems = useSelector(selectSearchItems)
   const searchRef = useRef({value: 0})
+  let searchedItems = []
   const searchOnChangeHandler = (e) => {
     const searchValue = e.target.value
     searchRef.current.value = searchValue
-    console.log(searchRef.current.value.length)
-    let searchedItems = null
     switch (location){
       case 'checkout':
         searchedItems = items.filter((item) => 
@@ -45,12 +44,19 @@ const Search = ({placeholder, items, location}) => {
         <SearchBox type='search' ref={searchRef} placeholder={placeholder} onChange={(e) => searchOnChangeHandler(e)}></SearchBox>
       </SearchBoxFormContainer>
       {
-        location === '/' && searchRef.current.value.length > 0 &&
+        location === '/' && searchRef.current.value.length > 0 && (searchItems.length > 0 ?
         <SearchResultContainer>
           {
             searchItems.map((item, i) => <SearchBoxItems key={i} item={item}/>)
           }
         </SearchResultContainer>
+        :
+        <SearchResultContainer>
+          <CantFindContainer>
+            Sorry, we cannot find what you're looking for
+          </CantFindContainer>
+        </SearchResultContainer>
+        )
       }
     </ParentSearchBoxContainer>
   )

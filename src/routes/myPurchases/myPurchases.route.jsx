@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import Search from "../../components/searchbox/searchbox.component";
-import { ClearHistoryButton, ClearHistoryContainer, DateContainer, MyPurchasesContainer, MyPurchasesParentContainer, NoPurchase, NoPurchaseContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, SearchPurchasesContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer, ToReceive, TotalPurchasePrice, TotalPurchasePriceContainer } from "./myPurchases.styles"
+import { ClearHistoryButton, ClearHistoryContainer, DateContainer, MyPurchasesContainer, MyPurchasesParentContainer, NoPurchase, NoPurchaseContainer, ParentMyPurchasesContainer, PurchaseItemsContainer, TabButton, TabButtonHighlighted, TabsButtonContainer, TabsButtonContentContainer, TabsContainer, TabsContentContainer, TabsParentContentContainer, ToReceive, TotalPurchasePrice, TotalPurchasePriceContainer } from "./myPurchases.styles"
 import { selectNotificationCount, selectPurchases } from "../../store/purchases/purchases.selector";
 import PurchaseDate from "../../components/purchaseDate/purchaseDate.component";
 import MyPurchasesItem from "../../components/myPurchases-item/myPurchases-item.component";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PRODUCTS_DATA from "../../data";
 import { removeAllUserPurchases, udpateUserPurchases, updateUserPurchaseNotification } from "../../utils/firebase/firebase.utils";
 import { selectCurrentUser } from "../../store/user/user.selector";
@@ -49,7 +48,7 @@ const MyPurchases = () => {
   }
   useEffect(() => {
     isBurgerOpen && dispatch(setBurgerIsOpen(false))
-    purchaseButtonRef.current.click()
+    purchaseButtonRef.current && purchaseButtonRef.current.click()
     if(notificationCount > 0){
       updateUserPurchaseNotification(currentUser, purchases)
       dispatch(setPurchasesNotificationToZero())
@@ -58,9 +57,6 @@ const MyPurchases = () => {
   return (
     <ParentMyPurchasesContainer>
       <MyPurchasesContainer>
-        <SearchPurchasesContainer>
-          <Search placeholder='Search purchases'/>
-        </SearchPurchasesContainer>
         <TabsContainer>
           <TabsButtonContainer>
             <TabsButtonContentContainer>
