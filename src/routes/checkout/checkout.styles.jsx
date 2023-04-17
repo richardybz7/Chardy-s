@@ -20,6 +20,9 @@ export const CheckoutPageContainer = styled.div`
 export const SearchBoxContainer = styled.div`
   width: 50%;
   padding: 1em 0;
+  @media screen and (max-width: 500px){
+    width: 90%;
+  }
 `
 
 export const CheckoutItemsContainer = styled.div`

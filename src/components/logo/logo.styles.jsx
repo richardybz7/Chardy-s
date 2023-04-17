@@ -6,4 +6,6 @@ export const LogoContainer = styled(Link)`
   display: flex;
   align-items: center;
   width: 7.5rem;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 `

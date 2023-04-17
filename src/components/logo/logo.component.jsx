@@ -9,14 +9,12 @@ const Logo = ({to, location, cursor}) => {
     }
   }
   return (
-    <>
-      <LogoContainer 
-        to={to} 
-        onClick={(e) => enableLink(e)} 
-        cursor={cursor === 'default' ? 'default' : 'cursor'}>
-        <LogoSVG/>
-      </LogoContainer>
-    </>
+    <LogoContainer 
+      to={to} 
+      onClick={(e) => enableLink(e)} 
+      cursor={cursor === 'default' ? 'default' : 'cursor'}>
+      <LogoSVG/>
+    </LogoContainer>
   )
 }
 

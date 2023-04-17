@@ -85,15 +85,13 @@ const Navigation = () => {
           {
             displayBurger && (
               windowSize <= DEVICE_WIDTH.phoneWidth && 
-              <Fragment>
-                {
-                  !isBurgerOpen ? (
-                    <Burger onClick={() => burgerHandler()}/>
-                  ):(
+                <Fragment>
+                  <Burger onClick={() => burgerHandler()}/>
+                  {
+                    isBurgerOpen && 
                     <BurgerMenu/>
-                  )
-                }
-              </Fragment>
+                  }
+                </Fragment>
             )
           }
           <Logo to='/' location={location.pathname} cursor={cursorState}/>

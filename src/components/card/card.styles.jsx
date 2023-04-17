@@ -99,8 +99,8 @@ export const CountIndicatorContainer = styled.div`
   align-items: center;
   background-color: #FB7071;
   color: white;
-  top: 2px;
-  right: 2px;
+  top: 0.3em;
+  right: 0.3em;
   z-index: 2;
   padding: 0.2em;
   border-radius: 0.3em;

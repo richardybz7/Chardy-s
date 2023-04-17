@@ -8,6 +8,8 @@ export const BurgerContainer = styled.button`
   cursor: pointer;
   background-color: transparent;
   display: flex;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 `
 export const BurgerSvg = styled(BurgerSVG)`
   width: 25px;
