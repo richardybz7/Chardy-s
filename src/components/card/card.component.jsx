@@ -4,6 +4,7 @@ import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer } from "./card.styles";
+import { useEffect } from "react";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
@@ -25,17 +26,12 @@ const Card = ({product}) => {
   }
   let countTotal = 0
   for(let i=0; i < basketItems.length; i++){
-    if(product.name){
-      basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
-    }
-    else{
-      basketItems[i].name === product && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
-    }
+    basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
   }
   return (
     <CardContainer>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
-      <ProductImage/>
+      <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
       <PriceContainer>
         <Price>P{product.itemPrice}</Price>
         <PriceLabel>per piece</PriceLabel>
@@ -44,7 +40,7 @@ const Card = ({product}) => {
         <Price>P{product.dozenPrice}</Price>
         <PriceLabel>per dozen</PriceLabel>
       </PriceContainer>
-      <Label>{product.name ? product.name : product}</Label>
+      <Label>{product.name}</Label>
       <ButtonContainer>
         <BugRecoveryButton/>
         <AddToBoxButton onClick={addPieceToBasketHandler}>buy a piece</AddToBoxButton>

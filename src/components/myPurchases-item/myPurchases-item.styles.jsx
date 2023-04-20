@@ -22,7 +22,7 @@ export const ImageAndDetailsContainer = styled.div`
   align-items: center;
 `
 export const ItemImage = styled.div`
-  background-image: url(${testImage});
+  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;

@@ -3,17 +3,19 @@ import Categories from '../../components/categories/categories.component'
 import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getProductsStart, setProductReference } from '../../store/products/products.action'
-import { selectProductTargetReference, selectProductsMap } from '../../store/products/products.selector'
+import { addImagesToProducts, getProductsStart } from '../../store/products/products.action'
+import { selectProductImages, selectProductTargetReference, selectProducts, selectProductsMap } from '../../store/products/products.selector'
 import PRODUCTS_DATA from '../../data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 const Products = () => {
+  console.log('okay')
   const categoryRef = useRef([])
   const [windowSize, setWindowSize] = useState(window.innerWidth)
-  //const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const selectProductTargetRef = useSelector(selectProductTargetReference)
   const productsMap = useSelector(selectProductsMap)
+  const images = useSelector(selectProductImages)
   // useEffect(() => {
   //   dispatch(getProductsStart())
   // },[])
@@ -46,7 +48,6 @@ const Products = () => {
     if(!(selectProductTargetRef === undefined || selectProductTargetRef === null)){
       scrollViewHandler(selectProductTargetRef)
     }
-    //   
   },[selectProductTargetRef])
   return (
     <ProductsParentContainer>

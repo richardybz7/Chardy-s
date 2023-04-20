@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDownloadURL, getStorage, listAll, ref } from "@firebase/storage";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -20,7 +21,6 @@ import {
   getDocs,
   orderBy,
   updateDoc,
-  serverTimestamp,
   arrayUnion
 } from 'firebase/firestore';
 
@@ -36,6 +36,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const storage = getStorage()
+const imagesRef = ref(storage, 'images/')
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
@@ -47,6 +49,22 @@ export const signInWithGooglePopup = async () =>
   await signInWithPopup( auth, googleProvider )
 
 export const db = getFirestore();
+
+export const getImages = () => {
+  let images = {}
+  return listAll(imagesRef)
+    .then((res) => {
+      let promises = res.items.map((itemRef) => 
+        getDownloadURL(itemRef).then((url) => 
+          images[itemRef.name] = url
+        )
+      )
+      return Promise.all(promises)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+}
 
 export const createUserDocumentFromAuth = async (userAuth, otherInfo) => {
   if(!userAuth) return

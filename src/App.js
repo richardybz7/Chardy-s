@@ -10,7 +10,7 @@ import { GlobalStyle } from "./global.styles";
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { checkUserSession } from "./store/user/user.action";
-import { getProductsStart } from "./store/products/products.action";
+import { getProductImagesStart, getProductsStart } from "./store/products/products.action";
 import { selectCurrentUser, selectIsLoading } from "./store/user/user.selector";
 import Spinner from "./components/spinner/spinner.component";
 import Modal from "react-modal";
@@ -22,6 +22,7 @@ const App = () => {
   const currentUser = useSelector(selectCurrentUser)
   useEffect(() => {
     dispatch(getProductsStart())
+    dispatch(getProductImagesStart())
     dispatch(checkUserSession())
   },[])
   return (

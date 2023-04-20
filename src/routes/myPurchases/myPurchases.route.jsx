@@ -54,6 +54,7 @@ const MyPurchases = () => {
       dispatch(setPurchasesNotificationToZero())
     }
   },[])
+  console.log(purchases)
   return (
     <ParentMyPurchasesContainer>
       <MyPurchasesContainer>

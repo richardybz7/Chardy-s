@@ -10,13 +10,14 @@ const Categories = ({ title, products}) => {
       <CardsContainer>
         {
           products
-            .filter((_, idx) => idx < 5)
-            .map((product) => 
-            <Card key={product.id} product={product}/>)
+            .map((product) => {
+              return <Card key={product.id} product={product}/>
+            }
+            )
         }
       </CardsContainer>
     </CategoryContainer>
   )
 }
 
-export default Categories;
+export default Categories

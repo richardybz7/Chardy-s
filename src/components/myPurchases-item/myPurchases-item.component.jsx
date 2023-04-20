@@ -5,7 +5,7 @@ const MyPurchasesItem = ({item}) => {
   return (
     <MyPurchasesItemContainer>
       <ImageAndDetailsContainer>
-        <ItemImage/>
+        <ItemImage imageUrl={item.imageUrl && item.imageUrl}/>
         <DetailsLabel>{item.name}</DetailsLabel>
       </ImageAndDetailsContainer>
       <PerPieceDozenParentContainer>

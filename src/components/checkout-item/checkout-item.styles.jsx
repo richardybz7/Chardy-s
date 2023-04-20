@@ -57,7 +57,7 @@ export const ItemImageAndDetailsContainer = styled.div`
   height: content;
 `
 export const ItemImageContainer = styled.div`
-  background-image: url(${testImage});
+  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-position: center center;
   background-size: contain;
   width: 100px;

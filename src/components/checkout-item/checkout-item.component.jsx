@@ -69,7 +69,7 @@ const CheckoutItem = ({item}) => {
   return (
     <CheckoutItemContainer>
       <ItemImageAndDetailsContainer>
-        <ItemImageContainer/>
+        <ItemImageContainer imageUrl={item.imageUrl && item.imageUrl}/>
         <DetailContainer>{item.name}</DetailContainer>
       </ItemImageAndDetailsContainer>
       <PerItemAndActionContainer>

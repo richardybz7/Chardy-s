@@ -19,7 +19,7 @@ export const ItemImage = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 0.3em;
-  background-image: url(${Donut});
+  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;

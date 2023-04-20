@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { BaseButton } from '../../components/button/button.styles'
-import Donut from '../../assets/Capturetest.JPG'
+
 export const Label = styled.label`
   padding: 0.3em 0.5em 0 0.5em;
   white-space: nowrap;
@@ -83,12 +83,14 @@ export const BuyADozenButton = styled(BaseButton)`
   }
 `
 export const ProductImage = styled.div`
-  background-image: url(${Donut});
+  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: contain;
+  background-size: cover;
   width: 100%;
   height: 100%;
+  border-top-right-radius: 0.3em;
+  border-top-left-radius: 0.3em;
 `
 export const CountIndicatorContainer = styled.div`
   display: ${prop => prop.count === 0 ? 'none' : 'flex'};

@@ -7,3 +7,5 @@ export const selectProductsMap = createSelector([selectProducts], (products) => 
 export const selectProductReference = createSelector([selectProducts], (products) => products.ref)
 
 export const selectProductTargetReference = createSelector([selectProducts], (products) => products.targetRef)
+
+export const selectProductImages = createSelector([selectProducts], (products) => products.productImages)
