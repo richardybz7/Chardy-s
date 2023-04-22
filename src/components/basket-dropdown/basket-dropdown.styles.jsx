@@ -4,6 +4,7 @@ import PerPieceSVG from '../../assets/perPiece3Asset.svg'
 import PerDozenSVG from '../../assets/perDozen3Asset.svg'
 import BuyAPieceSVG from '../../assets/buyAPieceAsset.svg'
 import BuyADozenSVG from '../../assets/buyADozenAsset.svg'
+import { motion } from "framer-motion";
 
 export const BasketItemsPerPieceContainer = styled.div`
   width: 100%;
@@ -124,7 +125,12 @@ export const BasketButton = styled(Link)`
     }
   }
 `
-export const BasketDropdownContainer = styled.div`
+export const BasketDropdownContainer = styled(motion.div).attrs({
+  initial:{opacity: 0, transform: 'translateX(800px)'},
+  animate:{opacity: 1, transform: 'translateX(0px)', transition:{duration: 0.2}},
+  duration: 2,
+  exit:{opacity: 0, transform: 'translateX(800px)'}
+})`
   position: absolute;
   width: max-content;
   right: 7px;

@@ -130,5 +130,5 @@ export const ParentNavigationContainer = styled.div`
   top: 0;
   z-index: 10;
   border-bottom: ${prop => prop.location === '/' && '1px solid pink'};
-  box-shadow: ${prop=> prop.location !== '/' && '0 1px 5px 1px #ECECEC'};
+  box-shadow: ${prop=>prop.location === '/auth' ? '' : prop.location !== '/' && '0 1px 5px 1px #ECECEC'};
 `

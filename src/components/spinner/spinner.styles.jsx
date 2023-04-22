@@ -1,8 +1,13 @@
 import styled, { keyframes } from "styled-components";
 import DonutSVG from '../../assets/spinner1.svg'
 import { ReactComponent as LogoSVG } from '../../assets/logo.svg'
+import { motion } from "framer-motion";
 
-export const ParentSpinnerContainer = styled.div`
+export const ParentSpinnerContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
   background-color: var(--background-color);
   height: 100vh;
   display: flex;

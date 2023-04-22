@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { BaseButton } from '../../components/button/button.styles'
+import { motion } from "framer-motion";
 
 export const Label = styled.label`
   padding: 0.3em 0.5em 0 0.5em;
@@ -25,7 +26,8 @@ export const PriceLabel = styled.label`
   white-space: nowrap;
   font-size: 0.8em;
 `
-export const CardContainer = styled.div`
+export const CardContainer = styled(motion.div)`
+  opacity: ${prop => prop.isinview ? 1 : 0.1};
   position: relative;
   width: calc(1.2*12em);
   height: calc(1.2*15em);
@@ -36,7 +38,7 @@ export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  transition: 0.2s ease-in-out;
+  transition: 0.25s ease-in-out;
   z-index: 1;
   @media screen and (max-width: 574px) {
     width: 45%;

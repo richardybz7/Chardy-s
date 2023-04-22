@@ -14,6 +14,7 @@ import { getProductImagesStart, getProductsStart } from "./store/products/produc
 import { selectCurrentUser, selectIsLoading } from "./store/user/user.selector";
 import Spinner from "./components/spinner/spinner.component";
 import Modal from "react-modal";
+import { AnimatePresence } from "framer-motion";
 
 Modal.setAppElement('#root');
 const App = () => {
@@ -30,7 +31,9 @@ const App = () => {
     <GlobalStyle/>
     {
       userIsLoading ? (
-        <Spinner/>
+        <AnimatePresence>
+          <Spinner/>
+        </AnimatePresence>
       ):(
         <Routes>
           <Route path='/' element={<Navigation/>}>

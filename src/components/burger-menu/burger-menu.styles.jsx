@@ -1,38 +1,23 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
-export const ParentMenuContainer = styled.div`
+export const ParentMenuContainer = styled(motion.div).attrs({
+  initial:{opacity: 0, transform: 'translateX(-200px)'},
+  animate:{opacity: 1, transform: 'translateX(0px)', transition:{duration: 0.2}},
+  duration: 2,
+  exit:{opacity: 0, transform: 'translateX(-200px)'}
+})`
   position: absolute;
   z-index: 99;
-  top: 0;
-  left: 0;
+  top: 60px;
+  left: 0px;
   background-color: var(--background-color);
-  border: 1px solid gray;
-`
-export const HeaderContainer = styled.div`
-  padding: 0.2em 0.5em;
-  border-bottom: 1px solid gray;
-  cursor: pointer;
-  :hover{
-    background-color: pink;
-  }
-`
-export const HeaderContent = styled.div`
-  cursor: pointer;
-  display: flex;
-  gap: 0.2em;
-  align-items: center;
-`
-export const HeaderLabel = styled.label`
-  cursor: pointer;
-  font-size: 4vw;
-`
-export const BackIcon = styled(FontAwesomeIcon).attrs({
-  icon: faAngleLeft
-})`
-  font-size: 4vw;
+  box-shadow: 0 0 3px 0 #B8B8B8;
+  border: 1px solid #FF6D6D;
+  padding: 1em 0;
+  border-top-right-radius: 0.3em;
+  border-bottom-right-radius: 0.3em;
 `
 export const ParentContentContainer = styled.div`
   display: flex;
@@ -43,29 +28,37 @@ export const ContentContainer = styled.div`
   flex-direction: column;
 `
 export const MenuItemLabel = styled(Link)`
-  cursor: ${props => !props.address &&'pointer'};
-  padding: ${props => props.address ? '0.2em 0': '0.2em 0.5em'};
+  position: relative;
+  cursor: pointer;
+  padding: 0.2em 0.5em;
+  padding-right: 1em;
   text-decoration: none;
-  color: black;
-  font-size: 4vw;
+  color: #FF6D6D;
+  font-size: 1.5em;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   transition: 0.1s ease-in-out;
   :hover{
     background-color: pink;
   }
+  :not(:first-child){
+    border-top: 1px solid #FF6D6D;
+  }
+  ${props => props.myPurchases && css`
+    :before{
+      display: ${prop=> prop.notification === 0 && 'none'};
+      position: absolute;
+      content: '';
+      right: 15px;
+      top: 5px;
+      height: 7px;
+      width: 7px;
+      background-color: #FF6161;
+      border-radius: 7px;
+    }
+  `}
 `
 export const LinkAddressContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border-top: 1px solid gray;
-`
-export const AddressContainer = styled.div`
-  padding: 0 0.5em;
-  padding-top: 0;
-  display: flex;
-  flex-direction: column;
-  :hover{
-    background-color: pink;
-  }
 `

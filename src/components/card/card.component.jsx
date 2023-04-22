@@ -4,12 +4,15 @@ import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer } from "./card.styles";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useInView } from "framer-motion";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
+  const scrollRef = useRef(null)
+  const isInView = useInView(scrollRef, {whileInView: 'visible'})
   const addPieceToBasketHandler = () => {
     if(!currentUser) return
     const newBasket = addBasketItem(basketItems, product, false)
@@ -29,7 +32,7 @@ const Card = ({product}) => {
     basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
   }
   return (
-    <CardContainer>
+    <CardContainer ref={scrollRef} isinview={isInView}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
       <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
       <PriceContainer>

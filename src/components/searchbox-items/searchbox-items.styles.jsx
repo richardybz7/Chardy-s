@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BaseButton } from "../button/button.styles";
-import Donut from '../../assets/Capturetest.JPG'
 
 export const SearchResultContainer = styled.div`
   position: fixed;
@@ -57,7 +56,7 @@ export const DetailContainer = styled.div`
 export const SearchImageResult = styled.div`
   width: 70px;
   height: 70px;
-  background-image: url(${Donut});
+  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;

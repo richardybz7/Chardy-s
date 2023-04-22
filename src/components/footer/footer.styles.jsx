@@ -1,11 +1,13 @@
 import styled from "styled-components";
-
 export const FooterParentContainer = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   //temporary
-  background-color: #CBADAD;
-  height: max-content;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,160,231,1) 100%);
+  height: 15em;
+  position: relative;
+  margin-top: 5em;
 `
 
 export const FooterContainer = styled.div`
@@ -13,8 +15,11 @@ export const FooterContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   max-width: 1000px;
-  flex-wrap: wrap;
   padding: 1em;
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    justify-content: unset;
+  }
 `
 
 export const RightFooterContainer = styled.div`
@@ -26,8 +31,9 @@ export const LeftFooterContainer = styled.div`
   flex-direction: column;
 `
 export const Label = styled.label`
-  color: white;
+  z-index: 2;
+  color: black;
   padding-bottom: ${prop => prop.top === 'true' && '0.5em'};
   margin-bottom: ${prop => prop.top === 'true' && '0.5em'};
-  border-bottom: ${prop => prop.top === 'true' && '1px solid white'};
+  border-bottom: ${prop => prop.top === 'true' && '1px solid black'};
 `

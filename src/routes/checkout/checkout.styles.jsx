@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
+import { motion } from "framer-motion";
 
-export const CheckoutPageParentContainer = styled.div`
+export const CheckoutPageParentContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
   display: flex;
   justify-content: center;
   width: 100%;

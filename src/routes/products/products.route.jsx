@@ -9,7 +9,6 @@ import PRODUCTS_DATA from '../../data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons'
 const Products = () => {
-  console.log('okay')
   const categoryRef = useRef([])
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const dispatch = useDispatch()

@@ -1,10 +1,15 @@
-import { BurgerContainer, BurgerSvg } from './burger.styles';
+import { BurgerBunBottom, BurgerBunTop, BurgerContainer, BurgerParentContainer, BurgerPatty, BurgerSvg } from './burger.styles';
 
-const Burger = ({onClick}) => {
+const Burger = ({onClick, displayed, notification}) => {
+  console.log(notification)
   return (
-    <BurgerContainer onClick={onClick}>
-      <BurgerSvg/>
-    </BurgerContainer>
+    <BurgerParentContainer>
+      <BurgerContainer onClick={onClick} notification={notification}>
+        <BurgerBunTop trigger={displayed}/>
+        <BurgerPatty trigger={displayed}/>
+        <BurgerBunBottom trigger={displayed}/>
+      </BurgerContainer>
+    </BurgerParentContainer>
   )
 }
 

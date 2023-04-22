@@ -2,8 +2,13 @@ import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
 import NoPurchaseSVG from '../../assets/noPurchaseAsset.svg'
 import ToReceiveSVG from '../../assets/toReceiveAsset.svg'
+import { motion } from "framer-motion";
 
-export const ParentMyPurchasesContainer = styled.div`
+export const ParentMyPurchasesContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -72,7 +77,11 @@ export const TabButtonHighlighted = styled(BaseButton)`
   background-color: #FF7E7E;
   color: white;
 `
-export const MyPurchasesParentContainer = styled.div`
+export const MyPurchasesParentContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
 `
 export const DateContainer = styled.div`
 `
@@ -105,7 +114,11 @@ export const TotalPurchasePriceContainer = styled.div`
 export const TotalPurchasePrice = styled.label`
   padding: 0.5em;
 `
-export const NoPurchaseContainer = styled.div`
+export const NoPurchaseContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
   display: flex;
   justify-content: center;
 `

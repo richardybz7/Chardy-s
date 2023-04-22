@@ -26,7 +26,7 @@ const SearchBoxItems = ({item}) => {
   return (
     <SearchBoxItem>
       <ImageAndDetailContainer>
-        <SearchImageResult/>
+        <SearchImageResult imageUrl={item.imageUrl && item.imageUrl}/>
         <DetailContainer>
           <DetailLabel>{item.name}</DetailLabel>
           <PriceLabel>P{item.itemPrice}/piece P{item.dozenPrice}/dozen</PriceLabel>

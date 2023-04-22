@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Search from '../../components/searchbox/searchbox.component'
 import { 
@@ -33,6 +33,7 @@ import { setBurgerIsOpen } from "../../store/burger/burger.action";
 import { selectNotificationCount } from "../../store/purchases/purchases.selector";
 import ProductNavigation from "../../components/product-navigation/product-navigation.component";
 import { selectProductsMap } from "../../store/products/products.selector";
+import { AnimatePresence } from "framer-motion";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -41,6 +42,7 @@ const DEVICE_WIDTH = {
 
 const Navigation = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const products = useSelector(selectProductsMap)
   const notificationCount = useSelector(selectNotificationCount)
   const isBasketOpen = useSelector(selectIsCartOpen)
@@ -51,14 +53,19 @@ const Navigation = () => {
   const [cursorState, setCursorState] = useState('pointer')
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const [displaySearchBar, setDisplaySearchBar] = useState(false)
-  const [displayBurger, setDisplayBurger] = useState(true)
   
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
-    dispatch(signOutStart())
+    if(location.pathname !== '/'){
+      dispatch(signOutStart())
+      navigate('/')
+    }
+    else{
+      dispatch(signOutStart())
+    }
   }
   const burgerHandler = () => {
-    dispatch(setBurgerIsOpen(true))
+    dispatch(setBurgerIsOpen(!isBurgerOpen))
   }
   const resizeHandler = () => {
     setWindowSize(window.innerWidth)
@@ -76,23 +83,23 @@ const Navigation = () => {
   useEffect(() => {
     isBasketOpen && dispatch(setIsBasketOpen(false))
     location.pathname === '/' ? setDisplaySearchBar(true) : setDisplaySearchBar(false)
-    location.pathname === '/auth' ? setDisplayBurger(false) : setDisplayBurger(true)
   },[location.pathname])
   return (
     <Fragment>
       <ParentNavigationContainer location={location.pathname}>
         <NavigationContainer>
           {
-            displayBurger && (
-              windowSize <= DEVICE_WIDTH.phoneWidth && 
-                <Fragment>
-                  <Burger onClick={() => burgerHandler()}/>
+            currentUser && location.pathname !== '/auth' &&
+            windowSize <= DEVICE_WIDTH.phoneWidth && 
+              <Fragment>
+                <Burger onClick={() => burgerHandler()} displayed={isBurgerOpen} notification={notificationCount}/>
+                <AnimatePresence>
                   {
                     isBurgerOpen && 
                     <BurgerMenu/>
                   }
-                </Fragment>
-            )
+                </AnimatePresence>
+              </Fragment>
           }
           <Logo to='/' location={location.pathname} cursor={cursorState}/>
           {
@@ -150,7 +157,9 @@ const Navigation = () => {
                       <TotalProductContainer displayLowerSearch={displaySearchBar} onClick={toggleBasket}>
                         <TotalProductCount>{totalProductCount}</TotalProductCount>
                       </TotalProductContainer>
-                      {isBasketOpen && <BasketDropdown/>}
+                      <AnimatePresence>
+                        {isBasketOpen && <BasketDropdown/>}
+                      </AnimatePresence>
                     </BasketContainer>
                   )
                 )
