@@ -28,8 +28,10 @@ const Card = ({product}) => {
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   let countTotal = 0
-  for(let i=0; i < basketItems.length; i++){
-    basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
+  if(basketItems && basketItems.length > 0){
+    for(let i=0; i < basketItems.length; i++){
+      basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
+    }
   }
   return (
     <CardContainer ref={scrollRef} isinview={isInView}>
