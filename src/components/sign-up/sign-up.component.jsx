@@ -3,12 +3,10 @@ import {
 } from "./sign-up.styles";
 import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { signUpStart } from "../../store/user/user.action";
+import { signUpFailed, signUpStart } from "../../store/user/user.action";
 const SignUp = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const displayNameRef = useRef('')
   const emailRef = useRef('')
   const passwordRef = useRef('')
@@ -17,7 +15,7 @@ const SignUp = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault()
     if(passwordRef.current.value !== confirmPasswordRef.current.value){
-      alert('Passwords do not match')
+      dispatch(signUpFailed('Passwords do not match!'))
       return
     }
     dispatch(signUpStart(
@@ -25,22 +23,6 @@ const SignUp = () => {
       passwordRef.current.value,
       displayNameRef.current.value
     ))
-
-    // try{
-    //   const {user} = await createUserAuthWithEmailAndPassword(
-    //     emailRef.current.value, 
-    //     passwordRef.current.value
-    //     )
-    //   const displayName = displayNameRef.current.value
-    //   await createUserDocumentFromAuth(user, {displayName})
-    //   navigate('/')
-    // }
-    // catch(err){
-    //   switch(err.code){
-    //     case 'auth/email-already-in-use':
-    //       alert('Email already used')
-    //   }
-    // }
   }
   return (
     <SignUpContainer>
@@ -50,7 +32,7 @@ const SignUp = () => {
             Don't have an account?
           </FirstHeader>
           <SecondHeader>
-            Sign up with you email and password
+            Sign up with your email and password
           </SecondHeader>
         </HeaderContainer>
         <UserFormContainer onSubmit={onSubmitHandler}>

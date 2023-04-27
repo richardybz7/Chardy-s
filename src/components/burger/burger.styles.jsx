@@ -57,7 +57,6 @@ export const BurgerBunTop = styled.div`
   height: 2px;
   margin-bottom: 5px;
   background-color: #FF6D6D;
-  border-radius: 1em;
   animation: ${prop => prop.trigger ? css`${animateTopOn} 0.2s ease-in-out forwards` : css`${animateTopOff} 0.2s ease-in-out`};
 `
 export const BurgerPatty = styled.div`
@@ -65,14 +64,12 @@ export const BurgerPatty = styled.div`
   height: 2px;
   margin-bottom: 5px;
   background-color: #FF6D6D;
-  border-radius: 1em;
   animation: ${prop => prop.trigger ? css`${animatePattyOn} 0.2s ease-in-out forwards` : css`${animatePattyOff} 0.2s ease-in-out`};
 `
 export const BurgerBunBottom = styled.div`
   width: 25px;
   height: 2px;
   background-color: #FF6D6D;
-  border-radius: 1em;
   animation: ${prop => prop.trigger ? css`${animateBottomOn} 0.2s ease-in-out forwards` : css`${animateBottomOff} 0.2s ease-in-out`};
 `
 export const BurgerContainer = styled.button`

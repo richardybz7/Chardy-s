@@ -1,51 +1,25 @@
-import { AddressContainer, BackIcon, ContentContainer, HeaderContainer, HeaderContent, HeaderLabel, LinkAddressContainer, MenuItemLabel, ParentContentContainer, ParentMenuContainer } from "./burger-menu.styles"
-import Address from "../address/address.component"
+import { ContentContainer, LinkAddressContainer, MenuItemLabel, ParentContentContainer, ParentMenuContainer } from "./burger-menu.styles"
 import { useDispatch, useSelector } from "react-redux"
 import { setBurgerIsOpen } from "../../store/burger/burger.action"
 import { signOutStart } from "../../store/user/user.action"
-import { useLocation, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
-import ReactModal from "react-modal"
+import { useLocation } from "react-router-dom"
 import { selectNotificationCount } from "../../store/purchases/purchases.selector"
+import { setBasketItems, setTotalCountStart } from "../../store/basket/basket.action"
+import { setPurchases } from "../../store/purchases/purchases.action"
 
 const BurgerMenu = () => {
   const location = useLocation()
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const notification = useSelector(selectNotificationCount)
-  const [modalIsOpen, setModalIsOpen] = useState(false)
   const signOutHandler = () => {
-    if(location.pathname !== '/'){
-      dispatch(signOutStart())
-      navigate('/')
-    }
-    else{
-      dispatch(signOutStart())
-    }
+    dispatch(setBasketItems([]))
+    dispatch(setTotalCountStart())
+    dispatch(setPurchases([]))
+    dispatch(signOutStart())
     backHandler()
   }
   const backHandler = () => {
     dispatch(setBurgerIsOpen(false))
-  }
-  const openModal = () => {
-    setModalIsOpen(true)
-  }
-  const closeModal = () => {
-    setModalIsOpen(false)
-  }
-  const modalStyle = {
-    overlay:{
-      zIndex: '999'
-    }, 
-    content:{
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      width:'max-content',
-      height: 'max-content',
-      display: 'flex'
-    }
   }
   return (
     <ParentMenuContainer>
@@ -62,17 +36,12 @@ const BurgerMenu = () => {
             }
             {
               location.pathname !== '/myPurchases' &&
-              <MenuItemLabel to='/myPurchases' onClick={() => backHandler()} myPurchases={true} notification={notification}>My purchases</MenuItemLabel>
+              <MenuItemLabel to='/myPurchases' onClick={() => backHandler()} mypurchases={true} notification={notification}>My purchases</MenuItemLabel>
             }
-            <MenuItemLabel onClick={openModal}>Address</MenuItemLabel>
-            <MenuItemLabel onClick={signOutHandler}>Sign Out</MenuItemLabel>
+            <MenuItemLabel onClick={signOutHandler} to='/'>Sign Out</MenuItemLabel>
           </LinkAddressContainer>
         </ContentContainer>
       </ParentContentContainer>
-      <ReactModal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyle}>
-        <Address/>
-        <button onClick={closeModal} style={{'height':'max-content'}}>X</button>
-      </ReactModal>
     </ParentMenuContainer>
   )
 }

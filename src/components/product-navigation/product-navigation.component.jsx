@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux"
-import { selectProductTargetReference, selectProductsMap } from "../../store/products/products.selector"
-import { CategoryLabel, ProductNavigationContainer } from "./product-navigation.styles"
+import { selectProductsMap } from "../../store/products/products.selector"
+import { CategoryLabel, LabelDivision, ProductNavigationContainer } from "./product-navigation.styles"
 import { setProductTargetReference } from "../../store/products/products.action"
+import { Fragment } from "react"
 
 const ProductNavigation = () => {
   const dispatch = useDispatch()
   const products = useSelector(selectProductsMap)
-  const selectTarget = useSelector(selectProductTargetReference)
   const categoryNavHandler = (i) => {
     dispatch(setProductTargetReference(i))
   }
@@ -15,8 +15,11 @@ const ProductNavigation = () => {
     <ProductNavigationContainer>
       {
         Object.keys(products).map((title, i) => 
-          <CategoryLabel key={i} onClick={() => categoryNavHandler(i)}>{title}</CategoryLabel>
-        )
+          <Fragment key={i+20}>
+            <CategoryLabel key={i} onClick={() => categoryNavHandler(i)}>{title}</CategoryLabel>
+            <LabelDivision key={i+10}/>
+          </Fragment>
+          )
       }
     </ProductNavigationContainer>
   )

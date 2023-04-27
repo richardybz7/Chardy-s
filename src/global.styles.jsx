@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--font-family);
     overflow-x: hidden;
     ::-webkit-scrollbar{
-      width: 12px;
+      width: 10px;
     }
     ::-webkit-scrollbar-track{
       border-radius: 0.5em;

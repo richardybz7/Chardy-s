@@ -3,7 +3,7 @@ import { SearchBoxFormContainer, SearchBox, SearchButton, ParentSearchBoxContain
 import { setSearchItems } from "../../store/basket/basket.action"
 import SearchBoxItems from "../searchbox-items/searchbox-items.component"
 import { selectSearchItems } from "../../store/basket/basket.selector"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 const Search = ({placeholder, items, location}) => {
   const dispatch = useDispatch()
   const searchItems = useSelector(selectSearchItems)

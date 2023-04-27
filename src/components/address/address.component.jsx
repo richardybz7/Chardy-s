@@ -1,13 +1,19 @@
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { DeliveryAddressContainer, DeliveryInputArea, EditSaveAddressButton } from "./address.styles"
+import { useDispatch, useSelector } from "react-redux"
+import { selectCurrentUser, selectUserAddress } from "../../store/user/user.selector"
+import { editUserAddressStart } from "../../store/user/user.action"
 
 const Address = () => {
+  const dispatch = useDispatch()
+  const currentUser = useSelector(selectCurrentUser)
+  const [address, setAddress] = useState(currentUser.address)
   const [editState, setEditState] = useState(false)
-  const [address, setAddress] = useState('Consolacion, Cebu')
   const editAddressOnClickHandler = () => {
     setEditState(true)
   }
   const saveAddressOnClickHandler = () => {
+    dispatch(editUserAddressStart(address, currentUser))
     setEditState(false)
   }
   const addressOnChangeHandler = (e) => {

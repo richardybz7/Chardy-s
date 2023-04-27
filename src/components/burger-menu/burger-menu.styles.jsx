@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export const ParentMenuContainer = styled(motion.div).attrs({
   initial:{opacity: 0, transform: 'translateX(-200px)'},
-  animate:{opacity: 1, transform: 'translateX(0px)', transition:{duration: 0.2}},
+  animate:{opacity: 1, transform: 'translateX(-2px)', transition:{duration: 0.2}},
   duration: 2,
   exit:{opacity: 0, transform: 'translateX(-200px)'}
 })`
@@ -44,7 +44,7 @@ export const MenuItemLabel = styled(Link)`
   :not(:first-child){
     border-top: 1px solid #FF6D6D;
   }
-  ${props => props.myPurchases && css`
+  ${props => props.mypurchases && css`
     :before{
       display: ${prop=> prop.notification === 0 && 'none'};
       position: absolute;

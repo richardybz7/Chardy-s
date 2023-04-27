@@ -202,3 +202,10 @@ export const getCurrentUser = () => {
     )
   })
 }
+
+export const setUserAddress = (address, userAuth) => {
+  const userRef = doc(db, 'users', userAuth.id)
+  updateDoc(userRef,{
+    address
+  })
+}

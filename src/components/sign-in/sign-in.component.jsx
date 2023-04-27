@@ -2,7 +2,7 @@ import {
   SignInContainer, SignInContent, HeaderContainer, FirstHeader, SecondHeader, UserFormContainer, UserInputContainer, EmailLabel, CredentialInput, PasswordInputContainer,  PasswordLabel, ButtonContainer, EmailInputContainer, SignInButton, SignInWithGoogleButton
 } from "./sign-in.styles";
 import { useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { emailSignInStart, googleSignInStart } from "../../store/user/user.action";
 
 const SignIn = () => {
@@ -18,17 +18,6 @@ const SignIn = () => {
       emailRef.current.value, 
       passwordRef.current.value
     ))
-    // try{
-    // }
-    // catch(err){
-    //   switch( err.code ){
-    //     case 'auth/user-not-found':
-    //       alert('User not found')
-    //       break;
-    //     default:
-    //       console.log(err)
-    //   }
-    // }
   }
   return (
     <SignInContainer>
@@ -38,7 +27,7 @@ const SignIn = () => {
             Already have an account?
           </FirstHeader>
           <SecondHeader>
-            Sign in with you email and password
+            Sign in with your email and password
           </SecondHeader>
         </HeaderContainer>
         <UserFormContainer onSubmit={signInHandler}>

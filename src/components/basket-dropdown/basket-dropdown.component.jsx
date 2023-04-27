@@ -25,18 +25,19 @@ const BasketDropdown = () => {
   const dispatch = useDispatch()
   const basketItems = useSelector(selectBasketItems)
   const userBasket = basketItems
-  const hasCountItems = userBasket
+  console.log('USER BASKET: ', userBasket)
+  const hasCountItems = userBasket && Object.keys(userBasket).length > 0 && userBasket
     .filter((item) => item.count > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={true}/>
     )
   
-  const hasDozenItems = userBasket
+  const hasDozenItems = userBasket && Object.keys(userBasket).length > 0 && userBasket
     .filter((item) => item.dozenCount > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={false}/>
     )
 
   const GoToCheckoutHandler = () => {
-    if(basketItems.length > 0)
+    if(basketItems && Object.keys(userBasket).length > 0)
     dispatch(setSearchItems(basketItems))
   }
   return (
@@ -51,7 +52,7 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasCountItems.length > 0 ? 
+              hasCountItems && hasCountItems.length > 0 ? 
                 hasCountItems
               : 
               <Fragment>
@@ -70,7 +71,7 @@ const BasketDropdown = () => {
           </BasketHeader>
           <BasketItems>
             {
-              hasDozenItems.length > 0 ? 
+              hasDozenItems && hasDozenItems.length > 0 ? 
                 hasDozenItems
               : 
               <Fragment>
@@ -83,7 +84,7 @@ const BasketDropdown = () => {
         </BasketItemsPerDozenContainer>
       </BasketItemsContainer>
       <BasketButtonContainer>
-        <BasketButton to={ basketItems.length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={basketItems.length}>GO TO CHECKOUT</BasketButton>
+        <BasketButton to={ basketItems && Object.keys(basketItems).length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={basketItems && Object.keys(basketItems).length}>GO TO CHECKOUT</BasketButton>
       </BasketButtonContainer>
     </BasketDropdownContainer>
   )

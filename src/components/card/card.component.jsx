@@ -6,22 +6,39 @@ import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer } from "./card.styles";
 import { useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import { setShowPopup } from "../../store/popup/popup.action";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const currentUser = useSelector(selectCurrentUser)
   const basketItems = useSelector(selectBasketItems)
   const scrollRef = useRef(null)
   const isInView = useInView(scrollRef, {whileInView: 'visible'})
   const addPieceToBasketHandler = () => {
-    if(!currentUser) return
+    if(!currentUser) {
+      navigate('/auth')
+      dispatch(setShowPopup(true))
+      setTimeout(() => {
+        dispatch(setShowPopup(false))
+      }, 3000);
+      return
+    }
     const newBasket = addBasketItem(basketItems, product, false)
     dispatch(newBasket)
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const addDozenToBasketHandler = () => {
-    if(!currentUser) return
+    if(!currentUser) {
+      navigate('/auth')
+      dispatch(setShowPopup(true))
+      setTimeout(() => {
+        dispatch(setShowPopup(false))
+      }, 3000);
+      return
+    }
     const newBasket = addBasketItem(basketItems, product, true)
     dispatch(newBasket)
     dispatch(setTotalCountStart())
@@ -34,7 +51,7 @@ const Card = ({product}) => {
     }
   }
   return (
-    <CardContainer ref={scrollRef} isinview={isInView}>
+    <CardContainer ref={scrollRef} isinview={isInView ? 'a' : 'b'}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
       <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
       <PriceContainer>

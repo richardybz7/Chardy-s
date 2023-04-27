@@ -1,7 +1,7 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
-import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth, getCurrentUser, getUserPurchases, signInAuthUserWithEmailAndPassword, signInWithGooglePopup, signOutUser } from "../../utils/firebase/firebase.utils";
+import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth, getCurrentUser, getUserPurchases, setUserAddress, signInAuthUserWithEmailAndPassword, signInWithGooglePopup, signOutUser } from "../../utils/firebase/firebase.utils";
 import { setBasketItems, setSearchItems, setTotalCountStart } from "../basket/basket.action";
-import { noUserSession, signInFailed, signInSuccess, signOutFailed, signOutSuccess, signUpFailed, signUpSuccess } from "./user.action";
+import { editUserAddressFailed, editUserAddressSuccess, noUserSession, signInFailed, signInSuccess, signOutFailed, signOutSuccess, signUpFailed, signUpSuccess } from "./user.action";
 import { USER_ACTION_TYPES } from "./user.types";
 import { setPurchases, setPurchasesNotification } from "../purchases/purchases.action";
 
@@ -86,6 +86,16 @@ export function* signOut(){
   }
 }
 
+export function* editUserAddress({payload: {address, user}}){
+  try{
+    yield call(setUserAddress, address, user)
+    yield put(editUserAddressSuccess)
+  }
+  catch(err){
+    yield put(editUserAddressFailed(err))
+  }
+}
+
 export function* onCheckUserSession() {
   yield takeLatest(USER_ACTION_TYPES.CHECK_USER_SESSION, isUserAuthenticated)
 }
@@ -110,6 +120,10 @@ export function* onSignOutStart(){
   yield takeLatest(USER_ACTION_TYPES.SIGN_OUT_START, signOut)
 }
 
+export function* onEditUserAddressStart(){
+  yield takeLatest(USER_ACTION_TYPES.EDIT_USER_ADDRESS_START, editUserAddress)
+}
+
 export function* userSagas() {
   yield all([
     call(onCheckUserSession),
@@ -117,6 +131,7 @@ export function* userSagas() {
     call(onEmailSignInStart),
     call(onSignUpStart),
     call(onSignUpSuccess),
-    call(onSignOutStart)
+    call(onSignOutStart),
+    call(onEditUserAddressStart)
   ])
 }

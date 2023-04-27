@@ -27,7 +27,7 @@ export const PriceLabel = styled.label`
   font-size: 0.8em;
 `
 export const CardContainer = styled(motion.div)`
-  opacity: ${prop => prop.isinview ? 1 : 0.1};
+  opacity: ${prop => prop.isinview === 'a' ? 1 : 0.1};
   position: relative;
   width: calc(1.2*12em);
   height: calc(1.2*15em);

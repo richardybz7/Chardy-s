@@ -1,6 +1,11 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
-export const AuthenticationContainer = styled.div`
+export const AuthenticationContainer = styled(motion.div).attrs({
+  initial:{opacity: 0},
+  animate:{opacity: 1},
+  exit:{opacity: 0}
+})`
   display: flex;
   justify-content: center;
 `

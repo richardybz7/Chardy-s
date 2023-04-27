@@ -4,11 +4,13 @@ import { productsReducer } from "./products/products.reducer";
 import { userReducer } from "./user/user.reducer";
 import { purchasesReducer } from "./purchases/purchases.reducer";
 import { burgerReducer } from "./burger/burger.reducer";
+import { popUpReducer } from "./popup/popup.reducer";
 
 export const rootReducer = combineReducers({
   user: userReducer,
   products: productsReducer,
   basket: basketReducer,
   burger: burgerReducer,
-  purchases: purchasesReducer
+  purchases: purchasesReducer,
+  popup: popUpReducer
 })

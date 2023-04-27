@@ -136,3 +136,14 @@ export const PaymentOptionButtonHighlighted = styled(BaseButton)`
   outline: none;
   color: #FF7D7D;
 `
+export const DisclaimerContainer = styled.div`
+  width: var(--checkOutWidth);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4em;
+`
+export const DisclaimerLabel = styled.div`
+  font-size: 0.8em;
+  color: orange;
+`

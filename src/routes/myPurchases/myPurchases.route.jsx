@@ -5,7 +5,7 @@ import PurchaseDate from "../../components/purchaseDate/purchaseDate.component";
 import MyPurchasesItem from "../../components/myPurchases-item/myPurchases-item.component";
 import { useEffect, useRef, useState } from "react";
 import PRODUCTS_DATA from "../../data";
-import { removeAllUserPurchases, udpateUserPurchases, updateUserPurchaseNotification } from "../../utils/firebase/firebase.utils";
+import { removeAllUserPurchases, updateUserPurchaseNotification } from "../../utils/firebase/firebase.utils";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { setPurchases, setPurchasesNotificationToZero } from "../../store/purchases/purchases.action";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";

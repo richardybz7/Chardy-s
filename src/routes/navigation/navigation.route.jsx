@@ -23,8 +23,8 @@ import LowerNavigationContainer from "../../components/lower-navigation-div/lowe
 import Burger from "../../components/burger/burger.component";
 import BasketDropdown from "../../components/basket-dropdown/basket-dropdown.component";
 import { Basket } from "./navigation.styles";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { setIsBasketOpen } from "../../store/basket/basket.action";
+import { selectCurrentUser, selectFail } from "../../store/user/user.selector";
+import { setBasketItems, setIsBasketOpen, setTotalCountStart } from "../../store/basket/basket.action";
 import { selectIsCartOpen, selectTotalProductCount } from "../../store/basket/basket.selector";
 import { signOutStart } from "../../store/user/user.action";
 import BurgerMenu from "../../components/burger-menu/burger-menu.component";
@@ -34,6 +34,10 @@ import { selectNotificationCount } from "../../store/purchases/purchases.selecto
 import ProductNavigation from "../../components/product-navigation/product-navigation.component";
 import { selectProductsMap } from "../../store/products/products.selector";
 import { AnimatePresence } from "framer-motion";
+import { setPurchases } from "../../store/purchases/purchases.action";
+import Popup from "../../components/popup/popup.component";
+import { setShowPopup } from "../../store/popup/popup.action";
+import { selectPopupIsShown } from "../../store/popup/popup.selector";
 
 const DEVICE_WIDTH = {
   phoneWidth: '500',
@@ -42,7 +46,6 @@ const DEVICE_WIDTH = {
 
 const Navigation = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
   const products = useSelector(selectProductsMap)
   const notificationCount = useSelector(selectNotificationCount)
   const isBasketOpen = useSelector(selectIsCartOpen)
@@ -52,17 +55,16 @@ const Navigation = () => {
   const isBurgerOpen = useSelector(selectIsOpenBurger)
   const [cursorState, setCursorState] = useState('pointer')
   const [windowSize, setWindowSize] = useState(window.innerWidth)
-  const [displaySearchBar, setDisplaySearchBar] = useState(false)
+  const selectFailAttempt = useSelector(selectFail)
+  const selectShowPopup = useSelector(selectPopupIsShown)
+  const displayName = currentUser && currentUser.displayName
   
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
-    if(location.pathname !== '/'){
-      dispatch(signOutStart())
-      navigate('/')
-    }
-    else{
-      dispatch(signOutStart())
-    }
+    dispatch(setBasketItems([]))
+    dispatch(setTotalCountStart())
+    dispatch(setPurchases([]))
+    dispatch(signOutStart())
   }
   const burgerHandler = () => {
     dispatch(setBurgerIsOpen(!isBurgerOpen))
@@ -71,6 +73,19 @@ const Navigation = () => {
     setWindowSize(window.innerWidth)
   }
   
+  const showPopup = () => {
+    if(currentUser){
+      dispatch(setShowPopup(true))
+      setTimeout(() => {
+        dispatch(setShowPopup(false))
+      }, 2500);
+    }
+  }
+
+  useEffect(() => {
+    showPopup()
+  },[currentUser])
+
   useEffect(() => {
     window.addEventListener('resize', resizeHandler);
     return () => window.removeEventListener('resize', resizeHandler)
@@ -82,10 +97,19 @@ const Navigation = () => {
 
   useEffect(() => {
     isBasketOpen && dispatch(setIsBasketOpen(false))
-    location.pathname === '/' ? setDisplaySearchBar(true) : setDisplaySearchBar(false)
   },[location.pathname])
   return (
     <Fragment>
+      <AnimatePresence>
+        {
+          currentUser && selectShowPopup ?
+            <Popup message={displayName} custom={true} user={currentUser} buy={false}/>
+          :
+          selectFailAttempt && selectFailAttempt.hasOwnProperty('code') && location.pathname === '/auth' ? <Popup message={selectFailAttempt} custom={false}/>
+          :
+          selectShowPopup && <Popup message='You need to login before you can buy' custom={true} buy={true}/>
+        }
+      </AnimatePresence>
       <ParentNavigationContainer location={location.pathname}>
         <NavigationContainer>
           {
@@ -106,7 +130,7 @@ const Navigation = () => {
             location.pathname !== '/auth' &&
             <Fragment>
               {
-                displaySearchBar &&
+                location.pathname === '/' &&
                 (
                   windowSize >= DEVICE_WIDTH.tabletWidth && 
                   <MiddleNavigationContainer>
@@ -154,7 +178,7 @@ const Navigation = () => {
                       <BasketSVGContainer onClick={toggleBasket}>
                         <Basket/>
                       </BasketSVGContainer>
-                      <TotalProductContainer displayLowerSearch={displaySearchBar} onClick={toggleBasket}>
+                      <TotalProductContainer onClick={toggleBasket}>
                         <TotalProductCount>{totalProductCount}</TotalProductCount>
                       </TotalProductContainer>
                       <AnimatePresence>
@@ -164,15 +188,13 @@ const Navigation = () => {
                   )
                 )
               }
-            </UserNavigationContainer>
+              </UserNavigationContainer>
             </Fragment>
           }
         </NavigationContainer>
         {
-          displaySearchBar && (
-            (windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/') && 
+            windowSize < DEVICE_WIDTH.tabletWidth && location.pathname === '/' && 
             <LowerNavigationContainer />
-          )
         }
       </ParentNavigationContainer>
       <Outlet/>

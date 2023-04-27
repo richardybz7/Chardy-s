@@ -46,3 +46,12 @@ export const signOutSuccess = () =>
 
 export const signOutFailed = (error) =>
   createAction(USER_ACTION_TYPES.SIGN_OUT_FAILED, error)
+
+export const editUserAddressStart= (address, user) => 
+  createAction(USER_ACTION_TYPES.EDIT_USER_ADDRESS_START, {address, user})
+
+export const editUserAddressSuccess= () =>
+  createAction(USER_ACTION_TYPES.EDIT_USER_ADDRESS_SUCCESS)
+
+export const editUserAddressFailed = (error) =>
+  createAction(USER_ACTION_TYPES.EDIT_USER_ADDRESS_FAILED, error)

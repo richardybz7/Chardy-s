@@ -1,5 +1,5 @@
 import Banner from "../../components/banner/banner.component";
-import Products from "../products/products.route";
+import Products from "../../components/products/products.component";
 import Footer from "../../components/footer/footer.component";
 import { Fragment } from "react";
 const Home = () => {
