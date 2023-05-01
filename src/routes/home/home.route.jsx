@@ -1,14 +1,14 @@
 import Banner from "../../components/banner/banner.component";
 import Products from "../../components/products/products.component";
 import Footer from "../../components/footer/footer.component";
-import { Fragment } from "react";
+import { HomeParentContainer } from "./home.styles";
 const Home = () => {
   return (
-    <Fragment>
+    <HomeParentContainer>
       <Banner/>
       <Products/>
       <Footer/>
-    </Fragment>
+    </HomeParentContainer>
   )
 }
 

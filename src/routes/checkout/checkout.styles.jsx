@@ -38,7 +38,7 @@ export const CheckoutItemsContainer = styled.div`
 `
 export const ListHeaderParentContainer = styled.div`
   width: var(--checkOutWidth);
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid var(--color1);
 `
 export const CheckoutPaymentAndPlaceOrderContainer = styled.div`
   display: flex;
@@ -57,15 +57,20 @@ export const ListHeaderContainer = styled.div`
 `
 
 export const CheckoutLabel = styled.label`
+  color: var(--color1);
+  font-weight: bold;
 `
 export const DetailsAndActionHeaderContainer = styled.div`
   display: flex;
-  gap: 50px;
+  gap: 45px;
   @media screen and (max-width: 921px){
     display: none;
   }
+  color: var(--color1);
+  font-weight: bold;
 `
 export const UnitPriceHeaderLabel = styled.label`
+  padding-right: 0.5em;
 `
 export const QuantityHeaderLabel = styled.label`
 `
@@ -78,7 +83,8 @@ export const TotalPriceContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: var(--checkOutWidth);
-  border-top: 1px solid grey;
+  border-top: 1px solid var(--color1);
+  color: var(--color1);
 `
 export const TotalPriceLabel = styled.label`
   padding: 1em 0;
@@ -96,9 +102,9 @@ export const PlaceOrderButton = styled(BaseButton)`
   border: 1px solid transparent;
   transition: 0.2s ease;
   :hover{
-    border: 1px solid #FF7D7D;
+    border: 1px solid var(--color1);
     outline: none;
-    color: #FF7D7D;
+    color: var(--color1);
   }
 `
 export const PaymentMethodParentContainer = styled.div`

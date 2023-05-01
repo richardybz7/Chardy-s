@@ -11,13 +11,13 @@ export const ParentMenuContainer = styled(motion.div).attrs({
   position: absolute;
   z-index: 99;
   top: 60px;
-  left: 0px;
+  left: -3px;
   background-color: var(--background-color);
-  box-shadow: 0 0 3px 0 #B8B8B8;
-  border: 1px solid #FF6D6D;
+  border: 3px solid var(--color1);
   padding: 1em 0;
-  border-top-right-radius: 0.3em;
-  border-bottom-right-radius: 0.3em;
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+  overflow: hidden;
 `
 export const ParentContentContainer = styled.div`
   display: flex;
@@ -33,8 +33,9 @@ export const MenuItemLabel = styled(Link)`
   padding: 0.2em 0.5em;
   padding-right: 1em;
   text-decoration: none;
-  color: #FF6D6D;
+  color: var(--color1);
   font-size: 1.5em;
+  font-weight: bold;
   outline: none;
   -webkit-tap-highlight-color: transparent;
   transition: 0.1s ease-in-out;
@@ -42,7 +43,7 @@ export const MenuItemLabel = styled(Link)`
     background-color: pink;
   }
   :not(:first-child){
-    border-top: 1px solid #FF6D6D;
+    border-top: 2px solid var(--color1);
   }
   ${props => props.mypurchases && css`
     :before{

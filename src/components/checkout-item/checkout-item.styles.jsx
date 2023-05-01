@@ -31,6 +31,7 @@ export const PerItemAndActionContainer = styled.div`
 export const ItemDetailsAndActionParentContainer = styled.div`
   display: flex;
   flex-direction: column;
+  color: var(--color1);
 `
 export const NumbersContainer = styled.div`
   display: flex;
@@ -39,6 +40,7 @@ export const NumbersContainer = styled.div`
   @media screen and (max-width: 921px){
     gap: 10vw;
   }
+  color: var(--color1);
 `
 export const PerPieceOrDozenLabel = styled.label`
   width: 100%;
@@ -46,8 +48,9 @@ export const PerPieceOrDozenLabel = styled.label`
   @media screen and (max-width: 921px){
     padding-left: 0.5em;
     padding-bottom: 0.5em;
-    border-bottom: 1px solid grey;
+    border-bottom: 1px solid var(--color1);
   }
+  font-weight: bold;
 `
 export const ItemImageAndDetailsContainer = styled.div`
   display: flex;
@@ -62,12 +65,14 @@ export const ItemImageContainer = styled.div`
   background-size: contain;
   width: 100px;
   height: 100px;
-  border: none;
-  border-radius: 0.3em;
+  border: 3px solid var(--color1);
+  border-radius: 1em;
 `
 
 export const DetailContainer = styled.div`
   width: 150px;
+  color: var(--color1);
+  font-weight: bold;
 `
 export const ItemDetailsAndActionContainer = styled.div`
   display: flex;
@@ -98,21 +103,25 @@ export const QuantityContainer = styled.div`
 `
 export const ReduceQuantityButton = styled(BaseButton)`
   border: 1px solid #F2F2F2;
+  background-color: var(--color1);
+  color: white;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   transition: 0.2s ease;
   ${props => !props.disabled && css`
     &:active{
-      border: 1px solid #FF7D7D;
+      border: 1px solid var(--color4);
       outline: none;
-      color: #FF7D7D;
+      background-color: var(--color4);
+      color: black;
       cursor: pointer;
     }
     @media screen and (min-width: 430px){
       &:hover{
-        border: 1px solid #FF7D7D;
+        border: 1px solid var(--color4);
         outline: none;
-        color: #FF7D7D;
+        background-color: var(--color4);
+        color: black;
         cursor: pointer;
       }
     }
@@ -139,19 +148,24 @@ QuantityInput.defaultProps = {
 }
 export const AddQuantityButton = styled(BaseButton)`
   border: 1px solid #F2F2F2;
+  transition: 0.2s ease;
+  background-color: var(--color1);
+  color: white;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   transition: 0.2s ease;
   :active{
-    border: 1px solid #FF7D7D;
+    border: 1px solid var(--color4);
     outline: none;
-    color: #FF7D7D;
+    background-color: var(--color4);
+    color: black;
   }
   @media screen and (min-width: 430px){
     :hover{
-      border: 1px solid #FF7D7D;
+      border: 1px solid var(--color4);
       outline: none;
-      color: #FF7D7D;
+      background-color: var(--color4);
+      color: black;
     }
   }
 `
@@ -161,16 +175,20 @@ export const TotalPriceLabel = styled.label`
 export const RemoveActionButton = styled(BaseButton)`
   border: 1px solid #F2F2F2;
   transition: 0.2s ease;
+  background-color: var(--color1);
+  color: white;
   :active{
-    border: 1px solid #FF7D7D;
+    border: 1px solid var(--color4);
     outline: none;
-    color: #FF7D7D;
+    background-color: var(--color4);
+    color: black;
   }
   @media screen and (min-width: 430px){
     :hover{
-      border: 1px solid #FF7D7D;
+      border: 1px solid var(--color4);
       outline: none;
-      color: #FF7D7D;
+      background-color: var(--color4);
+      color: black;
     }
   }
 `

@@ -40,8 +40,8 @@ import { setShowPopup } from "../../store/popup/popup.action";
 import { selectPopupIsShown } from "../../store/popup/popup.selector";
 
 const DEVICE_WIDTH = {
-  phoneWidth: '500',
-  tabletWidth: '768'
+  phoneWidth: '670',
+  tabletWidth: '1080'
 }
 
 const Navigation = () => {

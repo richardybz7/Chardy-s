@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { BaseButton } from "../button/button.styles";
-import Donut from '../../assets/Capturetest.JPG'
 
 export const ItemContainer = styled.div`
   display: flex;
@@ -9,6 +8,8 @@ export const ItemContainer = styled.div`
   :not(:first-child){
     margin-top: 0.5em;
   }
+  font-size: 0.8rem;
+  font-weight: bold;
 `
 export const ItemLabel = styled.label`
 
@@ -16,13 +17,14 @@ export const ItemLabel = styled.label`
 export const ItemCount = styled.label`
 `
 export const ItemImage = styled.div`
-  width: 50px;
-  height: 50px;
-  border-radius: 0.3em;
+  width: 60px;
+  height: 60px;
+  border-radius: 10em;
   background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
+  border: 3px solid var(--color1);
 `
 export const ActionsContainer = styled.div`
   display: flex;
@@ -32,9 +34,9 @@ export const NumberOfDonutsLabel = styled.label`
 `
 export const ActionContainer = styled.div`
   display: flex;
+  flex-direction: column;
   gap: 0.5em;
   flex-wrap: wrap;
-  align-items: center;
 `
 export const ButtonAndCountContainer = styled.div`
   display: flex;
@@ -42,9 +44,9 @@ export const ButtonAndCountContainer = styled.div`
   gap: 0.5em;
 `
 export const ItemButton = styled(BaseButton)`
-  padding: 0.5em;
+  padding: 0.3em;
   width: 2em;
   color: white;
-  font-size: 0.9rem;
-  background-color: #FFD2D2;
+  font-weight: bold;
+  background-color: var(--color1);
 `

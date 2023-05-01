@@ -2,19 +2,19 @@ import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
 import { motion } from "framer-motion";
 
+
 export const ProductsParentContainer = styled(motion.div).attrs({
   initial:{opacity: 0},
   animate:{opacity: 1},
   exit:{opacity: 0}
 })`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1em;
+  padding-bottom: 3em;
 `
 export const CategoriesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 `
 export const ReferenceContainer = styled.div``
 export const BackToTopButton = styled.div`
@@ -26,26 +26,28 @@ export const BackToTopButton = styled.div`
   width: 45px;
   height: 45px;
   border-radius: 100%;
-  border: 1px solid pink;
+  border: 3px solid var(--color1);
   font-size: 1.2rem;
   outline: none;
   -webkit-tap-highlight-color: transparent;
-  color: #FF8F8F;
+  color: var(--color1);
   background-color: white;
   bottom: 20px;
   right: 20px;
   z-index: 100;
   transition: 0.1s ease-in-out;
   :active{
-    background-color: pink;
+    background-color: var(--color2);
     color: white;
-    border: 1px solid white;
+    border: 3px solid white;
+    transform: scale(1.2);
   }
   @media screen and (min-width: 430px){
     :hover{
-      background-color: pink;
+      background-color: var(--color2);
       color: white;
-      border: 1px solid white;
+      border: 3px solid white;
+      transform: scale(1.2);
     }
   }
 `

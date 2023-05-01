@@ -58,9 +58,9 @@ const BasketItem = ({item, perPiece}) => {
         <ActionContainer>
           {
             perPiece ? 
-              <NumberOfDonutsLabel>Number of donuts: </NumberOfDonutsLabel>
+              <NumberOfDonutsLabel># of pieces: </NumberOfDonutsLabel>
               :
-              <NumberOfDonutsLabel>Number of dozen: </NumberOfDonutsLabel>
+              <NumberOfDonutsLabel># of dozen: </NumberOfDonutsLabel>
           }
           <ButtonAndCountContainer>
             {

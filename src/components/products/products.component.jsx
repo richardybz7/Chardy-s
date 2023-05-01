@@ -1,4 +1,4 @@
-import { BackToTopButton, CategoriesContainer, ProductsParentContainer, ReferenceContainer, SideNavigationButton, SideNavigationContainer } from './products.style'
+import { BackToTopButton, BackdropContainer, CategoriesContainer, ProductsParentContainer, ReferenceContainer, SideNavigationButton, SideNavigationContainer } from './products.style'
 import Categories from '../categories/categories.component'
 import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useRef, useState } from 'react'

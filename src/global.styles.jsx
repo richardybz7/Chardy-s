@@ -4,7 +4,14 @@ export const GlobalStyle = createGlobalStyle`
   :root{
     --background-color: #FAFAFA;
     --font-family: 'Inter', sans-serif;
+    --font-family2: 'Pacifico', cursive;
     --checkOutWidth: 90%;
+    --card-radius: 2em;
+    --color1: #D4145A;
+    --color2: #FB3371;
+    --color3: #FF437B;
+    --color4: #33FBBD;
+    --color5: #FF5938;
   }
   body{
     margin: 0;

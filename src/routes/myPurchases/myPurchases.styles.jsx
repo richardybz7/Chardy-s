@@ -48,7 +48,7 @@ export const TabsButtonContentContainer = styled.div`
 export const TabsParentContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  border: 3px solid #FF7E7E;
+  border: 3px solid var(--color2);
   box-sizing: border-box;
   padding: 0.5em;
   border-top-right-radius: 0.5em;
@@ -63,18 +63,18 @@ export const TabButton = styled(BaseButton)`
   border-radius: 0;
   border-bottom: 1px solid transparent;
   position: relative;
-  color: #FF7E7E;
+  color: white;
   font-family: var(--font-family);
-  background-color: #F3F3F3;
+  background-color: var(--color1);
   transition: 0.15s ease-in-out;
   :hover{
-    background-color: pink;
-    color: white;
+    background-color: var(--color4);
+    color: black;
   }
 `
 export const TabButtonHighlighted = styled(BaseButton)`
   border-radius: 0;
-  background-color: #FF7E7E;
+  background-color: var(--color2);
   color: white;
 `
 export const MyPurchasesParentContainer = styled(motion.div).attrs({
@@ -96,14 +96,14 @@ export const ClearHistoryContainer = styled.div`
 export const ClearHistoryButton = styled(BaseButton)`
   color: white;
   font-family: var(--font-family);
-  background-color: #FF7E7E;
+  background-color: var(--color1);
   transition: 0.15s ease-in-out;
   :active{
-    background-color: #FF5938;
+    background-color: var(--color5);
   }
   @media screen and (min-width: 430px){
     :hover{
-      background-color: #FF5938;
+      background-color: var(--color5);
     }
   }
 `

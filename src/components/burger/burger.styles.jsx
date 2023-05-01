@@ -6,7 +6,7 @@ const animateTopOn = keyframes`
   }
   to{
     transform-origin: top left;
-    transform: translateY(-1.5px) rotate(45deg);
+    transform: translateY(-0.5px) rotate(45deg);
   }
 `
 const animateTopOff = keyframes`
@@ -24,7 +24,7 @@ const animateBottomOn = keyframes`
   }
   to{
     transform-origin: bottom left;
-    transform: translateY(1.5px) rotate(-45deg);
+    transform: translateY(0.5px) rotate(-45deg);
   }
 `
 const animateBottomOff = keyframes`
@@ -52,28 +52,41 @@ const animatePattyOff = keyframes`
     opacity: 1;
   }
 `
+export const BurgerCircle = styled.div`
+  top: -8.5px;
+  left: -4px;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 0.5em;
+  background-color: transparent;
+  border: 3px solid var(--color1);
+  animation: ${prop => !prop.trigger ? css`${animatePattyOn} 0.1s ease-in forwards` : css`${animatePattyOff} 0.5s ease-out`};
+`
 export const BurgerBunTop = styled.div`
+  position: absolute;
+  top: 0;
   width: 25px;
-  height: 2px;
-  margin-bottom: 5px;
-  background-color: #FF6D6D;
+  height: 3px;
+  background-color: var(--color1);
   animation: ${prop => prop.trigger ? css`${animateTopOn} 0.2s ease-in-out forwards` : css`${animateTopOff} 0.2s ease-in-out`};
 `
 export const BurgerPatty = styled.div`
+  position: absolute;
+  top: 8px;
   width: 25px;
-  height: 2px;
-  margin-bottom: 5px;
-  background-color: #FF6D6D;
+  height: 3px;
+  background-color: var(--color1);
   animation: ${prop => prop.trigger ? css`${animatePattyOn} 0.2s ease-in-out forwards` : css`${animatePattyOff} 0.2s ease-in-out`};
 `
 export const BurgerBunBottom = styled.div`
+  position: absolute;
   width: 25px;
-  height: 2px;
-  background-color: #FF6D6D;
+  height: 3px;
+  background-color: var(--color1);
   animation: ${prop => prop.trigger ? css`${animateBottomOn} 0.2s ease-in-out forwards` : css`${animateBottomOff} 0.2s ease-in-out`};
 `
 export const BurgerContainer = styled.button`
-  width: fit-content;
   outline: none;
   border: none;
   cursor: pointer;
@@ -94,4 +107,5 @@ export const BurgerContainer = styled.button`
 `
 export const BurgerParentContainer = styled.div`
   position: relative;
+  width: 30px;
 `

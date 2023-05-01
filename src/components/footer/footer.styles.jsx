@@ -4,10 +4,9 @@ export const FooterParentContainer = styled.div`
   justify-content: center;
   align-items: center;
   //temporary
-  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,160,231,1) 100%);
+  background: linear-gradient(var(--color1) 50%, var(--color3));
   height: 15em;
   position: relative;
-  margin-top: 5em;
 `
 
 export const FooterContainer = styled.div`
@@ -32,8 +31,8 @@ export const LeftFooterContainer = styled.div`
 `
 export const Label = styled.label`
   z-index: 2;
-  color: black;
+  color: white;
   padding-bottom: ${prop => prop.top === 'true' && '0.5em'};
   margin-bottom: ${prop => prop.top === 'true' && '0.5em'};
-  border-bottom: ${prop => prop.top === 'true' && '1px solid black'};
+  border-bottom: ${prop => prop.top === 'true' && '1px solid white'};
 `

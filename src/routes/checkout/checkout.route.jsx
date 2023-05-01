@@ -12,7 +12,6 @@ import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import Address from "../../components/address/address.component";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";
 import { selectIsOpenBurger } from "../../store/burger/burger.selector";
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
 const Checkout = () => {
   const dispatch = useDispatch()
@@ -23,8 +22,6 @@ const Checkout = () => {
   const [codButtonClicked, setCodButtonClicked] = useState(false)
   const [cardButtonClicked, setCardButtonClicked] = useState(false)
   const codButtonRef = useRef()
-  const stripe = useStripe()
-  const elements = useElements()
   let totalPrice = 0
   const navigate = useNavigate()
   const codButtonHandler = () => {
@@ -41,24 +38,6 @@ const Checkout = () => {
       dispatch(setBasketItems([]))
       dispatch(setTotalCountStart())
       updateBasketFieldOfUser(currentUser, {})
-      if(cardButtonClicked){
-        if(!stripe || !elements){
-          return;
-        }
-        try{
-          const response = await fetch('/.netlify/functions/create-payment-intent', {
-            method: 'post',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ amount: totalPrice })
-          }).then(res => res.json())
-        }
-        catch(err){
-          console.log(err)
-        }
-        
-      }
       navigate('/')
     }
   }
@@ -128,7 +107,7 @@ const Checkout = () => {
               }
               </PaymentOptionsContainer>
               {
-                !cardButtonClicked ? <Address/> : <CardElement/>
+                //!cardButtonClicked ? <Address/> : <CardElement/>
               }
             </PaymentMethodContainer>
           </PaymentMethodParentContainer>

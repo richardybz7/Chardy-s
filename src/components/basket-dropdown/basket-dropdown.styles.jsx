@@ -10,19 +10,20 @@ export const BasketItemsPerPieceContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 `
 export const BasketItemsPerDozenContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
 `
 export const BasketDivider = styled.div`
-  background-color: pink;
-  height: 48px;
-  width: 4px;
-  margin: 0 0.3em;
+  background-color: var(--color1);
+  height: 320px;
+  width: 7px;
 `
 export const BasketItemsContainer = styled.div`
   display: flex;
@@ -36,7 +37,8 @@ export const BasketHeader = styled.div`
   margin-bottom: 1em;
 `
 export const BasketHeaderLabel = styled.label`
-  color: white;
+  color: var(--color1);
+  font-weight: bold;
 `
 export const PerPieceImageContainer = styled.div`
   display: flex;
@@ -58,22 +60,22 @@ export const PerDozenImage = styled.div`
   border-radius: 0.3em;
 `
 export const BasketItems = styled.div`
-  height: 200px;
-  border-radius: 0.3em;
+  height: 230px;
   overflow-y: auto;
   width: 260px;
   padding: 0.5em;
-  //border: 1px solid #DBDBDB;
   background-color: var(--background-color);
+  border-top: 3px solid var(--color1);
+  border-bottom: 3px solid var(--color1);
   ::-webkit-scrollbar{
-    width: 10px;
+    width: 7px;
   }
   ::-webkit-scrollbar-track{
     border-radius: 0.3em;
     background-color: #ECECEC;
   }
   ::-webkit-scrollbar-thumb{
-    background-color: pink;
+    background-color: var(--color3);
     border-radius: 0.3em;
   }
   //box-shadow: inset 0 0 3px 0 #B8B8B8;
@@ -115,13 +117,15 @@ export const BasketButton = styled(Link)`
   color: white;
   transition: 0.1s ease-in-out;
   :active{
-    border: ${props => props.disabled > 0 ? '1px solid #FF5938' : '1px solid white'};
-    background-color: ${props => props.disabled > 0 ? '#FF5938' : 'transparent'};
+    color: black;
+    border: ${props => props.disabled > 0 ? '1px solid var(--color4)' : '1px solid white'};
+    background-color: ${props => props.disabled > 0 ? 'var(--color4)' : 'transparent'};
   }
   @media screen and (min-width: 430px){
     :hover{
-      border: ${props => props.disabled > 0 ? '1px solid #FF5938' : '1px solid white'};
-      background-color: ${props => props.disabled > 0 ? '#FF5938' : 'transparent'};
+      color: black;
+      border: ${props => props.disabled > 0 ? '1px solid var(--color4)' : '1px solid white'};
+      background-color: ${props => props.disabled > 0 ? 'var(--color4)' : 'transparent'};
     }
   }
 `
@@ -131,28 +135,29 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
   duration: 2,
   exit:{opacity: 0, transform: 'translateX(800px)'}
 })`
-  position: absolute;
+  position: fixed;
   width: max-content;
-  right: 7px;
+  right: -3px;
   top: 68px;
-  border-radius: 0.3em;
-  background-color: #FFD2D2;
+  border-radius: 2.8em;
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 15;
   box-sizing: border-box;
-  padding: 1.3em 0.5em;
-  box-shadow: 0 0 3px 0 #B8B8B8;
+  border: 3px solid var(--color1);
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  //box-shadow: 0 0 3px 0 #B8B8B8;
   @media screen and (max-width: 768px) {
     top: 60px;
     ${BasketItemsContainer}{
       flex-direction: column;
     }
     ${BasketDivider}{
-      height: 2px;
-      width: 60px;
-      margin: 0.3em 0.5em;
+      height: 3px;
+      width: 100%;
     }
     ${BasketItemsPerPieceContainer},
     ${BasketItemsPerDozenContainer}{
@@ -168,6 +173,12 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
     }
     ${PerPieceImageContainer}{
       width: 65px;
+    }
+    ${BasketItems}{
+      margin: 2em 0;
+      border-left: 3px solid var(--color1);
+      border-top-left-radius: 2.5em;
+      border-bottom-left-radius: 2.5em;
     }
   }
   @media screen and (max-width: 375px){

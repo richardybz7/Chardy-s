@@ -3,7 +3,7 @@ import { addBasketItem, setTotalCountStart } from "../../store/basket/basket.act
 import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
-import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer } from "./card.styles";
+import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer, PriceParentContainer, PriceDivider } from "./card.styles";
 import { useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -54,14 +54,17 @@ const Card = ({product}) => {
     <CardContainer ref={scrollRef} isinview={isInView ? 'a' : 'b'}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
       <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
-      <PriceContainer>
-        <Price>P{product.itemPrice}</Price>
-        <PriceLabel>per piece</PriceLabel>
-      </PriceContainer>
-      <PriceContainer>
-        <Price>P{product.dozenPrice}</Price>
-        <PriceLabel>per dozen</PriceLabel>
-      </PriceContainer>
+      <PriceParentContainer>
+        <PriceContainer>
+          <Price>P{product.itemPrice}</Price>
+          <PriceLabel>per piece</PriceLabel>
+        </PriceContainer>
+        <PriceDivider/>
+        <PriceContainer>
+          <Price>P{product.dozenPrice}</Price>
+          <PriceLabel>per dozen</PriceLabel>
+        </PriceContainer>
+      </PriceParentContainer>
       <Label>{product.name}</Label>
       <ButtonContainer>
         <BugRecoveryButton/>

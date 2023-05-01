@@ -1,12 +1,13 @@
-import { BurgerBunBottom, BurgerBunTop, BurgerContainer, BurgerParentContainer, BurgerPatty, BurgerSvg } from './burger.styles';
+import { BurgerBunBottom, BurgerBunTop, BurgerCircle, BurgerContainer, BurgerParentContainer, BurgerPatty, BurgerSvg } from './burger.styles';
 
 const Burger = ({onClick, displayed, notification}) => {
   return (
     <BurgerParentContainer>
       <BurgerContainer onClick={onClick} notification={notification}>
-        <BurgerBunTop trigger={displayed}/>
-        <BurgerPatty trigger={displayed}/>
-        <BurgerBunBottom trigger={displayed}/>
+          <BurgerCircle trigger={displayed}/>
+          <BurgerBunTop trigger={displayed}/>
+          <BurgerPatty trigger={displayed}/>
+          <BurgerBunBottom trigger={displayed}/>
       </BurgerContainer>
     </BurgerParentContainer>
   )

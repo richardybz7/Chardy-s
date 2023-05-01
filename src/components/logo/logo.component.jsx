@@ -1,7 +1,5 @@
-import { useEffect, useState } from 'react';
-import { ReactComponent as LogoSVG } from '../../assets/logo.svg'
 import { LogoContainer } from "./logo.styles";
-
+import { ChardyLogo } from "./logo.styles";
 const Logo = ({to, location, cursor}) => {
   const enableLink = (e) => {
     if(location == '/'){
@@ -13,7 +11,7 @@ const Logo = ({to, location, cursor}) => {
       to={to} 
       onClick={(e) => enableLink(e)} 
       cursor={cursor === 'default' ? 'default' : 'cursor'}>
-      <LogoSVG/>
+      <ChardyLogo/>
     </LogoContainer>
   )
 }
