@@ -15,7 +15,7 @@ export const DeliveryInputArea = styled.textarea`
   border-top-left-radius: 0.3em;
   border-bottom-left-radius: 0.3em;
   min-height: 100px;
-  min-width: 250px;
+  min-width: 200px;
   font-family: var(--font-family);
 `
 export const EditSaveAddressButton = styled(BaseButton)`
