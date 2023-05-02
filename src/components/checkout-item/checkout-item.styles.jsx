@@ -1,6 +1,5 @@
 import styled, {css} from "styled-components";
 import { BaseButton } from "../button/button.styles";
-import testImage from '../../assets/Capturetest.JPG'
 
 export const CheckoutItemContainer = styled.div`
   display: flex;

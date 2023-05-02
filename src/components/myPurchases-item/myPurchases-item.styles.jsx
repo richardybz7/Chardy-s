@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import testImage from '../../assets/Capturetest.JPG'
 export const MyPurchasesItemContainer = styled.div`
   display: flex;
   box-sizing: border-box;

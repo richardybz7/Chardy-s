@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import DonutSVG from '../../assets/spinner1.svg'
+import DonutSVG from '../../assets/spinnerAsset10.svg'
 import { ReactComponent as LogoSVG } from '../../assets/logo.svg'
 import { motion } from "framer-motion";
 
