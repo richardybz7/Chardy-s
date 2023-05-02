@@ -74,9 +74,9 @@ export const ButtonContainer = styled.div`
   width: 100%;
 `
 export const SignUpButton = styled(BaseButton)`
-  background-color: #FFBBBB;
+  background-color: var(--color2);
+  color: white;
   border-radius: var(--border-radius);
-  color: #523131;
   width: 8em;
   transition: 0.2s ease-in-out;
   &:hover{
@@ -86,17 +86,17 @@ export const SignUpButton = styled(BaseButton)`
 `
 export const SignUpContent = styled.div`
   ${FirstHeader}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 1.3rem;
     }
   }
   ${SecondHeader}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 0.8rem;
     }
   }
   ${UserInputContainer}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 0.8rem;
     }
   }

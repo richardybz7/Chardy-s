@@ -133,7 +133,7 @@ const Navigation = () => {
                 location.pathname === '/' &&
                 (
                   windowSize >= DEVICE_WIDTH.tabletWidth && 
-                  <MiddleNavigationContainer>
+                  <MiddleNavigationContainer hasUser={currentUser}>
                     <SearchBoxContainer>
                       <Search placeholder='Search for a craving' items={products} location='/'/>
                     </SearchBoxContainer>

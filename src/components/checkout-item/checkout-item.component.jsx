@@ -66,6 +66,7 @@ const CheckoutItem = ({item}) => {
     const newBasket = removeBasketItem(basketItems, item)
     dispatchAndUpdate(currentUser, newBasket)
   }
+  const priceHandler = (number) => number.toLocaleString()
   return (
     <CheckoutItemContainer>
       <ItemImageAndDetailsContainer>
@@ -82,13 +83,21 @@ const CheckoutItem = ({item}) => {
               <TotalItemPriceHeaderLabel>Total Price</TotalItemPriceHeaderLabel>
             </DetailsAndActionHeaderContainer>
             <NumbersContainer>
-              <UnitPriceLabel>P{item.itemPrice}</UnitPriceLabel>
+              <UnitPriceLabel>P&nbsp;
+                {
+                  priceHandler(item.itemPrice)
+                }
+              </UnitPriceLabel>
               <QuantityContainer>
               <ReduceQuantityButton onClick={() => reduceQuantityHandler(true)} disabled={item.count < 1}>&#60;</ReduceQuantityButton>
               <QuantityInput ref={perPieceRef} value={item.count} onKeyPress={onKeyPressHandler} onChange={() => onChangeQuantityHandler(true)}></QuantityInput>
               <AddQuantityButton onClick={() => addQuantityHandler(true)}>&#62;</AddQuantityButton>
               </QuantityContainer>
-              <TotalPriceLabel>P{item.count * item.itemPrice}</TotalPriceLabel>
+              <TotalPriceLabel>P&nbsp;
+              {
+                priceHandler(item.count * item.itemPrice)
+              }
+              </TotalPriceLabel>
             </NumbersContainer>
           </ItemDetailsAndActionContainer>
           <ItemDetailsAndActionContainer>
@@ -99,13 +108,21 @@ const CheckoutItem = ({item}) => {
               <TotalItemPriceHeaderLabel>Total Price</TotalItemPriceHeaderLabel>
             </DetailsAndActionHeaderContainer>
             <NumbersContainer>
-              <UnitPriceLabel>P{item.dozenPrice}</UnitPriceLabel>
+              <UnitPriceLabel>P&nbsp;
+                {
+                  priceHandler(item.dozenPrice)
+                }
+              </UnitPriceLabel>
               <QuantityContainer>
                 <ReduceQuantityButton onClick={() => reduceQuantityHandler(false)} disabled={item.dozenCount < 1}>&#60;</ReduceQuantityButton>
                 <QuantityInput ref={perDozenRef} value={item.dozenCount} onKeyPress={onKeyPressHandler} onChange={() => onChangeQuantityHandler(false)}></QuantityInput>
                 <AddQuantityButton onClick={() => addQuantityHandler(false)}>&#62;</AddQuantityButton>
               </QuantityContainer>
-              <TotalPriceLabel>P{item.dozenCount * item.dozenPrice}</TotalPriceLabel>
+              <TotalPriceLabel>P&nbsp;
+              {
+                priceHandler(item.dozenCount * item.dozenPrice)
+              }
+              </TotalPriceLabel>
             </NumbersContainer>
           </ItemDetailsAndActionContainer>
         </ItemDetailsAndActionParentContainer>

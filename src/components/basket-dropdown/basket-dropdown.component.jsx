@@ -63,7 +63,6 @@ const BasketDropdown = () => {
             }
           </BasketItems>
         </BasketItemsPerPieceContainer>
-        <BasketDivider/>
         <BasketItemsPerDozenContainer>
           <BasketHeader>
             <BasketHeaderLabel>PER DOZEN</BasketHeaderLabel>

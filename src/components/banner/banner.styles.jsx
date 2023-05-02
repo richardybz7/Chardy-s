@@ -4,9 +4,8 @@ import BannerHeaderSVG from '../../assets/bannerHeaderAsset2.svg'
 import { motion } from "framer-motion";
 
 export const BannerParentContainer = styled(motion.div).attrs({
-  initial:{opacity: 0},
-  animate:{opacity: 1},
-  exit:{opacity: 0}
+  initial:{opacity: 0, transform: 'translateY(25px)'},
+  animate:{opacity: 1, transform: 'translateY(0px)', transition:{duration: 0.3}}
 })`
   display: flex;
   position: relative;
@@ -68,6 +67,7 @@ export const DetailContainer = styled.div`
 `
 export const DetailLabelCustom = styled.label`
   color: var(--color2);
+  font-weight: bold;
 `
 export const DetailLabel = styled.div`
   padding: 1.5em;
@@ -100,7 +100,7 @@ export const BannerImageParentContainer = styled.div`
   width: 100%;
   height: 40vw;
   @media screen and (max-width: 1080px) {
-    height: 80vw;
+    height: 100vw;
   }
 `
 export const BannerImage = styled(motion.div)`
@@ -113,7 +113,8 @@ export const BannerImage = styled(motion.div)`
   background-size: contain;
   @media screen and (max-width: 1080px) {
     background-position: center center;
-    height: 80vw;
+    height: 100vw;
+    width: 120%;
   }
 `
 export const BannerImageBackground = styled.div`
@@ -132,7 +133,7 @@ export const BannerImageBackground = styled.div`
       inset 0 0 0 0.5vw var(--background-color),
       0 0 0 0.5vw var(--background-color);
     border: 1.5vw solid var(--color1);
-    height: 50vw;
-    width: 50vw;
+    height: 55vw;
+    width: 55vw;
   }
 `

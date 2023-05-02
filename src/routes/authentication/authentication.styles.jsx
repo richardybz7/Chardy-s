@@ -24,7 +24,7 @@ export const ContentContainer = styled.div`
     gap: 3em;
   }
 
-  @media all and (max-width: 660px){
-    padding: 0.2rem;
+  @media all and (max-width: 670px){
+    padding: 3rem 0.2rem;
   }
 `

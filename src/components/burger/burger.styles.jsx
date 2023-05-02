@@ -97,12 +97,13 @@ export const BurgerContainer = styled.button`
     display: ${prop=> prop.notification === 0 && 'none'};
     position: absolute;
     content: '';
-    right: -5px;
-    top: -7px;
+    right: -10px;
+    top: -8px;
     height: 7px;
     width: 7px;
-    background-color: #FF6161;
+    background-color: var(--color2);
     border-radius: 7px;
+    z-index: 5;
   }
 `
 export const BurgerParentContainer = styled.div`

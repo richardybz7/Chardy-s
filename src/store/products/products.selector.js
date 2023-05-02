@@ -9,3 +9,5 @@ export const selectProductReference = createSelector([selectProducts], (products
 export const selectProductTargetReference = createSelector([selectProducts], (products) => products.targetRef)
 
 export const selectProductImages = createSelector([selectProducts], (products) => products.productImages)
+
+export const selectProductLoading = createSelector([selectProducts], (products) => products.productsLoading)

@@ -65,9 +65,9 @@ export const ButtonContainer = styled.div`
   gap: 1.5em;
 `
 export const SignInButton = styled(BaseButton)`
-  background-color: #FFBBBB;
+  background-color: var(--color2);
+  color: white;
   border-radius: var(--border-radius);
-  color: #523131;
   flex-grow: 1;
   transition: 0.2s ease-in-out;
   &:hover{
@@ -89,17 +89,17 @@ export const SignInWithGoogleButton = styled(BaseButton)`
 
 export const SignInContent = styled.div`
   ${FirstHeader}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 1.3rem;
     }
   }
   ${SecondHeader}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 0.8rem;
     }
   }
   ${UserInputContainer}{
-    @media all and (max-width: 660px){
+    @media all and (max-width: 670px){
       font-size: 0.8rem;
     }
   }

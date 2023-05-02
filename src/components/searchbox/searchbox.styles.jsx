@@ -11,7 +11,7 @@ export const SearchBoxFormContainer = styled.form`
   border-radius: 10px;
   display: flex;
   align-items: center;
-  padding: 5px 10px 5px 10px;
+  padding: 0 5px;
   transition: border 0.3s ease;
   :hover{
     border: 4px solid var(--color1);
@@ -61,9 +61,10 @@ export const SearchResultContainer = styled.div`
   max-width: 480px;
   max-height: 200px;
   border-radius: 0.5em;
+  box-shadow: 0 0 0 5px var(--background-color);
   overflow: auto;
   background-color: var(--background-color);
-  border: 1px solid pink;
+  border: 5px solid var(--color1);
   margin-top: 0.5em;
   margin-right: 1.5rem;
   ::-webkit-scrollbar{
@@ -74,8 +75,8 @@ export const SearchResultContainer = styled.div`
     background-color: #ECECEC;
   }
   ::-webkit-scrollbar-thumb{
-    background-color: pink;
-    border-radius: 0.5em;
+    background-color: var(--color3);
+    border-radius: 0.1em;
   }
 `
 export const CantFindContainer = styled.div`

@@ -4,7 +4,7 @@ import CategoryAsset1 from '../../assets/CategoryAsset1.svg'
 import CategoryAsset2 from '../../assets/CategoryAsset2.svg'
 export const CategoryContainer = styled(motion.div).attrs({
   initial:{opacity: 0},
-  animate:{opacity: 1, transition:{delay: 0.2}},
+  animate:{opacity: 1, transition:{delay: 0.3}},
   exit:{opacity: 0},
 })`
   display: flex;

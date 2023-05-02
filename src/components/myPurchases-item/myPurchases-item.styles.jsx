@@ -28,8 +28,8 @@ export const ItemImage = styled.div`
   background-size: contain;
   width: 100px;
   height: 100px;
-  border: none;
-  border-radius: 0.3em;
+  border: 3px solid var(--color2);
+  border-radius: 1em;
 `
 export const DetailsLabel = styled.label`
   width: 150px;

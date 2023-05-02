@@ -29,7 +29,7 @@ export const GlobalStyle = createGlobalStyle`
       background-color: #ECECEC;
     }
     ::-webkit-scrollbar-thumb{
-      background-color: pink;
+      background-color: var(--color2);
       border-radius: 0.5em;
     }
   }

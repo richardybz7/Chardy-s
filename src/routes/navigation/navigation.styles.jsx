@@ -28,6 +28,8 @@ export const MiddleNavigationContainer = styled.div`
   width: 500px;
   gap: 0.5em;
   padding: 0.5em 0;
+  padding-right: ${props => !props.hasUser && '10em'};
+
 `
 export const MyPurchasesContainer = styled.div`
   position: relative;
@@ -40,7 +42,7 @@ export const PurchasesNotificationContainer = styled.div`
   width: max-content;
   height: 100%;
   padding: 2px 6px;
-  background-color: #FF6161;
+  background-color: var(--color2);
   border-radius: 1rem;
   right: -1rem;
   top: -1.2rem;
@@ -113,7 +115,7 @@ export const TotalProductContainer = styled.div`
 `
 export const TotalProductCount = styled.div`
   font-family: var(--font-family2);
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: var(--color1);
   
 `

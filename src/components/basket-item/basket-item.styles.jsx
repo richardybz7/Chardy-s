@@ -49,4 +49,14 @@ export const ItemButton = styled(BaseButton)`
   color: white;
   font-weight: bold;
   background-color: var(--color1);
+  :active{
+    background-color: var(--color4);
+    color: black;
+  }
+  @media screen and (min-width: 430px){
+    :hover{
+      background-color: var(--color4);
+      color: black;
+    }
+  }
 `

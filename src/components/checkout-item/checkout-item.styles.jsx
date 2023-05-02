@@ -86,7 +86,7 @@ export const ItemDetailsAndActionContainer = styled.div`
     padding-bottom: 0.5em; 
   }
   @media screen and (max-width: 921px){
-    gap: 1em;
+    gap: 0.2em;
     padding-top: 1em;
     flex-direction: column;
     :not(:first-child){
@@ -96,6 +96,8 @@ export const ItemDetailsAndActionContainer = styled.div`
 `
 export const UnitPriceLabel = styled.label`
   width: 30px;
+  white-space: nowrap;
+  font-weight: bold;
 `
 
 export const QuantityContainer = styled.div`
@@ -108,6 +110,9 @@ export const ReduceQuantityButton = styled(BaseButton)`
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   transition: 0.2s ease;
+  ${props => props.disabled && css`
+    background-color: pink;
+  `}
   ${props => !props.disabled && css`
     &:active{
       border: 1px solid var(--color4);
@@ -171,6 +176,8 @@ export const AddQuantityButton = styled(BaseButton)`
 `
 export const TotalPriceLabel = styled.label`
   width: 30px;
+  white-space: nowrap;
+  font-weight: bold;
 `
 export const RemoveActionButton = styled(BaseButton)`
   border: 1px solid #F2F2F2;
@@ -200,8 +207,11 @@ export const DetailsAndActionHeaderContainer = styled.div`
   }
 `
 export const UnitPriceHeaderLabel = styled.label`
+font-weight: bold;
 `
 export const QuantityHeaderLabel = styled.label`
+font-weight: bold;
 `
 export const TotalItemPriceHeaderLabel = styled.label`
+font-weight: bold;
 `

@@ -24,6 +24,15 @@ const Checkout = () => {
   const codButtonRef = useRef()
   let totalPrice = 0
   const navigate = useNavigate()
+  const totalPriceHandler = () => {
+    totalPrice = basketItems.reduce((total, basketItem) => 
+        total + 
+        (basketItem.itemPrice * basketItem.count) +
+        (basketItem.dozenPrice * basketItem.dozenCount)
+        ,0
+      )
+    return totalPrice.toLocaleString()
+  }
   const codButtonHandler = () => {
     setCodButtonClicked(true)
     setCardButtonClicked(false)
@@ -71,15 +80,10 @@ const Checkout = () => {
         }
         </CheckoutItemsContainer>
         <TotalPriceContainer>
-          <TotalPriceLabel>Total price: P
+          <TotalPriceLabel>Total price: P&nbsp;
           {
             basketItems.length > 0 ? (
-              totalPrice = basketItems.reduce((total, basketItem) => 
-                total + 
-                (basketItem.itemPrice * basketItem.count) +
-                (basketItem.dozenPrice * basketItem.dozenCount)
-                ,0
-                )
+              totalPriceHandler()
             ):(
               0
             )
@@ -108,6 +112,7 @@ const Checkout = () => {
               </PaymentOptionsContainer>
               {
                 //!cardButtonClicked ? <Address/> : <CardElement/>
+                !cardButtonClicked && <Address/>
               }
             </PaymentMethodContainer>
           </PaymentMethodParentContainer>

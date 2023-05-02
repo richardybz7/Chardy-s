@@ -10,8 +10,7 @@ export const CheckoutPageParentContainer = styled(motion.div).attrs({
   display: flex;
   justify-content: center;
   width: 100%;
-  font-size: 0.85em;
-  margin-bottom: 200px;
+  margin-bottom: 100px;
 `
 
 export const CheckoutPageContainer = styled.div`
@@ -38,7 +37,7 @@ export const CheckoutItemsContainer = styled.div`
 `
 export const ListHeaderParentContainer = styled.div`
   width: var(--checkOutWidth);
-  border-bottom: 1px solid var(--color1);
+  border-bottom: 3px solid var(--color1);
 `
 export const CheckoutPaymentAndPlaceOrderContainer = styled.div`
   display: flex;
@@ -83,12 +82,13 @@ export const TotalPriceContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   width: var(--checkOutWidth);
-  border-top: 1px solid var(--color1);
+  border-top: 3px solid var(--color1);
   color: var(--color1);
 `
 export const TotalPriceLabel = styled.label`
   padding: 1em 0;
-  font-size: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 `
 export const PlaceOrderContainer = styled.div`
   @media screen and (max-width: 565px){
@@ -99,12 +99,13 @@ export const PlaceOrderContainer = styled.div`
 `
 export const PlaceOrderButton = styled(BaseButton)`
   font-size: 1rem;
-  border: 1px solid transparent;
   transition: 0.2s ease;
+  background-color: var(--color1);
+  color: white;
   :hover{
-    border: 1px solid var(--color1);
     outline: none;
-    color: var(--color1);
+    background-color: var(--color4);
+    color: black;
   }
 `
 export const PaymentMethodParentContainer = styled.div`
@@ -128,26 +129,27 @@ export const PaymentOptionsContainer = styled.div`
   gap: 1em;
 `
 export const PaymentOptionButton = styled(BaseButton)`
-  border: 1px solid transparent;
+  background-color: var(--color1);
+  color: white;
   transition: 0.2s ease;
   :hover,
   :focus{
-    border: 1px solid #FF7D7D;
     outline: none;
-    color: #FF7D7D;
+    color: black;
+    background-color: var(--color4);
   }
 `
 export const PaymentOptionButtonHighlighted = styled(BaseButton)`
-  border: 1px solid #FF7D7D;
   outline: none;
-  color: #FF7D7D;
+  background-color: var(--color2);
+  color: white;
 `
 export const DisclaimerContainer = styled.div`
   width: var(--checkOutWidth);
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4em;
+  padding: 4em 0;
 `
 export const DisclaimerLabel = styled.div`
   font-size: 0.8em;

@@ -13,21 +13,26 @@ import { getProductImagesStart, getProductsStart } from "./store/products/produc
 import { selectCurrentUser, selectIsLoading } from "./store/user/user.selector";
 import Spinner from "./components/spinner/spinner.component";
 import { AnimatePresence } from "framer-motion";
+import { selectProductLoading } from "./store/products/products.selector";
 
 const App = () => {
   const dispatch = useDispatch()
   const userIsLoading = useSelector(selectIsLoading)
+  const productIsLoading = useSelector(selectProductLoading)
   const currentUser = useSelector(selectCurrentUser)
+  let displayLoading = true
   useEffect(() => {
     dispatch(getProductsStart())
     dispatch(getProductImagesStart())
     dispatch(checkUserSession())
   },[])
+  if(!userIsLoading && !productIsLoading)
+    displayLoading = false
   return (
     <Fragment>
     <GlobalStyle/>
     {
-      userIsLoading ? (
+      displayLoading ? (
         <AnimatePresence>
           <Spinner/>
         </AnimatePresence>

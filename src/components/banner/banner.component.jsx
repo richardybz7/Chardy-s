@@ -9,7 +9,7 @@ const Banner = () => {
             <BannerHeader/>
             <DetailContainer>
               <DetailLabel>
-                For over months of learning <DetailLabelCustom>React web development</DetailLabelCustom>, Richard Ybañez keeps getting hungry and has always been craving for freshly baked, moist, and soft donuts. This part is where most companies put inspirational journey stories, I don't have one, I'm just hungry.
+                For over months of learning <DetailLabelCustom>React web development</DetailLabelCustom>, Richard Ybañez keeps getting hungry and has always been craving for freshly baked, moist, and soft donuts. (Who gives a crap)
               </DetailLabel>
               <DetailBackdrop/>
             </DetailContainer>

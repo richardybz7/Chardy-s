@@ -12,6 +12,7 @@ export const BasketItemsPerPieceContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border-right: 3px solid var(--color1);
 `
 export const BasketItemsPerDozenContainer = styled.div`
   width: 100%;
@@ -19,11 +20,6 @@ export const BasketItemsPerDozenContainer = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-`
-export const BasketDivider = styled.div`
-  background-color: var(--color1);
-  height: 320px;
-  width: 7px;
 `
 export const BasketItemsContainer = styled.div`
   display: flex;
@@ -34,7 +30,7 @@ export const BasketHeader = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1em;
-  margin-bottom: 1em;
+  margin: 0.5em 0;
 `
 export const BasketHeaderLabel = styled.label`
   color: var(--color1);
@@ -62,8 +58,8 @@ export const PerDozenImage = styled.div`
 export const BasketItems = styled.div`
   height: 230px;
   overflow-y: auto;
-  width: 260px;
-  padding: 0.5em;
+  width: 200px;
+  padding: 1em;
   background-color: var(--background-color);
   border-top: 3px solid var(--color1);
   border-bottom: 3px solid var(--color1);
@@ -76,7 +72,7 @@ export const BasketItems = styled.div`
   }
   ::-webkit-scrollbar-thumb{
     background-color: var(--color3);
-    border-radius: 0.3em;
+    border-radius: 0.1em;
   }
   //box-shadow: inset 0 0 3px 0 #B8B8B8;
 `
@@ -99,33 +95,34 @@ export const EmptyBasketImage = styled.div`
 `
 
 export const BasketButtonContainer = styled.div`
-  margin-top: 1em;
+  margin: 0.5em 0;
 `
 export const BasketButton = styled(Link)`
-  cursor: pointer;
+  cursor: ${props => props.disabled > 0 ? 'pointer' : 'default'};
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.8em;
-  border-radius: 0.4em;
-  background-color: ${props => props.disabled > 0 ? '#FF8F8F' : 'transparent'};
-  border: 1px solid white;
+  border-radius: 2em;
+  background-color: ${props => props.disabled > 0 ? 'var(--color1)' : 'pink'};
+  border: 1px solid var(--background-color);
   font-size: 0.8rem;
   outline: none;
   white-space: nowrap;
   text-decoration: none;
   color: white;
   transition: 0.1s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
   :active{
     color: black;
-    border: ${props => props.disabled > 0 ? '1px solid var(--color4)' : '1px solid white'};
-    background-color: ${props => props.disabled > 0 ? 'var(--color4)' : 'transparent'};
+    border: ${props => props.disabled > 0 && '1px solid var(--color4)'};
+    background-color: ${props => props.disabled > 0 && 'var(--color4)'};
   }
   @media screen and (min-width: 430px){
     :hover{
       color: black;
       border: ${props => props.disabled > 0 ? '1px solid var(--color4)' : '1px solid white'};
-      background-color: ${props => props.disabled > 0 ? 'var(--color4)' : 'transparent'};
+      background-color: ${props => props.disabled > 0 && 'var(--color4)'};
     }
   }
 `
@@ -137,8 +134,8 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
 })`
   position: fixed;
   width: max-content;
-  right: -3px;
-  top: 68px;
+  right: -5px;
+  top: 80px;
   border-radius: 2.8em;
   background-color: var(--background-color);
   display: flex;
@@ -146,26 +143,24 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
   align-items: center;
   z-index: 15;
   box-sizing: border-box;
-  border: 3px solid var(--color1);
+  border: 5px solid var(--color1);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   //box-shadow: 0 0 3px 0 #B8B8B8;
   @media screen and (max-width: 768px) {
-    top: 60px;
+    ${PerPieceImage},
+    ${PerDozenImage}{
+      display: none;
+    }
     ${BasketItemsContainer}{
       flex-direction: column;
-    }
-    ${BasketDivider}{
-      height: 3px;
-      width: 100%;
-    }
-    ${BasketItemsPerPieceContainer},
-    ${BasketItemsPerDozenContainer}{
-      flex-direction: row;
     }
     ${BasketHeader}{
       flex-direction: column;
       padding-right: 0.5em;
+      padding-top: 0.5em;
+      gap: 0;
+      margin: 0;
     }
     ${BasketHeaderLabel}{
       text-align: center;
@@ -175,11 +170,20 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
       width: 65px;
     }
     ${BasketItems}{
-      margin: 2em 0;
-      border-left: 3px solid var(--color1);
+      margin: 0.5em;
+      margin-bottom: 0;
+      border: 4px solid var(--color1);
+      //border-radius: 2.5em;
+      //border-left: 3px solid var(--color1);
       border-top-left-radius: 2.5em;
       border-bottom-left-radius: 2.5em;
+      border-top-right-radius: 0.5em;
+      border-bottom-right-radius: 0.5em;
+      height: 180px;
     }
+  }
+  @media screen and (max-width: 670px) {
+    top: 65px;
   }
   @media screen and (max-width: 375px){
     right: 0;

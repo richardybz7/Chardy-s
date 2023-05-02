@@ -5,6 +5,9 @@ export const ProductNavigationContainer = styled.div`
   padding-right: 1.5em;
   padding-left: 0.7em;
   align-items: center;
+  @media screen and (max-width: 470px) {
+    gap: 3.5vw;
+  }
 `
 export const CategoryLabel = styled.label`
   cursor: pointer;
@@ -13,6 +16,9 @@ export const CategoryLabel = styled.label`
   white-space: nowrap;
   :active{
     color: darkviolet;
+  }
+  @media screen and (max-width: 470px) {
+    font-size: 3.4vw;
   }
   @media screen and (min-width: 430px){
     :hover{
@@ -27,5 +33,8 @@ export const LabelDivision = styled.div`
     width: 5px;
     border-radius: 0.3em;
     background-color: var(--color1);
+  }
+  @media screen and (max-width: 470px) {
+    margin: 0;
   }
 `

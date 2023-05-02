@@ -10,10 +10,10 @@ export const ParentMenuContainer = styled(motion.div).attrs({
 })`
   position: absolute;
   z-index: 99;
-  top: 60px;
+  top: 65px;
   left: -3px;
   background-color: var(--background-color);
-  border: 3px solid var(--color1);
+  border: 5px solid var(--color1);
   padding: 1em 0;
   border-top-right-radius: 2em;
   border-bottom-right-radius: 2em;
@@ -43,7 +43,7 @@ export const MenuItemLabel = styled(Link)`
     background-color: pink;
   }
   :not(:first-child){
-    border-top: 2px solid var(--color1);
+    border-top: 3px solid var(--color1);
   }
   ${props => props.mypurchases && css`
     :before{
@@ -54,7 +54,7 @@ export const MenuItemLabel = styled(Link)`
       top: 5px;
       height: 7px;
       width: 7px;
-      background-color: #FF6161;
+      background-color: var(--color2);
       border-radius: 7px;
     }
   `}

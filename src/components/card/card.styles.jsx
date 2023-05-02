@@ -18,28 +18,29 @@ export const ButtonContainer = styled.div`
 `
 export const PriceParentContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
   background-color: #FFD1D1;
-  border-top: 5px solid var(--color1);
-  border-bottom: 5px solid var(--color1);
-  @media screen and (max-width: 500px) {
-    justify-content: unset;
+  outline: 3px solid var(--color1);
+  @media screen and (max-width: 470px) {
+    flex-direction: column;
   }
+  //border-bottom: 2px solid var(--color1);
 `
 export const PriceContainer = styled.div`
-  padding-bottom: 0.2em;
+  padding: 0.2em;
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
   @media screen and (max-width: 500px) {
     padding-left: 0.3em;
   }
+  @media screen and (max-width: 470px) {
+    justify-content: flex-start;
+  }
 `
 export const PriceDivider = styled.div`
-  width: 5px;
+  width: 3px;
   height: 100%;
   background-color: var(--color1); 
-  @media screen and (max-width: 500px) {
-    display: none;
-  }
 `
 export const Price = styled.label`
   white-space: nowrap;
@@ -59,7 +60,7 @@ export const CardContainer = styled(motion.div)`
   width: calc(1.2*12em);
   height: calc(1.2*15em);
   border-radius: var(--card-radius);
-  border: 5px solid var(--color1);
+  border: 4px solid var(--color1);
   overflow: hidden;
   box-shadow: 0 0 0 5px var(--background-color);
   //box-shadow: inset 0 0 5px 0 #B8B8B8;

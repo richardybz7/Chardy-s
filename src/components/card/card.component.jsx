@@ -57,12 +57,12 @@ const Card = ({product}) => {
       <PriceParentContainer>
         <PriceContainer>
           <Price>P{product.itemPrice}</Price>
-          <PriceLabel>per piece</PriceLabel>
+          <PriceLabel>&nbsp;per piece</PriceLabel>
         </PriceContainer>
         <PriceDivider/>
         <PriceContainer>
           <Price>P{product.dozenPrice}</Price>
-          <PriceLabel>per dozen</PriceLabel>
+          <PriceLabel>&nbsp;per dozen</PriceLabel>
         </PriceContainer>
       </PriceParentContainer>
       <Label>{product.name}</Label>

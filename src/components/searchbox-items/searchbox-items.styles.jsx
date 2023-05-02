@@ -9,7 +9,6 @@ export const SearchResultContainer = styled.div`
   border-radius: 0.3em;
   overflow: auto;
   background-color: var(--background-color);
-  border: 1px solid gray;
   margin-top: 0.5em;
   margin-right: 1.5rem;
 `
@@ -19,7 +18,7 @@ export const SearchBoxItem = styled.div`
   align-items: center;
   padding: 0.5em;
   :not(:first-child){
-    border-top: 1px solid pink;
+    border-top: 5px solid var(--color1);
   }
   @media screen and (max-width: 533px){
     flex-direction: column;
@@ -41,7 +40,7 @@ export const ImageAndDetailContainer = styled.div`
   align-items: center;
 `
 export const DetailLabel = styled.label`
-  font-size: 0.85em;
+  font-size: 0.9rem;
   width: 114px;
 `
 export const PriceLabel = styled.label`
@@ -52,6 +51,8 @@ export const PriceLabel = styled.label`
 export const DetailContainer = styled.div`
   display: flex;
   flex-direction: column;
+  color: var(--color1);
+  font-weight: bold;
 `
 export const SearchImageResult = styled.div`
   width: 70px;
@@ -60,34 +61,44 @@ export const SearchImageResult = styled.div`
   background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
+  border-radius: 100%;
+  border: 3px solid var(--color1);
 `
 export const AddToBoxButton = styled(BaseButton)`
   width: 100%;
+  font-weight: bold;
   white-space: nowrap;
   color: white;
-  background-color: #FF8F8F;
-  transition: 0.1s ease-in-out;
+  background-color: var(--color3);
+  border-radius: 2em;
+  transition: 0.3s ease-out;
   :active{
-    background-color: #FF5938;
+    background-color: var(--color4);
+    color: black;
   }
   @media screen and (min-width: 430px){
     :hover{
-      background-color: #FF5938;
+      background-color: var(--color4);
+      color: black;
     }
   }
 `
 export const BuyADozenButton = styled(BaseButton)`
   width: 100%;
+  font-weight: bold;
   white-space: nowrap;
   color: white;
-  background-color: #FB7071;
+  background-color: var(--color2);
+  border-radius: 2em;
   transition: 0.1s ease-in-out;
   :active{
-    background-color: #FF5938;
+    background-color: var(--color4);
+    color: black;
   }
   @media screen and (min-width: 430px){
     :hover{
-      background-color: #FF5938;
+      background-color: var(--color4);
+      color: black;
     }
   }
 `
