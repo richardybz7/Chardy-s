@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import Search from "../../components/searchbox/searchbox.component";
-import { ActionsHeaderLabel, CheckoutItemsContainer, CheckoutLabel, CheckoutPageContainer, CheckoutPageParentContainer, CheckoutPaymentAndPlaceOrderContainer, PaymentOptionButton, DeliveryAddressContainer, DeliveryInputArea, DetailsAndActionHeaderContainer, EditSaveAddressButton, ListHeaderContainer, ListHeaderParentContainer, PaymentMethodContainer, PaymentMethodLabel, PaymentMethodLabelContainer, PaymentMethodParentContainer, PaymentOptionsContainer, PlaceOrderButton, PlaceOrderContainer, QuantityHeaderLabel, SearchBoxContainer, TotalItemPriceHeaderLabel, TotalPriceContainer, TotalPriceLabel, UnitPriceHeaderLabel, PaymentOptionButtonHighlighted, DisclaimerContainer, DisclaimerLabel } from "./checkout.styles";
+import { ActionsHeaderLabel, CheckoutItemsContainer, CheckoutLabel, CheckoutPageContainer, CheckoutPageParentContainer, CheckoutPaymentAndPlaceOrderContainer, PaymentOptionButton, DeliveryAddressContainer, DeliveryInputArea, DetailsAndActionHeaderContainer, EditSaveAddressButton, ListHeaderContainer, ListHeaderParentContainer, PaymentMethodContainer, PaymentMethodLabel, PaymentMethodLabelContainer, PaymentMethodParentContainer, PaymentOptionsContainer, PlaceOrderButton, PlaceOrderContainer, QuantityHeaderLabel, SearchBoxContainer, TotalItemPriceHeaderLabel, TotalPriceContainer, TotalPriceLabel, UnitPriceHeaderLabel, PaymentOptionButtonHighlighted, DisclaimerContainer, DisclaimerLabel, NoCheckoutImage, CheckoutItemNotExist } from "./checkout.styles";
 import { useEffect, useRef, useState } from "react";
 import { selectBasketItems, selectSearchItems } from "../../store/basket/basket.selector";
 import { setBasketItems, setSearchItems, setTotalCountStart } from "../../store/basket/basket.action";
@@ -74,9 +74,18 @@ const Checkout = () => {
         </ListHeaderParentContainer>
         <CheckoutItemsContainer>
         {
-          searchItems.map((item) => 
-              <CheckoutItem key={item.id} item={item}/>
+          basketItems.length > 0 ? (
+            searchItems.length > 0 ? (
+              searchItems.map((item) => 
+                <CheckoutItem key={item.id} item={item}/>
+              )
+            ) : (
+              <CheckoutItemNotExist/>
             )
+          
+          ) : (
+            <NoCheckoutImage/>
+          )
         }
         </CheckoutItemsContainer>
         <TotalPriceContainer>
@@ -110,6 +119,9 @@ const Checkout = () => {
                   <PaymentOptionButton onClick={() => cardButtonHandler()}>Credit/Debit Card</PaymentOptionButton>
               }
               </PaymentOptionsContainer>
+              {
+                !cardButtonClicked && <PaymentMethodLabel>Address:</PaymentMethodLabel>
+              }
               {
                 //!cardButtonClicked ? <Address/> : <CardElement/>
                 !cardButtonClicked && <Address/>

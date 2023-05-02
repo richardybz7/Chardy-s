@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ReactComponent as BasketSVG } from '../../assets/chardybasket2.svg'
+import BasketSVG from '../../assets/chardyBasketAsset9.svg'
+import HighlightedBasketSVG from '../../assets/chardyBasketAsset10.svg'
 
 export const MyPurchasesLabel = styled(Link)`
   white-space: nowrap;
@@ -67,14 +68,19 @@ export const BasketContainer = styled.div`
   display: flex;
   align-items: center;
 `
-export const Basket = styled(BasketSVG)`
+export const Basket = styled.div`
   -webkit-tap-highlight-color: transparent;
   outline: none;
+  background-image: ${prop => prop.isopen ? `url(${HighlightedBasketSVG})` : `url(${BasketSVG})`};
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 100%;
+  height: 50px;
 `
 export const BasketSVGContainer = styled.div`
   cursor: pointer;
   position: absolute;
-  width: 55px;
+  width: 60px;
   z-index: 5;
   -webkit-tap-highlight-color: transparent;
   outline: none;
@@ -92,7 +98,7 @@ export const TotalProductContainer = styled.div`
   cursor: pointer;
   z-index: 6;
   width: 55px;
-  height: 33px;
+  height: 25px;
   -webkit-tap-highlight-color: transparent;
   outline: none;
   &:active{
@@ -116,8 +122,7 @@ export const TotalProductContainer = styled.div`
 export const TotalProductCount = styled.div`
   font-family: var(--font-family2);
   font-size: 1.5rem;
-  color: var(--color1);
-  
+  color: ${prop => prop.isopen ? 'var(--color2)' : 'var(--color1)'};
 `
 export const NavigationContainer = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
-import NoPurchaseSVG from '../../assets/noPurchaseAsset.svg'
-import ToReceiveSVG from '../../assets/toReceiveAsset.svg'
+import NoPurchaseSVG from '../../assets/noPurchasesAsset6.svg'
+import ToReceiveSVG from '../../assets/toReceiveAsset6.svg'
 import { motion } from "framer-motion";
 
 export const ParentMyPurchasesContainer = styled(motion.div).attrs({
@@ -22,6 +22,7 @@ export const MyPurchasesContainer = styled.div`
   max-width: 1000px;
   width: 100%;
   align-items: center;
+  margin-bottom: 100px;
   @media screen and (max-width: 800px){
     width: 100%;
   }
@@ -99,11 +100,13 @@ export const ClearHistoryButton = styled(BaseButton)`
   background-color: var(--color1);
   transition: 0.15s ease-in-out;
   :active{
-    background-color: var(--color5);
+    background-color: var(--color4);
+    color: black;
   }
   @media screen and (min-width: 430px){
     :hover{
-      background-color: var(--color5);
+      background-color: var(--color4);
+      color: black;
     }
   }
 `
@@ -127,14 +130,15 @@ export const NoPurchase = styled.div`
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  width: 30vw;
-  height: 30vw;
+  width: 50vw;
+  height: 40vw;
+  max-width: 676px;
 `
 export const ToReceive = styled.div`
   background-image: url(${ToReceiveSVG});
   background-repeat: no-repeat;
   background-position: center center;
   background-size: contain;
-  width: 60vw;
-  height: 40vw;
+  width: 45vw;
+  height: 60vw;
 `

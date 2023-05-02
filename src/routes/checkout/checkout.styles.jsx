@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
+import NoCheckoutItemSVG from '../../assets/noCheckoutItemAsset1.svg'
+import CheckoutItemNotExistSVG from '../../assets/checkoutItemNotExistAsset2.svg'
 import { motion } from "framer-motion";
 
 export const CheckoutPageParentContainer = styled(motion.div).attrs({
@@ -102,6 +104,7 @@ export const PlaceOrderButton = styled(BaseButton)`
   transition: 0.2s ease;
   background-color: var(--color1);
   color: white;
+  border-radius: 2em;
   :hover{
     outline: none;
     background-color: var(--color4);
@@ -110,19 +113,21 @@ export const PlaceOrderButton = styled(BaseButton)`
 `
 export const PaymentMethodParentContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1em;
 `
 export const PaymentMethodContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1em;
+  :last-child{
+    gap: 0.5em;
+  }
 `
 export const PaymentMethodLabelContainer = styled.div`
   padding: 0.5em 0;
 `
-export const PaymentMethodLabel = styled.label`
-
-`
+export const PaymentMethodLabel = styled.label``
 
 export const PaymentOptionsContainer = styled.div`
   display: flex;
@@ -132,6 +137,7 @@ export const PaymentOptionButton = styled(BaseButton)`
   background-color: var(--color1);
   color: white;
   transition: 0.2s ease;
+  border-radius: 2em;
   :hover,
   :focus{
     outline: none;
@@ -143,6 +149,7 @@ export const PaymentOptionButtonHighlighted = styled(BaseButton)`
   outline: none;
   background-color: var(--color2);
   color: white;
+  border-radius: 2em;
 `
 export const DisclaimerContainer = styled.div`
   width: var(--checkOutWidth);
@@ -154,4 +161,24 @@ export const DisclaimerContainer = styled.div`
 export const DisclaimerLabel = styled.div`
   font-size: 0.8em;
   color: orange;
+`
+export const NoCheckoutImage = styled.div`
+  background-image: url(${NoCheckoutItemSVG});
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 45vw;
+  height: 60vw;
+  max-width: 450px;
+  max-height: 500px;
+`
+export const CheckoutItemNotExist = styled.div`
+  background-image: url(${CheckoutItemNotExistSVG});
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 45vw;
+  height: 60vw;
+  max-width: 450px;
+  max-height: 500px;
 `

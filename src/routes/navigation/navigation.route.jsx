@@ -57,7 +57,7 @@ const Navigation = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const selectFailAttempt = useSelector(selectFail)
   const selectShowPopup = useSelector(selectPopupIsShown)
-  const displayName = currentUser && currentUser.displayName
+  const displayName = currentUser && currentUser.displayName && currentUser.displayName
   
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
@@ -176,10 +176,10 @@ const Navigation = () => {
                   location.pathname !== '/checkout' && (
                     <BasketContainer>
                       <BasketSVGContainer onClick={toggleBasket}>
-                        <Basket/>
+                        <Basket isopen={isBasketOpen}/>
                       </BasketSVGContainer>
                       <TotalProductContainer onClick={toggleBasket}>
-                        <TotalProductCount>{totalProductCount}</TotalProductCount>
+                        <TotalProductCount isopen={isBasketOpen}>{totalProductCount}</TotalProductCount>
                       </TotalProductContainer>
                       <AnimatePresence>
                         {isBasketOpen && <BasketDropdown/>}

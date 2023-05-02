@@ -125,9 +125,12 @@ const MyPurchases = () => {
             </TabsContentContainer>
           </TabsParentContentContainer>
         </TabsContainer>
-        <ClearHistoryContainer>
-          <ClearHistoryButton onClick={() => clearPurchaseHistoryHandler()}>Clear purchase history</ClearHistoryButton>
-        </ClearHistoryContainer>
+        {
+          purchasesButtonClick && 
+          <ClearHistoryContainer>
+            <ClearHistoryButton onClick={() => clearPurchaseHistoryHandler()}>Clear purchase history</ClearHistoryButton>
+          </ClearHistoryContainer>
+        }
       </MyPurchasesContainer>
     </ParentMyPurchasesContainer>
   )

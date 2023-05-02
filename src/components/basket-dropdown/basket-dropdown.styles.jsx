@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import PerPieceSVG from '../../assets/perPiece3Asset.svg'
-import PerDozenSVG from '../../assets/perDozen3Asset.svg'
-import BuyAPieceSVG from '../../assets/buyAPieceAsset.svg'
-import BuyADozenSVG from '../../assets/buyADozenAsset.svg'
+import PerPieceSVG from '../../assets/perPieceAsset7.svg'
+import PerDozenSVG from '../../assets/perDozen3Asset9.svg'
+import BuyAPieceSVG from '../../assets/buyAPieceAsset6.svg'
+import BuyADozenSVG from '../../assets/buyADozenAsset7.svg'
 import { motion } from "framer-motion";
 
 export const BasketItemsPerPieceContainer = styled.div`
@@ -148,15 +148,14 @@ export const BasketDropdownContainer = styled(motion.div).attrs({
   border-bottom-right-radius: 0;
   //box-shadow: 0 0 3px 0 #B8B8B8;
   @media screen and (max-width: 768px) {
-    ${PerPieceImage},
     ${PerDozenImage}{
-      display: none;
+      margin-left: 0.6em;
     }
     ${BasketItemsContainer}{
       flex-direction: column;
     }
     ${BasketHeader}{
-      flex-direction: column;
+      //flex-direction: column;
       padding-right: 0.5em;
       padding-top: 0.5em;
       gap: 0;
