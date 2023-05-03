@@ -20,12 +20,14 @@ import {
 } from "./basket-dropdown.styles";
 import { setSearchItems } from "../../store/basket/basket.action";
 import { Fragment } from "react";
+import { useRef } from "react";
+import { useEffect } from "react";
 
 const BasketDropdown = () => {
   const dispatch = useDispatch()
+  const dropdownRef = useRef()
   const basketItems = useSelector(selectBasketItems)
   const userBasket = basketItems
-  console.log('USER BASKET: ', userBasket)
   const hasCountItems = userBasket && Object.keys(userBasket).length > 0 && userBasket
     .filter((item) => item.count > 0).map((item) =>
       <BasketItem key={item.id} item={item} perPiece={true}/>
@@ -40,8 +42,11 @@ const BasketDropdown = () => {
     if(basketItems && Object.keys(userBasket).length > 0)
     dispatch(setSearchItems(basketItems))
   }
+  useEffect(() => {
+    console.log(dropdownRef.current)
+  },[])
   return (
-    <BasketDropdownContainer>
+    <BasketDropdownContainer ref={dropdownRef}>
       <BasketItemsContainer>
         <BasketItemsPerPieceContainer>
           <BasketHeader>

@@ -44,11 +44,13 @@ export const ButtonAndCountContainer = styled.div`
   gap: 0.5em;
 `
 export const ItemButton = styled(BaseButton)`
+  position: relative;
   padding: 0.3em;
   width: 2em;
   color: white;
   font-weight: bold;
   background-color: var(--color1);
+  transition: 0.2s ease-out;
   :active{
     background-color: var(--color4);
     color: black;
@@ -57,6 +59,36 @@ export const ItemButton = styled(BaseButton)`
     :hover{
       background-color: var(--color4);
       color: black;
+    }
+  }
+  :last-child{
+    background-color: var(--background-color);
+    color: var(--color1);
+    padding: 0;
+    margin-left: 0.5em;
+    width: 20px;
+    height: 20px;
+    font-size: 1.4rem;
+    border-radius: 1em;
+    ::before{
+      content: '';
+      cursor: default;
+      position: absolute;
+      background-color: var(--color1);
+      width: 3px;
+      height: 35px;
+      left: -10px;
+      border-radius: 1em;
+    }
+    :active{
+      background-color: black;
+      color: var(--color4);
+    }
+    @media screen and (min-width: 430px){
+      :hover{
+        background-color: black;
+        color: var(--color4);
+      }
     }
   }
 `

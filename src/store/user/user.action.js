@@ -29,10 +29,10 @@ export const signUpStart = (email, password, displayName) =>
     displayName
   })
 
-export const signUpSuccess = (user, additionalDetails) => 
+export const signUpSuccess = (email, displayName) => 
   createAction(USER_ACTION_TYPES.SIGN_UP_SUCCESS, {
-    user,
-    additionalDetails
+    email,
+    displayName
   })
 
 export const signUpFailed = (error) => 

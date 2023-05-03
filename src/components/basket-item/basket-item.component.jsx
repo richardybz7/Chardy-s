@@ -1,11 +1,13 @@
 import { Fragment, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { addBasketItem, subtractBasketItem, setTotalCountStart, removeBasketItem } from "../../store/basket/basket.action"
+import { addBasketItem, subtractBasketItem, setTotalCountStart, removeBasketItem, removePiecesFromItem, removeDozensFromItem } from "../../store/basket/basket.action"
 import { selectBasketItems } from "../../store/basket/basket.selector"
 import { selectCurrentUser } from "../../store/user/user.selector"
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils"
 import { ItemContainer, ItemLabel, ItemCount, ItemImage, ActionsContainer, ActionContainer, ItemButton, NumberOfDonutsLabel, ButtonAndCountContainer } from "./basket-item.styles"
 import { useRef } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleXmark } from "@fortawesome/free-solid-svg-icons"
 const BasketItem = ({item, perPiece}) => {
   const dispatch = useDispatch()
   const currentUser = useSelector(selectCurrentUser)
@@ -50,6 +52,18 @@ const BasketItem = ({item, perPiece}) => {
     dispatch(setTotalCountStart())
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
+  const removeItemPiecesHandler = () => {
+    const newBasket = removePiecesFromItem(basketItems, item)
+    dispatch(newBasket)
+    dispatch(setTotalCountStart())
+    updateBasketFieldOfUser(currentUser, newBasket.payload)
+  }
+  const removeItemDozensHandler = () => {
+    const newBasket = removeDozensFromItem(basketItems, item)
+    dispatch(newBasket)
+    dispatch(setTotalCountStart())
+    updateBasketFieldOfUser(currentUser, newBasket.payload)
+  }
   return (
     <ItemContainer>
       <ItemImage imageUrl={ item.imageUrl && item.imageUrl }/>
@@ -69,12 +83,18 @@ const BasketItem = ({item, perPiece}) => {
                   <ItemButton onClick={subtractItemHandler}>-</ItemButton>
                   <ItemCount>{item.count}</ItemCount>
                   <ItemButton onClick={addItemHandler}>+</ItemButton>
+                  <ItemButton onClick={removeItemPiecesHandler}>
+                    <FontAwesomeIcon icon={faCircleXmark}/>
+                  </ItemButton>
                 </Fragment>
               ) : (
                 <Fragment>
                   <ItemButton onClick={subtractDozenHandler}>-</ItemButton>
                   <ItemCount>{item.dozenCount}</ItemCount>
                   <ItemButton onClick={addDozenHandler}>+</ItemButton>
+                  <ItemButton onClick={removeItemDozensHandler}>
+                    <FontAwesomeIcon icon={faCircleXmark}/>
+                  </ItemButton>
                 </Fragment>
               )
             }

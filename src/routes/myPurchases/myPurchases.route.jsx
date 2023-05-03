@@ -10,6 +10,8 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { setPurchases, setPurchasesNotificationToZero } from "../../store/purchases/purchases.action";
 import { setBurgerIsOpen } from "../../store/burger/burger.action";
 import { selectIsOpenBurger } from "../../store/burger/burger.selector";
+import { CloseBasket } from "../../utils/basket/basket.utils";
+import { selectIsCartOpen } from "../../store/basket/basket.selector";
 
 const MyPurchases = () => {
   const dispatch = useDispatch()
@@ -22,6 +24,9 @@ const MyPurchases = () => {
   const purchaseButtonRef = useRef(null)
   const purchaseItemContainerRef = useRef([])
   const dateContainerRef = useRef([])
+  const isBasketOpen = useSelector(selectIsCartOpen)
+  const closeBasket = CloseBasket(dispatch, isBasketOpen)
+
   const purchaseDateOnClickHandler = (purchaseIndex) => {
     if(purchaseItemContainerRef.current[purchaseIndex].hasAttribute('open')){
       purchaseItemContainerRef.current[purchaseIndex].removeAttribute('open')
@@ -55,7 +60,7 @@ const MyPurchases = () => {
     }
   },[])
   return (
-    <ParentMyPurchasesContainer>
+    <ParentMyPurchasesContainer onClick={closeBasket}>
       <MyPurchasesContainer>
         <TabsContainer>
           <TabsButtonContainer>

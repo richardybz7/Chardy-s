@@ -38,6 +38,7 @@ import { setPurchases } from "../../store/purchases/purchases.action";
 import Popup from "../../components/popup/popup.component";
 import { setShowPopup } from "../../store/popup/popup.action";
 import { selectPopupIsShown } from "../../store/popup/popup.selector";
+import { useRef } from "react";
 
 const DEVICE_WIDTH = {
   phoneWidth: '670',
@@ -57,8 +58,9 @@ const Navigation = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const selectFailAttempt = useSelector(selectFail)
   const selectShowPopup = useSelector(selectPopupIsShown)
-  const displayName = currentUser && currentUser.displayName && currentUser.displayName
-  
+  //const basketDropdownRef = useRef()
+  const displayName = currentUser && currentUser.displayName
+
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
   const signOutHandler = () => {
     dispatch(setBasketItems([]))
@@ -83,7 +85,9 @@ const Navigation = () => {
   }
 
   useEffect(() => {
-    showPopup()
+    if(currentUser && currentUser.displayName){
+      showPopup()
+    }
   },[currentUser])
 
   useEffect(() => {
@@ -92,12 +96,14 @@ const Navigation = () => {
   })
 
   useEffect(() => {
+    isBasketOpen && dispatch(setIsBasketOpen(false))
     location.pathname === '/' ? setCursorState('default') : setCursorState('pointer')
   },[location.pathname])
 
-  useEffect(() => {
-    isBasketOpen && dispatch(setIsBasketOpen(false))
-  },[location.pathname])
+  // useEffect(() => {
+  //   console.log(basketDropdownRef.current)
+  //   //basketDropdownRef.current.addEventListener('click', toggleBasket())
+  // },[isBasketOpen])
   return (
     <Fragment>
       <AnimatePresence>

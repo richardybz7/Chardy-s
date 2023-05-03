@@ -67,6 +67,12 @@ const updateItemCount = (basketItems, item, newCount, isPerPiece) => {
 const searchItemsUpdateAfterBasketUpdate = (basketItems, searchItems) => 
   basketItems.filter((basketItem) => searchItems.some((searchItem) => searchItem.id === basketItem.id))
 
+const removePieces = (basketItems, piecesToRemove) => 
+  basketItems.map((basketItem) => basketItem.id === piecesToRemove.id ? { ...basketItem, count: 0 } : basketItem )
+
+const removeDozens = (basketItems, dozensToRemove) => 
+  basketItems.map((basketItem) => basketItem.id === dozensToRemove.id ? { ...basketItem, dozenCount: 0 } : basketItem )
+
 export const setBasketItems = (basketItems) => {
   return createAction(BASKET_ACTION_TYPES.SET_BASKET, basketItems)
 }
@@ -117,3 +123,13 @@ export const updateSearchItemsAfterBasketUpdateSuccess = (basketItems, searchIte
 
 export const updateSearchItemsAfterBasketUpdateFailed = (error) =>
   createAction(BASKET_ACTION_TYPES.UPDATE_SEARCH_ITEMS_AFTER_BASKET_UPDATE_FAILED)
+
+export const removePiecesFromItem = (basketItems, piecesToRemove) => {
+  const newBasketItems = removePieces(basketItems, piecesToRemove)
+  return createAction(BASKET_ACTION_TYPES.SET_BASKET, newBasketItems)
+}
+
+export const removeDozensFromItem = (basketItems, dozensToRemove) => {
+  const newBasketItems = removeDozens(basketItems, dozensToRemove)
+  return createAction(BASKET_ACTION_TYPES.SET_BASKET, newBasketItems)
+}
