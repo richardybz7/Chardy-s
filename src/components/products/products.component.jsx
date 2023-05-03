@@ -3,7 +3,7 @@ import Categories from '../categories/categories.component'
 import { addCollectionAndDocuments } from '../../utils/firebase/firebase.utils'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addImagesToProducts, getProductsStart } from '../../store/products/products.action'
+import { addImagesToProducts, getProductsStart, setProductTargetReference } from '../../store/products/products.action'
 import { selectProductImages, selectProductTargetReference, selectProducts, selectProductsMap } from '../../store/products/products.selector'
 import PRODUCTS_DATA from '../../data'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -34,6 +34,7 @@ const Products = () => {
     setWindowSize(window.innerWidth)
   }
   const backToTopButtonHandler = () => {
+    dispatch(setProductTargetReference(-1))
     window.scrollTo({
       top: document.body.getBoundingClientRect().top,
       behavior: 'smooth'
@@ -44,7 +45,7 @@ const Products = () => {
     return () => window.removeEventListener('resize', resizeHandler)
   })
   useEffect(() => {
-    if(!(selectProductTargetRef === undefined || selectProductTargetRef === null)){
+    if(selectProductTargetRef >= 0 && !(selectProductTargetRef === undefined || selectProductTargetRef === null)){
       scrollViewHandler(selectProductTargetRef)
     }
   },[selectProductTargetRef])

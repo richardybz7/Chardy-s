@@ -20,8 +20,6 @@ import {
 } from "./basket-dropdown.styles";
 import { setSearchItems } from "../../store/basket/basket.action";
 import { Fragment } from "react";
-import { useRef } from "react";
-import { useEffect } from "react";
 
 const BasketDropdown = () => {
   const dispatch = useDispatch()
@@ -84,7 +82,7 @@ const BasketDropdown = () => {
         </BasketItemsPerDozenContainer>
       </BasketItemsContainer>
       <BasketButtonContainer>
-        <BasketButton to={ basketItems && Object.keys(basketItems).length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={basketItems && Object.keys(basketItems).length}>GO TO CHECKOUT</BasketButton>
+        <BasketButton to={ basketItems && Object.keys(basketItems).length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={Object.keys(basketItems).length}>GO TO CHECKOUT</BasketButton>
       </BasketButtonContainer>
     </BasketDropdownContainer>
   )

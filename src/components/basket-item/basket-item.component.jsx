@@ -53,26 +53,16 @@ const BasketItem = ({item, perPiece}) => {
     updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const removeItemPiecesHandler = () => {
-    if(item.count === 1 && item.dozenCount === 0) {
-      removeItemHandler()
-    }
-    else{
-      const newBasket = removePiecesFromItem(basketItems, item)
-      dispatch(newBasket)
-      dispatch(setTotalCountStart())
-      updateBasketFieldOfUser(currentUser, newBasket.payload)
-    }
+    const newBasket = removePiecesFromItem(basketItems, item)
+    dispatch(newBasket)
+    dispatch(setTotalCountStart())
+    updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   const removeItemDozensHandler = () => {
-    if(item.count === 0 && item.dozenCount === 1) {
-      removeItemHandler()
-    }
-    else{
-      const newBasket = removeDozensFromItem(basketItems, item)
-      dispatch(newBasket)
-      dispatch(setTotalCountStart())
-      updateBasketFieldOfUser(currentUser, newBasket.payload)
-    }
+    const newBasket = removeDozensFromItem(basketItems, item)
+    dispatch(newBasket)
+    dispatch(setTotalCountStart())
+    updateBasketFieldOfUser(currentUser, newBasket.payload)
   }
   return (
     <ItemContainer>

@@ -125,11 +125,23 @@ export const updateSearchItemsAfterBasketUpdateFailed = (error) =>
   createAction(BASKET_ACTION_TYPES.UPDATE_SEARCH_ITEMS_AFTER_BASKET_UPDATE_FAILED)
 
 export const removePiecesFromItem = (basketItems, piecesToRemove) => {
-  const newBasketItems = removePieces(basketItems, piecesToRemove)
+  let newBasketItems = []
+  if(piecesToRemove.dozenCount === 0){
+    newBasketItems = removeItemFromBasket(basketItems, piecesToRemove)
+  }
+  else{
+    newBasketItems = removePieces(basketItems, piecesToRemove)
+  }
   return createAction(BASKET_ACTION_TYPES.SET_BASKET, newBasketItems)
 }
 
 export const removeDozensFromItem = (basketItems, dozensToRemove) => {
-  const newBasketItems = removeDozens(basketItems, dozensToRemove)
+  let newBasketItems = []
+  if(dozensToRemove.count === 0){
+    newBasketItems = removeItemFromBasket(basketItems, dozensToRemove)
+  }
+  else{
+    newBasketItems = removeDozens(basketItems, dozensToRemove)
+  }
   return createAction(BASKET_ACTION_TYPES.SET_BASKET, newBasketItems)
 }
