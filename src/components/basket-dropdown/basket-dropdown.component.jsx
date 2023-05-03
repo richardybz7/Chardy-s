@@ -25,7 +25,6 @@ import { useEffect } from "react";
 
 const BasketDropdown = () => {
   const dispatch = useDispatch()
-  const dropdownRef = useRef()
   const basketItems = useSelector(selectBasketItems)
   const userBasket = basketItems
   const hasCountItems = userBasket && Object.keys(userBasket).length > 0 && userBasket
@@ -42,11 +41,8 @@ const BasketDropdown = () => {
     if(basketItems && Object.keys(userBasket).length > 0)
     dispatch(setSearchItems(basketItems))
   }
-  useEffect(() => {
-    console.log(dropdownRef.current)
-  },[])
   return (
-    <BasketDropdownContainer ref={dropdownRef}>
+    <BasketDropdownContainer>
       <BasketItemsContainer>
         <BasketItemsPerPieceContainer>
           <BasketHeader>

@@ -5,7 +5,7 @@ import { signOutStart } from "../../store/user/user.action"
 import { useLocation } from "react-router-dom"
 import { selectNotificationCount } from "../../store/purchases/purchases.selector"
 import { setBasketItems, setTotalCountStart } from "../../store/basket/basket.action"
-import { setPurchases } from "../../store/purchases/purchases.action"
+import { setPurchases, setPurchasesNotificationToZero } from "../../store/purchases/purchases.action"
 
 const BurgerMenu = () => {
   const location = useLocation()
@@ -15,6 +15,7 @@ const BurgerMenu = () => {
     dispatch(setBasketItems([]))
     dispatch(setTotalCountStart())
     dispatch(setPurchases([]))
+    dispatch(setPurchasesNotificationToZero())
     dispatch(signOutStart())
     backHandler()
   }

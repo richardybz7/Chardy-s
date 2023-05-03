@@ -34,11 +34,10 @@ import { selectNotificationCount } from "../../store/purchases/purchases.selecto
 import ProductNavigation from "../../components/product-navigation/product-navigation.component";
 import { selectProductsMap } from "../../store/products/products.selector";
 import { AnimatePresence } from "framer-motion";
-import { setPurchases } from "../../store/purchases/purchases.action";
+import { setPurchases, setPurchasesNotificationToZero } from "../../store/purchases/purchases.action";
 import Popup from "../../components/popup/popup.component";
 import { setShowPopup } from "../../store/popup/popup.action";
 import { selectPopupIsShown } from "../../store/popup/popup.selector";
-import { useRef } from "react";
 
 const DEVICE_WIDTH = {
   phoneWidth: '670',
@@ -58,7 +57,6 @@ const Navigation = () => {
   const [windowSize, setWindowSize] = useState(window.innerWidth)
   const selectFailAttempt = useSelector(selectFail)
   const selectShowPopup = useSelector(selectPopupIsShown)
-  //const basketDropdownRef = useRef()
   const displayName = currentUser && currentUser.displayName
 
   const toggleBasket = () => dispatch(setIsBasketOpen(!isBasketOpen))
@@ -66,6 +64,7 @@ const Navigation = () => {
     dispatch(setBasketItems([]))
     dispatch(setTotalCountStart())
     dispatch(setPurchases([]))
+    dispatch(setPurchasesNotificationToZero())
     dispatch(signOutStart())
   }
   const burgerHandler = () => {
@@ -100,10 +99,6 @@ const Navigation = () => {
     location.pathname === '/' ? setCursorState('default') : setCursorState('pointer')
   },[location.pathname])
 
-  // useEffect(() => {
-  //   console.log(basketDropdownRef.current)
-  //   //basketDropdownRef.current.addEventListener('click', toggleBasket())
-  // },[isBasketOpen])
   return (
     <Fragment>
       <AnimatePresence>
