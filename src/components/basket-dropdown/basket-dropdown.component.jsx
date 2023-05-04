@@ -82,7 +82,7 @@ const BasketDropdown = () => {
         </BasketItemsPerDozenContainer>
       </BasketItemsContainer>
       <BasketButtonContainer>
-        <BasketButton to={ basketItems && Object.keys(basketItems).length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={Object.keys(basketItems).length}>GO TO CHECKOUT</BasketButton>
+        <BasketButton to={ basketItems && Object.keys(basketItems).length > 0 && '/checkout'} onClick={() => GoToCheckoutHandler()} disabled={ basketItems && Object.keys(basketItems).length}>GO TO CHECKOUT</BasketButton>
       </BasketButtonContainer>
     </BasketDropdownContainer>
   )

@@ -6,7 +6,6 @@ const existingBasketItem = (basketItems, itemToFind) => {
 }
 
 const addItemToBasket = (basketItems, itemToAdd, isDozen) => {
-
   if(!basketItems){
     if (isDozen) {
       return [{ ...itemToAdd, count: 0, dozenCount: 1}]

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ReactComponent as SearchLogoSVG } from '../../assets/search-lg1.svg'
+import CancelButton from '../../assets/cancelButtonAsset2.svg'
 
 export const ParentSearchBoxContainer = styled.div`
   width: 100%;
@@ -35,7 +36,17 @@ export const SearchBox = styled.input`
     color: var(--color1)
   }
   :focus{
-    outline: #F2A9A9
+    outline: none;
+  }
+  ::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-image: url(${CancelButton});
+    background-repeat: no-repeat;
+    background-size: contain;
   }
 `
 export const SearchButton = styled.div`

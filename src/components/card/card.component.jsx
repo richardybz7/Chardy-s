@@ -13,7 +13,7 @@ const Card = ({product}) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const currentUser = useSelector(selectCurrentUser)
-  const basketItems = useSelector(selectBasketItems)
+  let basketItems = useSelector(selectBasketItems)
   const scrollRef = useRef(null)
   const isInView = useInView(scrollRef, {whileInView: 'visible'})
   const addPieceToBasketHandler = () => {
@@ -25,6 +25,10 @@ const Card = ({product}) => {
       }, 3000);
       return
     }
+    if(typeof basketItems === 'object')
+      if(Object.values(basketItems).length < 1)
+        basketItems = []
+
     const newBasket = addBasketItem(basketItems, product, false)
     dispatch(newBasket)
     dispatch(setTotalCountStart())
@@ -39,6 +43,10 @@ const Card = ({product}) => {
       }, 3000);
       return
     }
+    if(typeof basketItems === 'object')
+      if(Object.values(basketItems).length < 1)
+        basketItems = []
+
     const newBasket = addBasketItem(basketItems, product, true)
     dispatch(newBasket)
     dispatch(setTotalCountStart())

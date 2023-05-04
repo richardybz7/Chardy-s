@@ -14,7 +14,7 @@ export const SearchResultContainer = styled.div`
 `
 export const SearchBoxItem = styled.div`
   display: flex;
-  gap: 9.5em;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5em;
   :not(:first-child){

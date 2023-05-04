@@ -98,7 +98,6 @@ const Navigation = () => {
     isBasketOpen && dispatch(setIsBasketOpen(false))
     location.pathname === '/' ? setCursorState('default') : setCursorState('pointer')
   },[location.pathname])
-
   return (
     <Fragment>
       <AnimatePresence>

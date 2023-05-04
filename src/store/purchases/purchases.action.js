@@ -3,6 +3,8 @@ import { createAction } from "../../utils/reducer/reducer.utils";
 
 const numOfPurchasesNotification = (purchases) => {
   let purchaseCount = 0
+  if(!purchases) return purchaseCount
+  
   purchases.forEach((purchase) => {
     Object.values(purchase).forEach((item) =>
     item.notify && purchaseCount++
@@ -11,7 +13,7 @@ const numOfPurchasesNotification = (purchases) => {
   return purchaseCount
 }
 export const setPurchases = (purchases) => 
-  createAction(PURCHASES_ACTION_TYPES.SET_PURCHASES, purchases.reverse())
+  createAction(PURCHASES_ACTION_TYPES.SET_PURCHASES, purchases)
 
 export const setPurchasesNotification = (purchases) => {
   const numOfNotification = numOfPurchasesNotification(purchases)
@@ -23,7 +25,7 @@ export const udpatePurchasesStart = () =>
   createAction(PURCHASES_ACTION_TYPES.UPDATE_PURCHASES_START)
 
 export const udpatePurchasesSuccess = (purchases) =>
-  createAction(PURCHASES_ACTION_TYPES.UPDATE_PURCHASES_SUCCESS, purchases.reverse())
+  createAction(PURCHASES_ACTION_TYPES.UPDATE_PURCHASES_SUCCESS, purchases)
 
 export const updatePurchasesFailed = (error) =>
   createAction(PURCHASES_ACTION_TYPES.UPDATE_PURCHASES_FAILED, error)
