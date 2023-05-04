@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
-import NoPurchaseSVG from '../../assets/noPurchasesAsset6.svg'
-import ToReceiveSVG from '../../assets/toReceiveAsset6.svg'
+import NoPurchaseSVG from '../../assets/noPurchasesAsset7.svg'
+import ToReceiveSVG from '../../assets/toReceiveAsset7.svg'
 import { motion } from "framer-motion";
 
 export const ParentMyPurchasesContainer = styled(motion.div).attrs({
@@ -133,6 +133,7 @@ export const NoPurchase = styled.div`
   width: 50vw;
   height: 40vw;
   max-width: 676px;
+  max-height: 564px;
 `
 export const ToReceive = styled.div`
   background-image: url(${ToReceiveSVG});
@@ -141,4 +142,6 @@ export const ToReceive = styled.div`
   background-size: contain;
   width: 45vw;
   height: 60vw;
+  max-width: 500px;
+  max-height: 564px;
 `

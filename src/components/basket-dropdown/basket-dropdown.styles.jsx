@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import PerPieceSVG from '../../assets/perPieceAsset7.svg'
 import PerDozenSVG from '../../assets/perDozen3Asset9.svg'
-import BuyAPieceSVG from '../../assets/buyAPieceAsset6.svg'
-import BuyADozenSVG from '../../assets/buyADozenAsset7.svg'
+import BuyAPieceSVG from '../../assets/buyAPieceAsset8.svg'
+import BuyADozenSVG from '../../assets/buyADozenAsset9.svg'
 import { motion } from "framer-motion";
 
 export const BasketItemsPerPieceContainer = styled.div`

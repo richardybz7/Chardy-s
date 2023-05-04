@@ -14,23 +14,27 @@ const Search = ({placeholder, items, location}) => {
     searchRef.current.value = searchValue
     switch (location){
       case 'checkout':
-        searchedItems = items.filter((item) => 
-              item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
-            )
-        dispatch(setSearchItems(searchedItems))
+        if(items.length > 0){
+          searchedItems = items.filter((item) => 
+           item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase())
+          )
+          dispatch(setSearchItems(searchedItems))
+        }
         break;
       case '/':
         let finalArray = []
-        let itemsArray = Object.values(items).map((item) => item.reduce((acc,curr, i) => {
-          acc[i] = curr
-          return acc
-        },{}))
-        
-        itemsArray.map((item, i) => {
-          Object.values(item).map((item) => finalArray.push(item))
-        })
-        searchedItems = finalArray.filter((item) => item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
-        dispatch(setSearchItems(searchedItems))
+        if(Object.keys(items).length > 0){
+          let itemsArray = Object.values(items).map((item) => item.reduce((acc,curr, i) => {
+            acc[i] = curr
+            return acc
+          },{}))
+          
+          itemsArray.map((item, i) => {
+            Object.values(item).map((item) => finalArray.push(item))
+          })
+          searchedItems = finalArray.filter((item) => item.name.toLocaleLowerCase().includes(searchValue.toLocaleLowerCase()))
+          dispatch(setSearchItems(searchedItems))
+        }
         break;
       default: break;
     }

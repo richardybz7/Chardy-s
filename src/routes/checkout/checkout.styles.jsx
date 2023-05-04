@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { BaseButton } from "../../components/button/button.styles";
-import NoCheckoutItemSVG from '../../assets/noCheckoutItemAsset1.svg'
-import CheckoutItemNotExistSVG from '../../assets/checkoutItemNotExistAsset2.svg'
+import NoCheckoutItemSVG from '../../assets/noCheckoutItemAsset5.svg'
+import CheckoutItemNotExistSVG from '../../assets/checkoutItemNotExistAsset4.svg'
 import { motion } from "framer-motion";
 
 export const CheckoutPageParentContainer = styled(motion.div).attrs({
