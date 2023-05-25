@@ -4,8 +4,8 @@ import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
 import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer, PriceParentContainer, PriceDivider } from "./card.styles";
-import { useEffect, useRef } from "react";
-import { useInView } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { setShowPopup } from "../../store/popup/popup.action";
 import DonutImageLoad from "../donutImageLoading/donutImageLoading.component";
@@ -17,6 +17,7 @@ const Card = ({product}) => {
   let basketItems = useSelector(selectBasketItems)
   const scrollRef = useRef(null)
   const isInView = useInView(scrollRef, {whileInView: 'visible'})
+  const [render, setRender] = useState(false)
   const addPieceToBasketHandler = () => {
     if(!currentUser) {
       navigate('/auth')
@@ -59,14 +60,20 @@ const Card = ({product}) => {
       basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
     }
   }
+  useEffect(() => {
+    //force render
+    setRender(true)
+  }, [product])
   return (
     <CardContainer ref={scrollRef} isinview={isInView ? 'a' : 'b'}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
+      <AnimatePresence>
       {
         product.imageUrl != undefined ?
         <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
         : <DonutImageLoad/>
       }
+      </AnimatePresence>
       <PriceParentContainer>
         <PriceContainer>
           <Price>P{product.itemPrice}</Price>
