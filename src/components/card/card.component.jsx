@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import { useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { setShowPopup } from "../../store/popup/popup.action";
+import DonutImageLoad from "../donutImageLoading/donutImageLoading.component";
 
 const Card = ({product}) => {
   const dispatch = useDispatch()
@@ -61,7 +62,11 @@ const Card = ({product}) => {
   return (
     <CardContainer ref={scrollRef} isinview={isInView ? 'a' : 'b'}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
-      <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
+      {
+        product.imageUrl != undefined ?
+        <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
+        : <DonutImageLoad/>
+      }
       <PriceParentContainer>
         <PriceContainer>
           <Price>P{product.itemPrice}</Price>

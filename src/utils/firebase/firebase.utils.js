@@ -52,18 +52,17 @@ export const db = getFirestore();
 
 export const getImages = async () => {
   let images = {}
-  return listAll(imagesRef)
-    .then((res) => {
-      let promises = res.items.map((itemRef) => 
-        getDownloadURL(itemRef).then((url) => 
-          images[itemRef.name] = url
-        )
-      )
-      return Promise.all(promises)
-    })
-    .catch((error) => {
-      console.log(error)
-    })
+  try{
+    const res = await listAll(imagesRef)
+    await Promise.all(res.items.map(async (itemRef) => {
+      images[itemRef.name] = await getDownloadURL(itemRef)
+      //images[itemRef.name] = url
+    }))
+  }
+  catch (error){
+    console.log(error)
+  }
+  return images
 }
 
 export const createUserDocumentFromAuth = async (userAuth, otherInfo) => {

@@ -15,7 +15,7 @@ export const ParentSpinnerContainer = styled(motion.div).attrs({
   align-items: center;
   flex-direction: column;
 `
-const rotate360 = keyframes`
+export const rotate360 = keyframes`
   from {
     transform: rotate(0deg)
   }
