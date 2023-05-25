@@ -50,7 +50,7 @@ export const signInWithGooglePopup = async () =>
 
 export const db = getFirestore();
 
-export const getImages = () => {
+export const getImages = async () => {
   let images = {}
   return listAll(imagesRef)
     .then((res) => {
