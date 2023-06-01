@@ -7,6 +7,7 @@ export const Label = styled.label`
   white-space: nowrap;
   font-weight: bold;
   color: var(--color2);
+  z-index: 1;
 `
 export const ButtonContainer = styled.div`
   display: flex;
