@@ -49,6 +49,9 @@ const Products = () => {
       scrollViewHandler(selectProductTargetRef)
     }
   },[selectProductTargetRef])
+  useEffect(() => {
+    dispatch(addImagesToProducts(images, productsMap))
+  }, [])
   return (
     <ProductsParentContainer>
       <CategoriesContainer>

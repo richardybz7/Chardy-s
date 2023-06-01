@@ -20,6 +20,7 @@ export const PriceParentContainer = styled.div`
   display: flex;
   background-color: #FFD1D1;
   outline: 3px solid var(--color1);
+  z-index: 1;
   @media screen and (max-width: 470px) {
     flex-direction: column;
   }
@@ -123,13 +124,19 @@ export const BuyADozenButton = styled(BaseButton)`
     }
   }
 `
-export const ProductImage = styled.div`
-  background-image: ${prop => prop.imageUrl && `url(${prop.imageUrl})`};
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  width: 100%;
+export const ProductImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+  width: 100%;
+  position: relative;
+`
+export const ProductImage = styled.img`
+  display: ${prop => !prop.loaded && 'none'};
+  width: 100%;
+  position: absolute;
+  z-index: 0;
 `
 export const CountIndicatorContainer = styled.div`
   display: ${prop => prop.count === 0 ? 'none' : 'flex'};

@@ -55,8 +55,13 @@ export const getImages = async () => {
   try{
     const res = await listAll(imagesRef)
     await Promise.all(res.items.map(async (itemRef) => {
-      images[itemRef.name] = await getDownloadURL(itemRef)
+      //images[itemRef.name] = await getDownloadURL(itemRef)
       //images[itemRef.name] = url
+      getDownloadURL(itemRef).then(url => {
+        images[itemRef.name] = url
+      }).catch(err => {
+        console.log('Error fetching images: ', err)
+      })
     }))
   }
   catch (error){
@@ -190,13 +195,12 @@ export const removeAllUserPurchases = async (userAuth) => {
   })
 }
 
-export const getCurrentUser = () => {
+export const getCurrentUser = async () => {
   return new Promise((resolve,reject) => {
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (userAuth) => {
+    const unsubscribe = onAuthStateChangedListener(
+      user => {
         unsubscribe()
-        resolve(userAuth)
+        resolve(user)
       },
       reject
     )

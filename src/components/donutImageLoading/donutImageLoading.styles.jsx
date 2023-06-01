@@ -4,10 +4,9 @@ import { rotate360 } from "../spinner/spinner.styles";
 import { motion } from "framer-motion";
 
 export const DonutImageLoadingContainer = styled(motion.div).attrs({
-  initial:{opacity: 0},
+  initial:{opacity: 1},
   animate:{opacity: 1},
-  exit:{opacity: 0},
-  transition: {duration: 0.5}
+  exit:{opacity: 0}
 })`
   width: 100%;
   height: 100%;

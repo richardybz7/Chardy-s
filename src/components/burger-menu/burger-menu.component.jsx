@@ -37,7 +37,7 @@ const BurgerMenu = () => {
             }
             {
               location.pathname !== '/myPurchases' &&
-              <MenuItemLabel to='/myPurchases' onClick={() => backHandler()} mypurchases={true} notification={notification}>My purchases</MenuItemLabel>
+              <MenuItemLabel to='/myPurchases' onClick={() => backHandler()} mypurchases notification={notification}>My purchases</MenuItemLabel>
             }
             <MenuItemLabel onClick={signOutHandler} to='/'>Sign Out</MenuItemLabel>
           </LinkAddressContainer>

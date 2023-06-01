@@ -30,7 +30,7 @@ export const LabelDivision = styled.div`
   margin: 0 1em;
   :not(:last-child){
     height: 5px;
-    width: 5px;
+    min-width: 5px;
     border-radius: 0.3em;
     background-color: var(--color1);
   }

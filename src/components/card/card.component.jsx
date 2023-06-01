@@ -3,7 +3,7 @@ import { addBasketItem, setTotalCountStart } from "../../store/basket/basket.act
 import { selectBasketItems } from "../../store/basket/basket.selector";
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { updateBasketFieldOfUser } from "../../utils/firebase/firebase.utils";
-import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer, PriceParentContainer, PriceDivider } from "./card.styles";
+import { AddToBoxButton, CardContainer, BuyADozenButton, Label, ButtonContainer, Price, PriceLabel, PriceContainer, ProductImage, BugRecoveryButton, CountIndicatorContainer, PriceParentContainer, PriceDivider, ProductImageContainer } from "./card.styles";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, useInView } from "framer-motion";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,8 @@ const Card = ({product}) => {
   let basketItems = useSelector(selectBasketItems)
   const scrollRef = useRef(null)
   const isInView = useInView(scrollRef, {whileInView: 'visible'})
-  const [render, setRender] = useState(false)
+  const [loadedImage, setLoadedImage] = useState(false)
+
   const addPieceToBasketHandler = () => {
     if(!currentUser) {
       navigate('/auth')
@@ -60,20 +61,20 @@ const Card = ({product}) => {
       basketItems[i].name === product.name && (countTotal = basketItems[i].count + basketItems[i].dozenCount)
     }
   }
-  useEffect(() => {
-    //force render
-    setRender(true)
-  }, [product])
+  const imageOnloadHandler = () => {
+    setLoadedImage(true)
+  }
   return (
     <CardContainer ref={scrollRef} isinview={isInView ? 'a' : 'b'}>
       <CountIndicatorContainer count={countTotal}>{countTotal}</CountIndicatorContainer>
+      <ProductImageContainer>
+      <ProductImage src={product.imageUrl} onLoad={imageOnloadHandler} loaded={loadedImage}></ProductImage>
       <AnimatePresence>
-      {
-        product.imageUrl != undefined ?
-        <ProductImage imageUrl={product.imageUrl && product.imageUrl}/>
-        : <DonutImageLoad/>
-      }
+        {
+          !loadedImage && <DonutImageLoad/>
+        }
       </AnimatePresence>
+      </ProductImageContainer>
       <PriceParentContainer>
         <PriceContainer>
           <Price>P{product.itemPrice}</Price>
