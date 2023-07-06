@@ -1,4 +1,4 @@
-import { FooterContainer, FooterParentContainer, Label, LeftFooterContainer, RightFooterContainer } from "./footer.styles"
+import { FooterContainer, FooterParentContainer, InstaSVG, Label, LeftFooterContainer, LinkedInSVG, LinksContainer, RightFooterContainer } from "./footer.styles"
 
 const Footer = () => {
   return (
@@ -10,8 +10,15 @@ const Footer = () => {
           <Label>Phone: +63 9690621141</Label>
         </LeftFooterContainer>
         <RightFooterContainer>
-          <Label>Portfolio: [Link here soon]</Label>
-          <Label>Resume: [File here soon]</Label>
+          <Label>My links:</Label>
+          <LinksContainer>
+            <a href="https://www.linkedin.com/in/john-richard-yba%C3%B1ez-046ba8265/">
+              <LinkedInSVG/>
+            </a>
+            <a href="https://www.instagram.com/drahc13/">
+              <InstaSVG/>
+            </a>
+          </LinksContainer>
         </RightFooterContainer>
       </FooterContainer>
     </FooterParentContainer>
