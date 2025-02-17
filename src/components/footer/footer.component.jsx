@@ -6,7 +6,7 @@ const Footer = () => {
       <FooterContainer>
         <LeftFooterContainer>
           <Label top="true">Contact</Label>
-          <Label>Email: richardybanez7@gmail.com</Label>
+          <Label>Email: richardybanez037@gmail.com</Label>
           <Label>Phone: +63 9662291705</Label>
         </LeftFooterContainer>
         <RightFooterContainer>
