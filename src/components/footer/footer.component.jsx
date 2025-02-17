@@ -15,9 +15,9 @@ const Footer = () => {
             <a href="https://www.linkedin.com/in/john-richard-yba%C3%B1ez-046ba8265/">
               <LinkedInSVG/>
             </a>
-            <a href="https://www.instagram.com/drahc13/">
+{/*             <a href="https://www.instagram.com/drahc13/">
               <InstaSVG/>
-            </a>
+            </a> */}
           </LinksContainer>
         </RightFooterContainer>
       </FooterContainer>
