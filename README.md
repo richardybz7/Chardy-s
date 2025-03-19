@@ -1,2 +1,2 @@
 Ecommerce app for donuts
-- link: chardysdonuts.netlify.app
+- link: https://chardysdonuts.netlify.app
